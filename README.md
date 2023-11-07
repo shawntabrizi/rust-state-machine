@@ -1,35 +1,53 @@
-# Rust Tooling
+# Creating a Balances Pallet
 
-In this step, we will initialize a basic rust project, where we can start building our simple Rust state machine.
+As mentioned earlier, at the heart of a blockchain is a state machine.
 
-## rustfmt
+We can create a very naive state machine using simple Rust abstractions, and through this help learn about Rust in the context of blockchains.
 
-To keep your code clean and easy to read, we use a tool called [`rustfmt`](https://github.com/rust-lang/rustfmt).
+We want keep our code organized, so we will not really start building in the `main.rs` file, but actually in separate Rust modules. We can think of the `main.rs` file as glue which brings everything together, and we will see that over the course of this workshop.
 
-1. Create a new file in your project's root directory called `rustfmt.toml`.
+"Pallet" is a term specific to the Polkadot SDK, which refers to Rust modules which contain logic specific for your blockchain runtime. We are going to start using this term here because what we build here will closely mirror what you will see with the Polkadot SDK.
 
-	```bash
-	touch rustfmt.toml
+## Balances
+
+Pretty much every blockchain has logic handles the balances of users on that blockchain.
+
+This Pallet will tell you: how much balance each user has, provide functions which allow users to transfer those balances, and even some low level functions to allow your blockchain system to manipulate those balances if needed. Think for example if you want to mint new tokens which don't already exist.
+
+This is a great starting point, and the very first Pallet we will build.
+
+## Creating a Struct
+
+1. Create a new file in your `src` folder named `balances.rs`
+
 	```
-2. Use the provided `rustfmt.toml` file to configure your formatting preferences.
-3. Run the code formatter using the following command:
-
-	```bash
-	cargo fmt
+	touch src/balances.rs
 	```
 
-You shouldn't see any changes this time around, but as you write more code, you will be able to see `cargo fmt` make everything look pretty, consistent, and easy to read.
+2. In this file, create a `struct`, which will act as the state and entry point for this module:
 
-> We recommend you run `cargo fmt` after every step!
+	```rust
+	pub struct Pallet {}
+	```
 
-## Rust Analyzer
+3. Now go back to `src/main.rs`, and import this new module, which will include all the logic inside of it:
 
-Another popular tool in the Rust community is [Rust Analyzer](https://rust-analyzer.github.io/).
+	```rust
+	mod balances;
+	```
 
-It provides many features like code completion and goto definition for code editors like VS Code.
+4. If we run your program now, you will see it still compiles and runs, but might show you some warnings like:
 
-However, to provide the full functionality that it does, Rust Analyzer needs to compile your code. For a small project like this one, this is not a problem, however working with a large project like Substrate / Polkadot-SDK, it is.
+	```
+	warning: struct `Pallet` is never constructed
+	--> src/balances.rs:1:12
+	|
+	1 | pub struct Pallet {    }
+	|              ^^^^^^
+	|
+	= note: `#[warn(dead_code)]` on by default
 
-It is my personal recommendation that Rust Analyzer is not needed in this workshop, and generally you should not use it for Substrate development. However, this section might be updated in the future to include special configurations of Rust Analyzer which will work well with Polkadot SDK in the future.
+	warning: `pr` (bin "pr") generated 1 warning
+	```
 
-However, if you would like to use it anyway, now is the right time to set it up.
+	That's fine! We haven't started using our `Pallet` yet, but you can see that the Rust compiler is detecting our new code, and bringing that logic into our main program. This is the start of building our first state machine module.
