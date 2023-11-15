@@ -1,7 +1,16 @@
+/* TODO: You might need to import some stuff for this step. */
 use std::collections::BTreeMap;
 
 type AccountId = String;
 type Balance = u128;
+
+/*
+	TODO:
+	Update the `Pallet` struct to be generic over the `AccountId` and `Balance` type.
+
+	You won't need the type definitions above after you are done.
+	Types will now be defined in `main.rs`. See the TODOs there.
+*/
 
 /// This is the Balances Module.
 /// It is a simple module which keeps track of how much balance each account has in this state
@@ -11,6 +20,17 @@ pub struct Pallet {
 	// A simple storage mapping from accounts to their balances.
 	balances: BTreeMap<AccountId, Balance>,
 }
+
+/*
+	TODO:
+	The generic types need to satisfy certain traits in order to be used in the functions below.
+		- AccountId: Ord
+		- Balance: Zero + CheckedSub + CheckedAdd + Copy
+
+	You could figure these traits out yourself by letting the compiler tell you what you're missing.
+
+	NOTE: You might need to adjust some of the functions below to satisfy the borrow checker.
+*/
 
 impl Pallet {
 	/// Create a new instance of the balances module.
@@ -55,6 +75,10 @@ impl Pallet {
 mod tests {
 	#[test]
 	fn init_balances() {
+		/*
+			TODO:
+			When creating an instance of `Pallet`, you should explicitly define the types you use.
+		*/
 		let mut balances = super::Pallet::new();
 
 		assert_eq!(balances.balance(&"alice".to_string()), 0);
@@ -65,6 +89,10 @@ mod tests {
 
 	#[test]
 	fn transfer_balance() {
+		/*
+			TODO:
+			When creating an instance of `Pallet`, you should explicitly define the types you use.
+		*/
 		let mut balances = super::Pallet::new();
 
 		assert_eq!(

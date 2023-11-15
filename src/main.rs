@@ -1,11 +1,21 @@
 mod balances;
 mod system;
 
+// These are the concrete types we will use in our simple state machine.
+// Modules are configured for these types directly, and they satisfy all of our
+// trait requirements.
+mod types {
+	/*
+		TODO: Move your type definitions for `AccountId` and `Balance` here.
+	*/
+}
+
 // This is our main Runtime.
 // It accumulates all of the different pallets we want to use.
 #[derive(Debug)]
 pub struct Runtime {
 	system: system::Pallet,
+	/* TODO: Use your type definitions for your new generic `balances::Pallet`. */
 	balances: balances::Pallet,
 }
 
