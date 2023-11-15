@@ -2,6 +2,11 @@ use core::ops::AddAssign;
 use num::traits::{One, Zero};
 use std::collections::BTreeMap;
 
+/*
+	TODO: Combine all generic types and their trait bounds into a single `pub trait Config`.
+	When you are done, your `Pallet` can simply be defined with `Pallet<T: Config>`.
+*/
+
 /// This is the System Pallet.
 /// It handles low level state needed for your blockchain.
 #[derive(Debug)]
@@ -11,6 +16,10 @@ pub struct Pallet<AccountId, BlockNumber, Nonce> {
 	/// A map from an account to their nonce.
 	nonce: BTreeMap<AccountId, Nonce>,
 }
+
+/*
+	TODO: Update all of these functions to use your new configuration trait.
+*/
 
 impl<AccountId, BlockNumber, Nonce> Pallet<AccountId, BlockNumber, Nonce>
 where
@@ -45,6 +54,11 @@ where
 
 #[cfg(test)]
 mod test {
+	/*
+		TODO: Create a `struct TestConfig`, and implement `super::Config` on it with concrete types.
+		Use this struct to instantiate your `Pallet`.
+	*/
+
 	#[test]
 	fn init_system() {
 		let mut system = super::Pallet::<String, u32, u32>::new();
