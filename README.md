@@ -1,66 +1,75 @@
-# Introducing Macros
+# Adding Call Macro to Balances
 
-If you have made it this far, then you have finished designing your simple state machine.
+Let's start by adding the `#[macros::call]` macro to our Balances Pallet.
 
-At this point, our goal is to see if we can use the power of Rust macros to make future development even easier.
+## The Call Macro
 
-All of this is in preparation for you to work with the Polkadot SDK, which heavily relies on macros like the ones you will see here.
+The purpose of the `#[macros::call]` macro is to automatically generate the `enum Call` from the functions of the pallet and the pallet level `Dispatch` logic found in each Pallet.
 
-## Auto Generated Code
+We can place the `#[macros::call]` attribute over our `impl<T: Config> Pallet<T>` where the callable functions are implemented. From there, the macro can parse the whole object, and extract the data it needs. Not all of your functions are intended to be callable, so you can isolate the functions which should be in their own `impl<T: Config> Pallet<T>` as the template does.
 
-As mentioned earlier, Rust macros are basically code which can generate more code.
+### Parse
 
-As you can see from our simple state machine, there is a lot of boiler plate code that we could generate, following the simple patterns and structures we have designed.
+In order to generate the code that we want, we need to keep track of:
 
-For example:
+1. Each callable function that the developer wants to expose through the Runtime.
+	1. The name of that function.
+	2. The argument names and types of that function.
+2. The name of the `struct` where those functions are implemented. Normally this is `Pallet`, but we can allow the developer flexibility in their naming.
 
-- We expect that each Pallet will expose some callable functions with `Call`.
-- We know that each `Call` will have all the same parameters of the underlying Pallet function, except the `caller`.
-- We know that each Pallet will implement `Dispatch` logic on the `Pallet` struct.
-- We know that the `Runtime` will accumulate all the `pallet::Call`s into the `RuntimeCall` outer enum.
-- We know that the `Runtime` will have logic to re-dispatch runtime level calls to the pallet level.
-- and so on...
+These things are tracked with `CallDef` and `CallVariantDef`.
 
-The more we abstract our Pallet and Runtime into consistent and and extensible pieces, the more we can automate, and ultimately this can provide a better developer experience.
+Also, during the parsing process, we might want to check for certain consistencies in the code being parsed. In this case, we require that every callable function muse have `caller` as their first parameter with type `T::AccountId`. This should make sense to you since you have designed a number of different callable functions, and they all follow this pattern.
 
-## Navigating the Macros
+This checking logic is handled by `fn check_caller_arg`.
 
-This tutorial is not attempting to teach you how to write these macros. That information would take a whole tutorial itself.
+### Expand
 
-Instead, we are providing you with macros which should work directly with your existing code, and replace a lot of code that you have already written.
+Once we have parsed all the data we need, generating the code is pretty straight forward.
 
-Macros in general are "magical". If you have not written the macro yourself, there can be very little insight into what is happening underneath. In this context, the macros we are providing to you will directly replace code you have already written, so you should completely understand what is being generated, and how they work.
+If you jump down to `let dispatch_impl = quote!` you will see a bunch of code that looks like the templates we used earlier in the tutorial. We just left markers where the macro generation logic should place all the information to write the code we need.
 
-The `macros` folder contains a `lib.rs`, which exposes the two attribute macros built for this tutorial:
+## Macro Quirks
 
-1. `#[macros::call]`
-2. `#[macros::runtime]`
+Macros are often very "quirky" when you use them. Since all of the input going into the macro is other code, sometimes the format of that code might not match what you expect.
 
-You can find the code for these two macros in their respective `call` and `runtime` folders.
+For example, the original `Call` enum we have constructed looks like:
 
-In each of these folders there are 3 files:
+```rust
+pub enum Call<T: Config> {
+	Transfer { to: T::AccountId, amount: T::Balance },
+}
+```
 
-1. `mod.rs` - The entry point for the macro, where code is parsed, and then generated.
-2. `parse.rs` - The parsing logic for the macro, extracting the information we need to generate code.
-3. `expand.rs` - The expansion / generation code, which will write new code for us with the data provided.
+The variant is called `Transfer` because the function it represents is named `fn transfer`.
 
-We will go through each of these more deeply as we include the macros into our code.
+However, if we want to generate the `Call` enum, and we only have `fn transfer`, where will we get the specific string `Transfer` with a capital `T`?
 
-## Adding the Macros to Our Project
+It is possible to do string manipulation and adjust everything to make it consistent to what Rust expects, but in this case it is better for our macros to make minimal modifications to user written code.
 
-All of the macros are contained within their own crate.
+What does this mean?
 
-You can extract the macros however is best for you from the source repository for this project: https://github.com/shawntabrizi/rust-state-machine
+When the `#[macros::call]` macro generates our `enum Call`, it will actually look like this:
 
-1. Copy the `macros` folder into the root of your project.
-2. Update your `cargo.toml` file to include this crate into your project:
+```rust
+#[allow(non_camel_case_types)]
+pub enum Call<T: Config> {
+	transfer { to: T::AccountId, amount: T::Balance },
+}
+```
 
-	```toml
-	[dependencies]
-	num = "0.4.1"
-	macros = { path = "./macros/" }
-	```
+Here you see that `transfer` is exactly the string which comes from the name of the function. Normally all enum variants should be `CamelCase`, but since rust functions are `snake_case`, our enum will have variants which are also `snake_case`. We won't see any warnings about this because we enabled `#[allow(non_camel_case_types)]`.
 
-Recompile your project, and you should see this new create and its sub-dependencies being compiled.
+Ultimately, this has no significant impact on your underlying code. It is just ergonomics and expectations.
 
-In the next step we will actually start integrating these macros into your simple state machine.
+Indeed, macros can be quirky, but the amount of time they save you makes them worth it.
+
+## Time to Add Your Call Macro
+
+1. If you haven't, move your `transfer` function into its own `impl<T: Config> Pallet<T>`. We only want to apply the macro to this one function, so we need to isolate it from the other functions which are not meant to be callable.
+2. Add the `#[macros::call]` attribute over this new `impl<T: Config> Pallet<T>`.
+3. Delete your existing `enum Call`.
+4. Delete your existing implementation of `Dispatch for Pallet`.
+5. Then, in your `main.rs` file, change instances of `balances::Call::Transfer` to `balances::Call::transfer` with a lowercase `t`.
+
+At this point, everything should compile just like before! We are witnessing the power of macros to generate code for us auto-magically!
