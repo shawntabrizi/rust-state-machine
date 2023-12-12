@@ -40,3 +40,31 @@ pub trait Dispatch {
 	/// based on the outcome of that function call.
 	fn dispatch(&mut self, caller: Self::Caller, call: Self::Call) -> DispatchResult;
 }
+
+use ed25519_dalek::{SecretKey, PUBLIC_KEY_LENGTH};
+
+// A public key type
+#[derive(PartialEq, Eq, PartialOrd, Ord, Clone)]
+pub struct PublicKey([u8; PUBLIC_KEY_LENGTH]);
+
+// A public key type
+#[derive(PartialEq, Eq, PartialOrd, Ord, Clone)]
+pub struct PrivateKey(SecretKey);
+
+// Implement the Debug trait for PublicKey
+impl core::fmt::Debug for PublicKey {
+	fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+		match self {
+			&Self::ALICE => write!(f, "Alice"),
+			&Self::BOB => write!(f, "Bob"),
+			&Self::CHARLIE => write!(f, "Charlie"),
+			_ => write!(f, "{:?}", self),
+		}
+	}
+}
+
+impl PublicKey {
+	pub const ALICE: Self = Self([0; PUBLIC_KEY_LENGTH]);
+	pub const BOB: Self = Self([1; PUBLIC_KEY_LENGTH]);
+	pub const CHARLIE: Self = Self([2; PUBLIC_KEY_LENGTH]);
+}

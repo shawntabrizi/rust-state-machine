@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 num = "0.4.1"
 macros = { path = "./macros/" }
+ed25519-dalek = "2.1.0"

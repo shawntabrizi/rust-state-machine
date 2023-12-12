@@ -9,7 +9,7 @@ use crate::support::Dispatch;
 // Modules are configured for these types directly, and they satisfy all of our
 // trait requirements.
 mod types {
-	pub type AccountId = String;
+	pub type AccountId = crate::support::PublicKey;
 	pub type Balance = u128;
 	pub type BlockNumber = u32;
 	pub type Nonce = u32;
@@ -50,9 +50,9 @@ fn main() {
 	// Create a new instance of the Runtime.
 	// It will instantiate with it all the modules it uses.
 	let mut runtime = Runtime::new();
-	let alice = "alice".to_string();
-	let bob = "bob".to_string();
-	let charlie = "charlie".to_string();
+	let alice = crate::support::PublicKey::ALICE;
+	let bob = crate::support::PublicKey::BOB;
+	let charlie = crate::support::PublicKey::CHARLIE;
 
 	// Initialize the system with some initial balance.
 	runtime.balances.set_balance(&alice, 100);
