@@ -1,0 +1,5 @@
+{
+  "commitHash": "c724c4a9cf647ee3d21c78fb0d60fdadcd400371",
+  "commitMessage": "template: introduce macros",
+  "files": "M\tCargo.toml\nM\tREADME.md\nA\tmacros/src/lib.rs\n"
+}

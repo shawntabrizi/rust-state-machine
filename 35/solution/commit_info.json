@@ -1,0 +1,5 @@
+{
+  "commitHash": "4e3a4944166e497de18ab185ae672422a73b2dcb",
+  "commitMessage": "solution: integrate proof of existence into the runtime",
+  "files": "M\tREADME.md\nM\tsrc/main.rs\n"
+}

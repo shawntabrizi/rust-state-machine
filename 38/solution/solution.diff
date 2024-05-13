@@ -1,0 +1,584 @@
+diff --git a/Cargo.lock b/Cargo.lock
+index 10ded84..42a43af 100644
+--- a/Cargo.lock
++++ b/Cargo.lock
+@@ -8,6 +8,15 @@ version = "1.1.0"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
+ 
++[[package]]
++name = "macros"
++version = "0.1.0"
++dependencies = [
++ "proc-macro2",
++ "quote",
++ "syn",
++]
++
+ [[package]]
+ name = "num"
+ version = "0.4.1"
+@@ -84,9 +93,45 @@ dependencies = [
+  "autocfg",
+ ]
+ 
++[[package]]
++name = "proc-macro2"
++version = "1.0.69"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "134c189feb4956b20f6f547d2cf727d4c0fe06722b20a0eec87ed445a97f92da"
++dependencies = [
++ "unicode-ident",
++]
++
++[[package]]
++name = "quote"
++version = "1.0.33"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "5267fca4496028628a95160fc423a33e8b2e6af8a5302579e322e4b520293cae"
++dependencies = [
++ "proc-macro2",
++]
++
+ [[package]]
+ name = "rust-state-machine"
+ version = "0.1.0"
+ dependencies = [
++ "macros",
+  "num",
+ ]
++
++[[package]]
++name = "syn"
++version = "2.0.39"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "23e78b90f2fcf45d3e842032ce32e3f2d1545ba6636271dcbf24fa306d87be7a"
++dependencies = [
++ "proc-macro2",
++ "quote",
++ "unicode-ident",
++]
++
++[[package]]
++name = "unicode-ident"
++version = "1.0.12"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "3354b9ac3fae1ff6755cb6db53683adb661634f67557942dea4facebec0fee4b"
+diff --git a/Cargo.toml b/Cargo.toml
+index e8026e2..dae8475 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -7,4 +7,4 @@ edition = "2021"
+ 
+ [dependencies]
+ num = "0.4.1"
+-# TODO: Import the `macros` crate from the path `./macros/`.
++macros = { path = "./macros/" }
+diff --git a/macros/Cargo.toml b/macros/Cargo.toml
+new file mode 100644
+index 0000000..12bf2a9
+--- /dev/null
++++ b/macros/Cargo.toml
+@@ -0,0 +1,13 @@
++[package]
++name = "macros"
++version = "0.1.0"
++edition = "2021"
++
++# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
++[lib]
++proc-macro = true
++
++[dependencies]
++proc-macro2 = "1.0.69"
++quote = "1.0.33"
++syn = { version = "2.0.39", features = ["full", "extra-traits"] }
+diff --git a/macros/src/call/expand.rs b/macros/src/call/expand.rs
+new file mode 100644
+index 0000000..6435527
+--- /dev/null
++++ b/macros/src/call/expand.rs
+@@ -0,0 +1,64 @@
++use super::parse::CallDef;
++use quote::quote;
++
++/// See the `fn call` docs at the `lib.rs` of this crate for a high level definition.
++pub fn expand_call(def: CallDef) -> proc_macro2::TokenStream {
++	let CallDef { pallet_struct, methods } = def;
++
++	// This is a vector of all the callable function names.
++	let fn_name = methods.iter().map(|method| &method.name).collect::<Vec<_>>();
++
++	// This is a nested vector of all the arguments for each of the functions in `fn_name`. It does
++	// not include the `self` or `caller: T::AccountId` parameter, which we always assume are the
++	// first two parameters to these calls.
++	let args_name = methods
++		.iter()
++		.map(|method| method.args.iter().map(|(name, _)| name.clone()).collect::<Vec<_>>())
++		.collect::<Vec<_>>();
++
++	// This is a nested vector of all the types for all the arguments for each of the functions in
++	// `fn_name`. It has the same assumptions as `args_name`.
++	let args_type = methods
++		.iter()
++		.map(|method| method.args.iter().map(|(_, type_)| type_.clone()).collect::<Vec<_>>())
++		.collect::<Vec<_>>();
++
++	// This quote block creates an `enum Call` which contains all the calls exposed by our pallet,
++	// and the `Dispatch` trait logic to route a `caller` to access those functions.
++	let dispatch_impl = quote! {
++		// The callable functions exposed by this pallet.
++		//
++		// The parsed function names will be `snake_case`, and that will show up in the enum.
++		#[allow(non_camel_case_types)]
++		pub enum Call<T: Config> {
++			#(
++				#fn_name { #( #args_name: #args_type),* },
++			)*
++		}
++
++		// Dispatch logic at the pallet level, mapping each of the items in the `Call` enum to the
++		// appropriate function call with all arguments, including the `caller`.
++		impl<T: Config> crate::support::Dispatch for #pallet_struct<T> {
++			type Caller = T::AccountId;
++			type Call = Call<T>;
++
++			fn dispatch(&mut self, caller: Self::Caller, call: Self::Call) -> crate::support::DispatchResult {
++				match call {
++					#(
++						Call::#fn_name { #( #args_name ),* } => {
++							self.#fn_name(
++								// Note that we assume the first argument of every call is the `caller`.
++								caller,
++								#( #args_name ),*
++							)?;
++						},
++					)*
++				}
++				Ok(())
++			}
++		}
++	};
++
++	// Return the generated code.
++	dispatch_impl.into()
++}
+diff --git a/macros/src/call/mod.rs b/macros/src/call/mod.rs
+new file mode 100644
+index 0000000..ad18b17
+--- /dev/null
++++ b/macros/src/call/mod.rs
+@@ -0,0 +1,25 @@
++pub mod expand;
++pub mod parse;
++
++/// See the `fn call` docs at the `lib.rs` of this crate for a high level definition.
++pub fn call(
++	_attr: proc_macro::TokenStream,
++	item: proc_macro::TokenStream,
++) -> proc_macro::TokenStream {
++	// The final expanded code will be placed here.
++	// Since our macro only adds new code, our final product will contain all of our old code too,
++	// hence we clone `item`.
++	let mut finished = item.clone();
++	let item_mod = syn::parse_macro_input!(item as syn::Item);
++
++	// First we parse the call functions implemented for the pallet...
++	let generated: proc_macro::TokenStream = match parse::CallDef::try_from(item_mod.clone()) {
++		// ..then we generate our new code.
++		Ok(def) => expand::expand_call(def).into(),
++		Err(e) => e.to_compile_error().into(),
++	};
++
++	// Add our generated code to the end, and return the final result.
++	finished.extend(generated);
++	return finished;
++}
+diff --git a/macros/src/call/parse.rs b/macros/src/call/parse.rs
+new file mode 100644
+index 0000000..6ab3d19
+--- /dev/null
++++ b/macros/src/call/parse.rs
+@@ -0,0 +1,141 @@
++use quote::ToTokens;
++use syn::spanned::Spanned;
++
++// Custom keywords we match to when parsing the calls in a pallet.
++mod keyword {
++	syn::custom_keyword!(T);
++	syn::custom_keyword!(AccountId);
++}
++
++/// This object will collect all the information we need to keep while parsing the callable
++/// functions.
++#[derive(Debug)]
++pub struct CallDef {
++	/// This is the name of the pallet struct where the callable functions are implemented. We
++	/// mostly assume it is `Pallet`.
++	pub pallet_struct: syn::Ident,
++	/// This is a list of the callable functions exposed by this pallet. See `CallVariantDef`.
++	pub methods: Vec<CallVariantDef>,
++}
++
++/// This is the metadata we keep about each callable function in our pallet.
++#[derive(Debug)]
++pub struct CallVariantDef {
++	/// The function name.
++	pub name: syn::Ident,
++	/// Information on args of the function: `(name, type)`.
++	pub args: Vec<(syn::Ident, Box<syn::Type>)>,
++}
++
++impl CallDef {
++	pub fn try_from(item: syn::Item) -> syn::Result<Self> {
++		// First we check that we are parsing an `impl`.
++		let item_impl = if let syn::Item::Impl(item) = item {
++			item
++		} else {
++			return Err(syn::Error::new(item.span(), "Invalid pallet::call, expected item impl"))
++		};
++
++		// Extract the name of the struct. We mostly assume it is `Pallet`, but we can handle it
++		// when it isn't.
++		let pallet_struct = match &*item_impl.self_ty {
++			syn::Type::Path(tp) => tp.path.segments.first().unwrap().ident.clone(),
++			_ => panic!("not supported tokens"),
++		};
++
++		// Here is where we will store all the callable functions.
++		let mut methods = vec![];
++		for item in item_impl.items {
++			if let syn::ImplItem::Fn(method) = item {
++				// Here is where we will store all the args for each callable functions.
++				let mut args = vec![];
++
++				// First argument should be some variant of `self`.
++				match method.sig.inputs.first() {
++					Some(syn::FnArg::Receiver(_)) => {},
++					_ => {
++						let msg = "Invalid call, first argument must be a variant of self";
++						return Err(syn::Error::new(method.sig.span(), msg))
++					},
++				}
++
++				// The second argument should be the `caller: T::AccountId` argument.
++				match method.sig.inputs.iter().skip(1).next() {
++					Some(syn::FnArg::Typed(arg)) => {
++						// Here we specifically check that this argument is as we expect for
++						// `caller: T::AccountId`.
++						check_caller_arg(arg)?;
++					},
++					_ => {
++						let msg = "Invalid call, second argument should be `caller: T::AccountId`";
++						return Err(syn::Error::new(method.sig.span(), msg))
++					},
++				}
++
++				let fn_name = method.sig.ident.clone();
++
++				// Parsing the rest of the args. Skipping 2 for `self` and `caller`.
++				for arg in method.sig.inputs.iter().skip(2) {
++					// All arguments should be typed.
++					let arg = if let syn::FnArg::Typed(arg) = arg {
++						arg
++					} else {
++						unreachable!("All args should be typed.");
++					};
++
++					// Extract the name of the argument.
++					let arg_ident = if let syn::Pat::Ident(pat) = &*arg.pat {
++						pat.ident.clone()
++					} else {
++						let msg = "Invalid pallet::call, argument must be ident";
++						return Err(syn::Error::new(arg.pat.span(), msg))
++					};
++
++					// Store the argument name and the argument type for generating code.
++					args.push((arg_ident, arg.ty.clone()));
++				}
++
++				// Store all the function name and the arg data for the function.
++				methods.push(CallVariantDef { name: fn_name, args });
++			}
++		}
++
++		// Return all callable functions for this pallet.
++		Ok(Self { pallet_struct, methods })
++	}
++}
++
++/// Check caller arg is exactly: `caller: T::AccountId`.
++///
++/// This is kept strict to keep the code simple.
++pub fn check_caller_arg(arg: &syn::PatType) -> syn::Result<()> {
++	pub struct CheckDispatchableFirstArg;
++	impl syn::parse::Parse for CheckDispatchableFirstArg {
++		fn parse(input: syn::parse::ParseStream) -> syn::Result<Self> {
++			input.parse::<keyword::T>()?;
++			input.parse::<syn::Token![::]>()?;
++			input.parse::<keyword::AccountId>()?;
++			Ok(Self)
++		}
++	}
++
++	// This checks the arg name is `caller` or `_caller`.
++	if let syn::Pat::Ident(ident) = &*arg.pat {
++		// We also support the name as `_caller` for when the variable is unused.
++		if &ident.ident != "caller" && &ident.ident != "_caller" {
++			let msg = "Invalid name for second parameter: expected `caller: T::AccountId`";
++			return Err(syn::Error::new(ident.span(), msg))
++		}
++	}
++
++	// This checks the type is `T::AccountId` with `CheckDispatchableFirstArg`
++	let ty = &arg.ty;
++	syn::parse2::<CheckDispatchableFirstArg>(ty.to_token_stream()).map_err(|e| {
++		let msg = "Invalid type for second parameter: expected `caller: T::AccountId`";
++		let mut err = syn::Error::new(ty.span(), msg);
++		err.combine(e);
++		err
++	})?;
++
++	Ok(())
++}
+diff --git a/macros/src/lib.rs b/macros/src/lib.rs
+index 1091d4c..56a1bcf 100644
+--- a/macros/src/lib.rs
++++ b/macros/src/lib.rs
+@@ -1 +1,34 @@
+-/* TODO: Download the provided `macros` folder, and copy the content into your project. */
++mod call;
++mod runtime;
++
++#[proc_macro_attribute]
++pub fn call(
++	attr: proc_macro::TokenStream,
++	item: proc_macro::TokenStream,
++) -> proc_macro::TokenStream {
++	call::call(attr, item)
++}
++
++/// Expand the `Runtime` definition.
++///
++/// This generates function implementations on `Runtime`:
++/// - `fn new()` - which generates a new instance of the runtime, by instantiating all the pallets
++///   included in the runtime.
++/// - `fn execute_block()` - which handles basic logic for executing a block of extrinsics. It does
++///   basic actions like incrementing the block number and checking the block to be executed has a
++///   valid block number.
++///
++/// This also generates code needed for dispatching calls to the pallets:
++/// - Note: For simplicity, we assume that the system pallet is not callable.
++/// - `enum RuntimeCall` - an "outer"-enum representing the accumulation of all possible calls to
++///   all pallets. The system pallet is not included.
++/// - implements the trait `support::Dispatch` to dispatch calls to the appropriate pallet. Basic
++///   logic like incrementing the nonce of the user is included in the generated code. The system
++///   pallet is not included.
++#[proc_macro_attribute]
++pub fn runtime(
++	attr: proc_macro::TokenStream,
++	item: proc_macro::TokenStream,
++) -> proc_macro::TokenStream {
++	runtime::runtime(attr, item)
++}
+diff --git a/macros/src/runtime/expand.rs b/macros/src/runtime/expand.rs
+new file mode 100644
+index 0000000..71ab305
+--- /dev/null
++++ b/macros/src/runtime/expand.rs
+@@ -0,0 +1,91 @@
++use super::parse::RuntimeDef;
++use quote::quote;
++
++/// See the `fn runtime` docs at the `lib.rs` of this crate for a high level definition.
++pub fn expand_runtime(def: RuntimeDef) -> proc_macro2::TokenStream {
++	let RuntimeDef { runtime_struct, pallets } = def;
++
++	// This is a vector of all the pallet names, not including system.
++	let pallet_names = pallets.iter().map(|(name, _)| name.clone()).collect::<Vec<_>>();
++	// This is a vector of all the pallet types, not including system.
++	let pallet_types = pallets.iter().map(|(_, type_)| type_.clone()).collect::<Vec<_>>();
++
++	// This quote block implements functions on the `Runtime` struct.
++	let runtime_impl = quote! {
++		impl #runtime_struct {
++			// Create a new instance of the main Runtime, by creating a new instance of each pallet.
++			fn new() -> Self {
++				Self {
++					// Since system is not included in the list of pallets, we manually add it here.
++					system: <system::Pallet::<Self>>::new(),
++					#(
++						#pallet_names: <#pallet_types>::new()
++					),*
++				}
++			}
++
++			// Execute a block of extrinsics. Increments the block number.
++			fn execute_block(&mut self, block: types::Block) -> crate::support::DispatchResult {
++				self.system.inc_block_number();
++				if block.header.block_number != self.system.block_number() {
++					return Err(&"block number does not match what is expected")
++				}
++				for (i, support::Extrinsic { caller, call }) in block.extrinsics.into_iter().enumerate() {
++					self.system.inc_nonce(&caller);
++					let _res = self.dispatch(caller, call).map_err(|e| {
++						eprintln!(
++							"Extrinsic Error\n\tBlock Number: {}\n\tExtrinsic Number: {}\n\tError: {}",
++							block.header.block_number, i, e
++						)
++					});
++				}
++				Ok(())
++			}
++		}
++	};
++
++	// This quote block implements the `RuntimeCall` enum and implements the `Dispatch` trait.
++	let dispatch_impl = quote! {
++		// These are all the calls which are exposed to the world.
++		// Note that it is just an accumulation of the calls exposed by each pallet.
++		//
++		// The parsed function names will be `snake_case`, and that will show up in the enum.
++		#[allow(non_camel_case_types)]
++		pub enum RuntimeCall {
++			#( #pallet_names(#pallet_names::Call<#runtime_struct>) ),*
++		}
++
++		impl crate::support::Dispatch for #runtime_struct {
++			type Caller = <Runtime as system::Config>::AccountId;
++			type Call = RuntimeCall;
++			// Dispatch a call on behalf of a caller. Increments the caller's nonce.
++			//
++			// Dispatch allows us to identify which underlying pallet call we want to execute.
++			// Note that we extract the `caller` from the extrinsic, and use that information
++			// to determine who we are executing the call on behalf of.
++			fn dispatch(
++				&mut self,
++				caller: Self::Caller,
++				runtime_call: Self::Call,
++			) -> crate::support::DispatchResult {
++				// This match statement will allow us to correctly route `RuntimeCall`s
++				// to the appropriate pallet level call.
++				match runtime_call {
++					#(
++						RuntimeCall::#pallet_names(call) => {
++							self.#pallet_names.dispatch(caller, call)?;
++						}
++					),*
++				}
++				Ok(())
++			}
++		}
++	};
++
++	// We combine and return all the generated code.
++	quote! {
++		#dispatch_impl
++		#runtime_impl
++	}
++	.into()
++}
+diff --git a/macros/src/runtime/mod.rs b/macros/src/runtime/mod.rs
+new file mode 100644
+index 0000000..214c4df
+--- /dev/null
++++ b/macros/src/runtime/mod.rs
+@@ -0,0 +1,25 @@
++pub mod expand;
++pub mod parse;
++
++/// See the `fn runtime` docs at the `lib.rs` of this crate for a high level definition.
++pub fn runtime(
++	_attr: proc_macro::TokenStream,
++	item: proc_macro::TokenStream,
++) -> proc_macro::TokenStream {
++	// The final expanded code will be placed here.
++	// Since our macro only adds new code, our final product will contain all of our old code too,
++	// hence we clone `item`.
++	let mut finished = item.clone();
++	let item_mod = syn::parse_macro_input!(item as syn::Item);
++
++	// First we parse the `Runtime` struct...
++	let generated: proc_macro::TokenStream = match parse::RuntimeDef::try_from(item_mod.clone()) {
++		// ..then we generate our new code.
++		Ok(def) => expand::expand_runtime(def).into(),
++		Err(e) => e.to_compile_error().into(),
++	};
++
++	// Add our generated code to the end, and return the final result.
++	finished.extend(generated);
++	return finished;
++}
+diff --git a/macros/src/runtime/parse.rs b/macros/src/runtime/parse.rs
+new file mode 100644
+index 0000000..9f1db8f
+--- /dev/null
++++ b/macros/src/runtime/parse.rs
+@@ -0,0 +1,67 @@
++use syn::spanned::Spanned;
++
++/// This object will collect all the information we need to keep while parsing the `Runtime` struct.
++#[derive(Debug)]
++pub struct RuntimeDef {
++	/// This is the name of the struct used by the user. We mostly assume it is `Runtime`.
++	pub runtime_struct: syn::Ident,
++	/// This is the list of pallets included in the `Runtime` struct. We omit `system` from this
++	/// list, but during parsing we check that system exists.
++	pub pallets: Vec<(syn::Ident, syn::Type)>,
++}
++
++impl RuntimeDef {
++	pub fn try_from(item: syn::Item) -> syn::Result<Self> {
++		// First we check that we are parsing a `struct`.
++		let item_struct = if let syn::Item::Struct(item) = item {
++			item
++		} else {
++			return Err(syn::Error::new(item.span(), "Invalid runtime, expected item struct"))
++		};
++
++		// We check that the `Runtime` includes the `system` pallet as the first item.
++		check_system(&item_struct)?;
++
++		let runtime_struct = item_struct.ident;
++
++		// Here is where we will store a list of all the pallets.
++		let mut pallets = vec![];
++		// We skip `system`, which we ensure is the first field in `check_system`.
++		for field in item_struct.fields.into_iter().skip(1) {
++			if let Some(ident) = field.ident {
++				pallets.push((ident, field.ty))
++			}
++		}
++
++		Ok(Self { runtime_struct, pallets })
++	}
++}
++
++/// This function checks that the `system` pallet is the first pallet included in the `Runtime`
++/// struct. We make many assumptions about the `system` pallet in order to keep these macros simple.
++/// For example, we assume that the system pallet has no callable functions, and that it contains
++/// specific functions like incrementing the block number and a user's nonce.
++///
++/// You can consider these macros to be tightly coupled to the logic of the `system` pallet.
++fn check_system(item_struct: &syn::ItemStruct) -> syn::Result<()> {
++	// Extract the name of the first field in the `Runtime` struct.
++	let first_field_name = if let Some(first_field) = item_struct.fields.iter().next() {
++		if let Some(field_name) = &first_field.ident {
++			field_name.to_string()
++		} else {
++			let msg = "first field is expected to have the name system";
++			return Err(syn::Error::new(item_struct.span(), msg))
++		}
++	} else {
++		let msg = "runtime struct is expected to have fields";
++		return Err(syn::Error::new(item_struct.span(), msg))
++	};
++
++	// Check if the first field is named "system"
++	if first_field_name != "system" {
++		let msg = "first field is expected to be named system";
++		return Err(syn::Error::new(item_struct.span(), msg))
++	}
++
++	Ok(())
++}

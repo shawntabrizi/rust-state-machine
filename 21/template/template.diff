@@ -1,0 +1,56 @@
+diff --git a/src/balances.rs b/src/balances.rs
+index e333e0d..9f5c453 100644
+--- a/src/balances.rs
++++ b/src/balances.rs
+@@ -1,6 +1,11 @@
+ use num::traits::{CheckedAdd, CheckedSub, Zero};
+ use std::collections::BTreeMap;
+ 
++/*
++	TODO: Combine all generic types and their trait bounds into a single `pub trait Config`.
++	When you are done, your `Pallet` can simply be defined with `Pallet<T: Config>`.
++*/
++
+ /// This is the Balances Module.
+ /// It is a simple module which keeps track of how much balance each account has in this state
+ /// machine.
+@@ -10,6 +15,10 @@ pub struct Pallet<AccountId, Balance> {
+ 	balances: BTreeMap<AccountId, Balance>,
+ }
+ 
++/*
++	TODO: Update all of these functions to use your new configuration trait.
++*/
++
+ impl<AccountId, Balance> Pallet<AccountId, Balance>
+ where
+ 	AccountId: Ord + Clone,
+@@ -55,6 +64,11 @@ where
+ 
+ #[cfg(test)]
+ mod tests {
++	/*
++		TODO: Create a `struct TestConfig`, and implement `super::Config` on it with concrete types.
++		Use this struct to instantiate your `Pallet`.
++	*/
++
+ 	#[test]
+ 	fn init_balances() {
+ 		let mut balances = super::Pallet::<String, u128>::new();
+diff --git a/src/main.rs b/src/main.rs
+index 40dc8ac..343797e 100644
+--- a/src/main.rs
++++ b/src/main.rs
+@@ -25,6 +25,12 @@ impl system::Config for Runtime {
+ 	type Nonce = types::Nonce;
+ }
+ 
++/*
++	TODO:
++	Implement the `balances::Config` trait you created on your `Runtime`.
++	Use `Self` to satisfy the generic parameter required for `balances::Pallet`.
++*/
++
+ impl Runtime {
+ 	// Create a new instance of the main Runtime, by creating a new instance of each pallet.
+ 	fn new() -> Self {

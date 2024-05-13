@@ -1,0 +1,17 @@
+diff --git a/src/balances.rs b/src/balances.rs
+new file mode 100644
+index 0000000..dae1c4f
+--- /dev/null
++++ b/src/balances.rs
+@@ -0,0 +1 @@
++/* TODO: create a new public struct named `Pallet`. */
+diff --git a/src/main.rs b/src/main.rs
+index a30eb95..2b4f767 100644
+--- a/src/main.rs
++++ b/src/main.rs
+@@ -1,3 +1,5 @@
++/* TODO: use your new module `balances` */
++
+ fn main() {
+ 	println!("Hello, world!");
+ }

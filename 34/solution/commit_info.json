@@ -1,0 +1,5 @@
+{
+  "commitHash": "3b2bd8b5f5b045278102ffa422de97e80cba0a3d",
+  "commitMessage": "solution: add proof of existence dispatch logic",
+  "files": "M\tREADME.md\nM\tsrc/proof_of_existence.rs\n"
+}

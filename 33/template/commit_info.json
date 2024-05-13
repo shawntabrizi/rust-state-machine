@@ -1,0 +1,5 @@
+{
+  "commitHash": "1e11a0fd998124b9f541821567a36af9c8be22fd",
+  "commitMessage": "template: add proof of existence functions with tests",
+  "files": "M\tREADME.md\nM\tsrc/proof_of_existence.rs\n"
+}

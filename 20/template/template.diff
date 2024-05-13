@@ -1,0 +1,56 @@
+diff --git a/src/main.rs b/src/main.rs
+index 8d30b1b..d681065 100644
+--- a/src/main.rs
++++ b/src/main.rs
+@@ -11,6 +11,12 @@ mod types {
+ 	pub type Nonce = u32;
+ }
+ 
++/*
++	TODO:
++	Implement the `system::Config` trait you created on your `Runtime`.
++	Use `Self` to satisfy the generic parameter required for `system::Pallet`.
++*/
++
+ // This is our main Runtime.
+ // It accumulates all of the different pallets we want to use.
+ #[derive(Debug)]
+diff --git a/src/system.rs b/src/system.rs
+index b496b5b..5c2a7f5 100644
+--- a/src/system.rs
++++ b/src/system.rs
+@@ -2,6 +2,11 @@ use core::ops::AddAssign;
+ use num::traits::{One, Zero};
+ use std::collections::BTreeMap;
+ 
++/*
++	TODO: Combine all generic types and their trait bounds into a single `pub trait Config`.
++	When you are done, your `Pallet` can simply be defined with `Pallet<T: Config>`.
++*/
++
+ /// This is the System Pallet.
+ /// It handles low level state needed for your blockchain.
+ #[derive(Debug)]
+@@ -12,6 +17,10 @@ pub struct Pallet<AccountId, BlockNumber, Nonce> {
+ 	nonce: BTreeMap<AccountId, Nonce>,
+ }
+ 
++/*
++	TODO: Update all of these functions to use your new configuration trait.
++*/
++
+ impl<AccountId, BlockNumber, Nonce> Pallet<AccountId, BlockNumber, Nonce>
+ where
+ 	AccountId: Ord + Clone,
+@@ -45,6 +54,11 @@ where
+ 
+ #[cfg(test)]
+ mod test {
++	/*
++		TODO: Create a `struct TestConfig`, and implement `super::Config` on it with concrete types.
++		Use this struct to instantiate your `Pallet`.
++	*/
++
+ 	#[test]
+ 	fn init_system() {
+ 		let mut system = super::Pallet::<String, u32, u32>::new();

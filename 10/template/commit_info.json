@@ -1,0 +1,5 @@
+{
+  "commitHash": "4d239e8c9f9fa370b80953235178401ae2b88c4d",
+  "commitMessage": "template: introduce system module",
+  "files": "M\tREADME.md\nM\tsrc/main.rs\nA\tsrc/system.rs\n"
+}

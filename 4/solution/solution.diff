@@ -1,0 +1,17 @@
+diff --git a/src/balances.rs b/src/balances.rs
+index dae1c4f..4a1da04 100644
+--- a/src/balances.rs
++++ b/src/balances.rs
+@@ -1 +1 @@
+-/* TODO: create a new public struct named `Pallet`. */
++pub struct Pallet {}
+diff --git a/src/main.rs b/src/main.rs
+index 2b4f767..ea8024e 100644
+--- a/src/main.rs
++++ b/src/main.rs
+@@ -1,4 +1,4 @@
+-/* TODO: use your new module `balances` */
++mod balances;
+ 
+ fn main() {
+ 	println!("Hello, world!");

@@ -1,0 +1,5 @@
+{
+  "commitHash": "a2e58cc740d073b5ad22de6a00b017f932679c58",
+  "commitMessage": "solution: add transfer and test",
+  "files": "M\tREADME.md\nM\tsrc/balances.rs\n"
+}

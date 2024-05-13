@@ -1,0 +1,78 @@
+diff --git a/.gitignore b/.gitignore
+index 400485b..bcaf950 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1,2 +1,3 @@
+ **/target/
+ .DS_Store
++output
+diff --git a/LICENSE b/LICENSE
+new file mode 100644
+index 0000000..e619027
+--- /dev/null
++++ b/LICENSE
+@@ -0,0 +1,21 @@
++MIT License
++
++Copyright (c) 2024 Shawn Tabrizi
++
++Permission is hereby granted, free of charge, to any person obtaining a copy
++of this software and associated documentation files (the "Software"), to deal
++in the Software without restriction, including without limitation the rights
++to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
++copies of the Software, and to permit persons to whom the Software is
++furnished to do so, subject to the following conditions:
++
++The above copyright notice and this permission notice shall be included in all
++copies or substantial portions of the Software.
++
++THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
++AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
++SOFTWARE.
+diff --git a/export_tutorial.sh b/export_tutorial.sh
+new file mode 100755
+index 0000000..9afe278
+--- /dev/null
++++ b/export_tutorial.sh
+@@ -0,0 +1,37 @@
++#!/bin/bash
++
++# Name of the folder where files will be copied for each commit
++output_folder="output"
++
++# Create the output folder if it doesn't exist
++mkdir -p $output_folder
++
++# Counter for incrementing folder names
++counter=0
++
++# Iterate through each commit in the Git history
++git log --reverse --format="%H" | while read commit_hash; do
++    # Create a folder for each commit
++    commit_folder="$output_folder/$counter"
++    mkdir -p $commit_folder
++
++    # Checkout the files of the commit into the corresponding folder
++    git clone . $commit_folder
++
++    # jump into our commit folder
++    pushd $commit_folder
++
++    # Reset the working directory to the original state
++    git checkout $commit_hash
++
++    # Remove git from the directory, treating the files as plain
++    rm -rf .git
++
++    # Go back to our main directory
++    popd
++
++    # Increment the counter for the next folder
++    ((counter++))
++done
++
++echo "Files copied for each commit in the commit history."

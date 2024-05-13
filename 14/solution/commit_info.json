@@ -1,0 +1,5 @@
+{
+  "commitHash": "3240cbedef96ce9581de8e67d8cddf9db7c5dcc5",
+  "commitMessage": "solution: add debug and print the runtime state",
+  "files": "M\tREADME.md\nM\tsrc/balances.rs\nM\tsrc/main.rs\nM\tsrc/system.rs\n"
+}

@@ -1,0 +1,5 @@
+{
+  "commitHash": "18df955747746f5ee687ac68a394463f08b93571",
+  "commitMessage": "readme: create public readme content",
+  "files": "M\t.gitignore\nA\tLICENSE\nM\tREADME.md\nA\texport_tutorial.sh\n"
+}

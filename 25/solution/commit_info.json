@@ -1,0 +1,5 @@
+{
+  "commitHash": "6c0eedc3e32e357ff63ee2a9faf9f91c5b8d1690",
+  "commitMessage": "solution: construct concrete support types",
+  "files": "M\tREADME.md\nM\tsrc/main.rs\n"
+}

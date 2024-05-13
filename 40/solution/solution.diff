@@ -1,0 +1,103 @@
+diff --git a/src/main.rs b/src/main.rs
+index 76bd143..e222d51 100644
+--- a/src/main.rs
++++ b/src/main.rs
+@@ -137,19 +137,18 @@ fn main() {
+ 		],
+ 	};
+ 
+-	/* TODO: Update the extrinsics below for the updated format after the macros. */
+ 	let block_2 = types::Block {
+ 		header: support::Header { block_number: 2 },
+ 		extrinsics: vec![
+ 			support::Extrinsic {
+ 				caller: alice.clone(),
+-				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::CreateClaim {
++				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::create_claim {
+ 					claim: &"Hello, world!",
+ 				}),
+ 			},
+ 			support::Extrinsic {
+ 				caller: bob.clone(),
+-				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::CreateClaim {
++				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::create_claim {
+ 					claim: &"Hello, world!",
+ 				}),
+ 			},
+@@ -161,13 +160,13 @@ fn main() {
+ 		extrinsics: vec![
+ 			support::Extrinsic {
+ 				caller: alice,
+-				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::RevokeClaim {
++				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::revoke_claim {
+ 					claim: &"Hello, world!",
+ 				}),
+ 			},
+ 			support::Extrinsic {
+ 				caller: bob,
+-				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::CreateClaim {
++				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::create_claim {
+ 					claim: &"Hello, world!",
+ 				}),
+ 			},
+diff --git a/src/proof_of_existence.rs b/src/proof_of_existence.rs
+index 35181ca..b0ebdca 100644
+--- a/src/proof_of_existence.rs
++++ b/src/proof_of_existence.rs
+@@ -18,7 +18,6 @@ pub struct Pallet<T: Config> {
+ 	claims: BTreeMap<T::Content, T::AccountId>,
+ }
+ 
+-/* TODO: Add the `#[macros::call]` attribute here too. Make the changes needed to this pallet. */
+ impl<T: Config> Pallet<T> {
+ 	/// Create a new instance of the Proof of Existence Module.
+ 	pub fn new() -> Self {
+@@ -29,7 +28,10 @@ impl<T: Config> Pallet<T> {
+ 	pub fn get_claim(&self, claim: &T::Content) -> Option<&T::AccountId> {
+ 		self.claims.get(&claim)
+ 	}
++}
+ 
++#[macros::call]
++impl<T: Config> Pallet<T> {
+ 	/// Create a new claim on behalf of the `caller`.
+ 	/// This function will return an error if someone already has claimed that content.
+ 	pub fn create_claim(&mut self, caller: T::AccountId, claim: T::Content) -> DispatchResult {
+@@ -53,37 +55,6 @@ impl<T: Config> Pallet<T> {
+ 	}
+ }
+ 
+-// A public enum which describes the calls we want to expose to the dispatcher.
+-// We should expect that the caller of each call will be provided by the dispatcher,
+-// and not included as a parameter of the call.
+-pub enum Call<T: Config> {
+-	CreateClaim { claim: T::Content },
+-	RevokeClaim { claim: T::Content },
+-}
+-
+-/// Implementation of the dispatch logic, mapping from `POECall` to the appropriate underlying
+-/// function we want to execute.
+-impl<T: Config> crate::support::Dispatch for Pallet<T> {
+-	type Caller = T::AccountId;
+-	type Call = Call<T>;
+-
+-	fn dispatch(
+-		&mut self,
+-		caller: Self::Caller,
+-		call: Self::Call,
+-	) -> crate::support::DispatchResult {
+-		match call {
+-			Call::CreateClaim { claim } => {
+-				self.create_claim(caller, claim)?;
+-			},
+-			Call::RevokeClaim { claim } => {
+-				self.revoke_claim(caller, claim)?;
+-			},
+-		}
+-		Ok(())
+-	}
+-}
+-
+ #[cfg(test)]
+ mod test {
+ 	struct TestConfig;

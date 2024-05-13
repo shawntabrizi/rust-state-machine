@@ -1,0 +1,5 @@
+{
+  "commitHash": "91172764b16cd0b46a95263f10b7e3c481c58469",
+  "commitMessage": "solution: introduce module level dispatch to balances",
+  "files": "M\tREADME.md\nM\tsrc/balances.rs\n"
+}

@@ -1,0 +1,5 @@
+{
+  "commitHash": "57ef57f7bd765a2214bf3babfbbe2ae86c2ab59b",
+  "commitMessage": "template: implement basic dispatch for transfer",
+  "files": "M\tREADME.md\nM\tsrc/main.rs\n"
+}

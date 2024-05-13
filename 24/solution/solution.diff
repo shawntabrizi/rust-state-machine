@@ -1,0 +1,30 @@
+diff --git a/src/balances.rs b/src/balances.rs
+index a86d892..74e6f43 100644
+--- a/src/balances.rs
++++ b/src/balances.rs
+@@ -38,13 +38,12 @@ impl<T: Config> Pallet<T> {
+ 	/// Transfer `amount` from one account to another.
+ 	/// This function verifies that `from` has at least `amount` balance to transfer,
+ 	/// and that no mathematical overflows occur.
+-	/* TODO: Update the function signature to return a `DispatchResult`. */
+ 	pub fn transfer(
+ 		&mut self,
+ 		caller: T::AccountId,
+ 		to: T::AccountId,
+ 		amount: T::Balance,
+-	) -> Result<(), &'static str> {
++	) -> crate::support::DispatchResult {
+ 		let caller_balance = self.balance(&caller);
+ 		let to_balance = self.balance(&to);
+ 
+diff --git a/src/main.rs b/src/main.rs
+index 20811be..597aca6 100644
+--- a/src/main.rs
++++ b/src/main.rs
+@@ -1,5 +1,5 @@
+ mod balances;
+-/* TODO: Add the support module here. */
++mod support;
+ mod system;
+ 
+ // These are the concrete types we will use in our simple state machine.

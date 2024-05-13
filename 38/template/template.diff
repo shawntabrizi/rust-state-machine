@@ -1,0 +1,16 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index 42b80bf..e8026e2 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -7,3 +7,4 @@ edition = "2021"
+ 
+ [dependencies]
+ num = "0.4.1"
++# TODO: Import the `macros` crate from the path `./macros/`.
+diff --git a/macros/src/lib.rs b/macros/src/lib.rs
+new file mode 100644
+index 0000000..1091d4c
+--- /dev/null
++++ b/macros/src/lib.rs
+@@ -0,0 +1 @@
++/* TODO: Download the provided `macros` folder, and copy the content into your project. */

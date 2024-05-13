@@ -1,0 +1,30 @@
+diff --git a/src/main.rs b/src/main.rs
+index a01adfd..2737873 100644
+--- a/src/main.rs
++++ b/src/main.rs
+@@ -1,5 +1,5 @@
+ mod balances;
+-/* TODO: Import the `proof_of_existence` module. */
++mod proof_of_existence;
+ mod support;
+ mod system;
+ 
+diff --git a/src/proof_of_existence.rs b/src/proof_of_existence.rs
+index 87ea242..5e7de2a 100644
+--- a/src/proof_of_existence.rs
++++ b/src/proof_of_existence.rs
+@@ -14,12 +14,12 @@ pub trait Config: crate::system::Config {
+ pub struct Pallet<T: Config> {
+ 	/// A simple storage map from content to the owner of that content.
+ 	/// Accounts can make multiple different claims, but each claim can only have one owner.
+-	/* TODO: Add a field `claims` which is a `BTreeMap` fom `T::Content` to `T::AccountId`. */
++	claims: BTreeMap<T::Content, T::AccountId>,
+ }
+ 
+ impl<T: Config> Pallet<T> {
+ 	/// Create a new instance of the Proof of Existence Module.
+ 	pub fn new() -> Self {
+-		/* TODO: Return a new instance of the `Pallet` struct. */
++		Self { claims: BTreeMap::new() }
+ 	}
+ }
