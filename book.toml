@@ -8,3 +8,5 @@ title = "Rust State Machine"
 [output.html]
 additional-css = ["custom/styles.css"]
 additional-js = ["custom/tabs.js"]
+git-repository-url = "https://github.com/shawntabrizi/rust-state-machine"
+git-repository-icon = "fa-github"
