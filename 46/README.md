@@ -24,7 +24,7 @@ So when adding a new variant to `RuntimeCall`, it should look something like:
 
 ```rust
 pub enum RuntimeCall {
-	BalancesTransfer { to: types::AccountId, amount: types;:Balance },
+	BalancesTransfer { to: types::AccountId, amount: types::Balance },
 }
 ```
 
