@@ -30,11 +30,11 @@ The block header contains metadata about the block which is used to verify that 
 
 #### The Extrinsic
 
-In our simple state machine, an extrinsics is synonymous with user transactions.
+In our simple state machine, extrinsics are synonymous with user transactions.
 
 Thus our extrinsic type is composed of a `Call` (the function we will execute) and a `Caller` (the account that wants to execute that function).
 
-The Polkadot SDK supports other kinds of extrinsics beyond a user transactions, which is why it is called an `Extrinsic`, but that is beyond the scope of this tutorial.
+The Polkadot SDK supports other kinds of [extrinsics beyond a user transactions](https://docs.rs/sp-runtime/36.0.0/sp_runtime/generic/struct.UncheckedExtrinsic.html), which is why it is called an `Extrinsic`, but that is beyond the scope of this tutorial.
 
 ## Dispatching Calls
 
