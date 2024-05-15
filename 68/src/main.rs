@@ -128,7 +128,7 @@ fn main() {
 				/* TODO: Update the enum name to match what is generated with the macro. */
 				call: RuntimeCall::Balances(balances::Call::Transfer {
 					to: bob.clone(),
-					amount: 20,
+					amount: 30,
 				}),
 			},
 			support::Extrinsic {

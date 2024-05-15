@@ -110,7 +110,7 @@ fn main() {
 		extrinsics: vec![
 			support::Extrinsic {
 				caller: alice.clone(),
-				call: RuntimeCall::BalancesTransfer { to: bob, amount: 20 },
+				call: RuntimeCall::BalancesTransfer { to: bob, amount: 30 },
 			},
 			support::Extrinsic {
 				caller: alice,

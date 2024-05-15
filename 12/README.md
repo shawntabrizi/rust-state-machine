@@ -39,7 +39,7 @@ enum Result<T, E> {
 }
 ```
 
-`T` and `E` are generic parameters that allow you to customize the result type for your needs. For the purposes of this tutorial, we will always return `Ok(())` when everything completes okay, and a `Err(&static str)` to describe any errors with a basic string.
+`T` and `E` are generic parameters that allow you to customize the result type for your needs. For the purposes of this tutorial, we will always return `Ok(())` when everything completes okay, and a `Err(&'static str)` to describe any errors with a basic string.
 
 You can then define the `Result` type like:
 

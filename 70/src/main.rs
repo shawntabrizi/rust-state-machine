@@ -127,7 +127,7 @@ fn main() {
 				caller: alice.clone(),
 				call: RuntimeCall::Balances(balances::Call::transfer {
 					to: bob.clone(),
-					amount: 20,
+					amount: 30,
 				}),
 			},
 			support::Extrinsic {
