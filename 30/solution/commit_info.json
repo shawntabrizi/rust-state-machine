@@ -1,5 +1,0 @@
-{
-  "commitHash": "b0e4b2acc90c6e33eb83e6b89bb8bf6b448b2950",
-  "commitMessage": "solution: implement nested dispatch",
-  "files": "M\tREADME.md\nM\tsrc/main.rs\n"
-}

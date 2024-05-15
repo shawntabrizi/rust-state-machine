@@ -1,5 +1,0 @@
-{
-  "commitHash": "ecfb3665269af7d7d09d7e794af011ba81e904b6",
-  "commitMessage": "solution: introduce system module",
-  "files": "M\tREADME.md\nM\tsrc/main.rs\nM\tsrc/system.rs\n"
-}

@@ -1,5 +1,0 @@
-{
-  "commitHash": "bfbffa8de8ba5e6ffee4360e29e2f646756e718d",
-  "commitMessage": "solution: create execute block and template for dispatch",
-  "files": "M\tREADME.md\nM\tsrc/main.rs\n"
-}

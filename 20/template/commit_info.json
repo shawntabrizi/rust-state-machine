@@ -1,5 +1,0 @@
-{
-  "commitHash": "550b6bca54190017c7aeba46c473bb668ad878a2",
-  "commitMessage": "template: make system module configurable",
-  "files": "M\tREADME.md\nM\tsrc/main.rs\nM\tsrc/system.rs\n"
-}

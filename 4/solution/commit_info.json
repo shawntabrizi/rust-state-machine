@@ -1,5 +1,0 @@
-{
-  "commitHash": "bc01567ee20c000b53269ce4864334c618fd1cc4",
-  "commitMessage": "solution: introduce balances module",
-  "files": "M\tREADME.md\nM\tsrc/balances.rs\nM\tsrc/main.rs\n"
-}

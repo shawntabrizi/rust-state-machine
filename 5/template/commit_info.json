@@ -1,5 +1,0 @@
-{
-  "commitHash": "7628b15c73f62a88785d26c6ca98066647750c7b",
-  "commitMessage": "template: add balances module state and initialization",
-  "files": "M\tREADME.md\nM\tsrc/balances.rs\n"
-}

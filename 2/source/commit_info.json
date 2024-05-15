@@ -1,5 +1,0 @@
-{
-  "commitHash": "7654bf28dd0f9d889a2661805c4f16b6f67bb22f",
-  "commitMessage": "action: rustfmt config + fmt",
-  "files": "M\tREADME.md\nA\trustfmt.toml\nM\tsrc/main.rs\n"
-}

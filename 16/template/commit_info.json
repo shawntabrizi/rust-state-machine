@@ -1,5 +1,0 @@
-{
-  "commitHash": "b79da34e78312ef4029a0371b7b57cbbdae7f790",
-  "commitMessage": "template: define common types within modules",
-  "files": "M\tREADME.md\nM\tsrc/balances.rs\nM\tsrc/system.rs\n"
-}

@@ -1,5 +1,0 @@
-{
-  "commitHash": "4e5988381f1bda3fd73ea0fd45d4fab1f4444c19",
-  "commitMessage": "solution: add blocks which execute proof of existence",
-  "files": "M\tREADME.md\nM\tsrc/main.rs\n"
-}

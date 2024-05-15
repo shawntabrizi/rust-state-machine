@@ -1,5 +1,0 @@
-{
-  "commitHash": "0361328e39ab6d79cbb71dff0cf39cf96663fe12",
-  "commitMessage": "template: use execute_block for main logic",
-  "files": "M\tREADME.md\nM\tsrc/main.rs\n"
-}

@@ -1,5 +1,0 @@
-{
-  "commitHash": "febe96a1a5315bb03186c8ccfe92dc171a368ca3",
-  "commitMessage": "template: introduce basic runtime execution in main",
-  "files": "M\tREADME.md\nM\tsrc/main.rs\n"
-}

@@ -1,5 +1,0 @@
-{
-  "commitHash": "2f4aab575c6e0e6497b31dbfb2c8fda2651c47ea",
-  "commitMessage": "solution: introduce the runtime to main",
-  "files": "M\tREADME.md\nM\tsrc/main.rs\n"
-}

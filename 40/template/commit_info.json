@@ -1,5 +1,0 @@
-{
-  "commitHash": "88b9685d65abdfaa8f454da77c7d316de3389224",
-  "commitMessage": "template: use call macro in proof of existence",
-  "files": "M\tREADME.md\nM\tsrc/main.rs\nM\tsrc/proof_of_existence.rs\n"
-}

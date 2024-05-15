@@ -1,5 +1,0 @@
-{
-  "commitHash": "b745d627ee9901b1642905b7914540f64fa5486b",
-  "commitMessage": "template: add set and get balances",
-  "files": "M\tREADME.md\nM\tsrc/balances.rs\n"
-}

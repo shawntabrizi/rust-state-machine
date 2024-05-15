@@ -1,5 +1,0 @@
-{
-  "commitHash": "889c9e27be68e8768fb0cc2e5a59907dfa768807",
-  "commitMessage": "template: make balances module configurable",
-  "files": "M\tREADME.md\nM\tsrc/balances.rs\nM\tsrc/main.rs\n"
-}

@@ -1,5 +1,0 @@
-{
-  "commitHash": "5433d5d33263e1eebfc0aa6905fa7270f6322216",
-  "commitMessage": "template: add basic balances test",
-  "files": "M\tREADME.md\nM\tsrc/balances.rs\n"
-}
