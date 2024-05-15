@@ -41,7 +41,7 @@ Maps are simple `key -> value` objects, allowing us to define an arbitrary sized
 	}
 	```
 
-You can confirm at this point that everything should still be compiling, and that you haven't made any small errors.
+You can confirm at this point that everything should still be compiling, and that you haven't made any small errors. Warnings are okay.
 
 Next we will actually start to **use** this module.
 

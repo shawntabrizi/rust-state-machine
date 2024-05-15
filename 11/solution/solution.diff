@@ -1,5 +1,5 @@
 diff --git a/src/system.rs b/src/system.rs
-index de474ba..4689438 100644
+index de474ba..0121c0b 100644
 --- a/src/system.rs
 +++ b/src/system.rs
 @@ -17,22 +17,21 @@ impl Pallet {
@@ -24,7 +24,7 @@ index de474ba..4689438 100644
  	pub fn inc_nonce(&mut self, who: &String) {
 -		/* TODO: Get the current nonce of `who`, and increment it by one. */
 -		unimplemented!()
-+		let nonce = *self.nonce.get(who).unwrap_or(&0);
++		let nonce: u32 = *self.nonce.get(who).unwrap_or(&0);
 +		let new_nonce = nonce + 1;
 +		self.nonce.insert(who.clone(), new_nonce);
  	}

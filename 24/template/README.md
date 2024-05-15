@@ -2,6 +2,12 @@
 
 In this step, we will introduce a `support` module to help bring in various types and traits that we will use to enhance our simple state machine.
 
+This `support` module parallels something similar to the [`frame_support` crate](https://docs.rs/frame-support/latest/frame_support/) that you would find in the Polkadot SDK.
+
+The reason the `frame_support` crate exists, is to allow multiple other crates use common types and trait, while avoiding [cyclic dependencies](https://users.rust-lang.org/t/how-to-resolve-cyclic-dependency/51387), which is not allowed in Rust.
+
+Our simple state machine will not experience this problem explicitly, since we are building everything in a single crate, but the structure of the project will still follow these best practices.
+
 ## Constructing a Block
 
 The first set of primitives provided by the `support` module are a set of structs that we need to construct a simple `Block`.
@@ -24,11 +30,11 @@ The block header contains metadata about the block which is used to verify that 
 
 #### The Extrinsic
 
-In our simple state machine, an extrinsics is synonymous with user transactions.
+In our simple state machine, extrinsics are synonymous with user transactions.
 
 Thus our extrinsic type is composed of a `Call` (the function we will execute) and a `Caller` (the account that wants to execute that function).
 
-The Polkadot SDK supports other kinds of extrinsics beyond a user transactions, which is why it is called an `Extrinsic`, but that is beyond the scope of this tutorial.
+The Polkadot SDK supports other kinds of [extrinsics beyond a user transactions](https://docs.rs/sp-runtime/36.0.0/sp_runtime/generic/struct.UncheckedExtrinsic.html), which is why it is called an `Extrinsic`, but that is beyond the scope of this tutorial.
 
 ## Dispatching Calls
 
@@ -55,3 +61,5 @@ Now that you understand what is in the support module, add it to your project.
 2. Copy and paste the content provided into your file.
 3. Import the support module at the top of your `main.rs` file.
 4. Finally, replace your `Result<(), &'static str>` with `crate::support::DispatchResult` in the `fn transfer` function in your Balances Pallet.
+
+Introducing this new module will cause your compiler to emit lots of "never constructed" warnings. Everything should still compile, so that is okay. We will use these new types soon.

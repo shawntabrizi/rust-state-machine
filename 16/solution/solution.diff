@@ -57,7 +57,7 @@ index 51aea28..543111e 100644
  		let caller_balance = self.balance(&caller);
  		let to_balance = self.balance(&to);
 diff --git a/src/system.rs b/src/system.rs
-index 071090b..f34406f 100644
+index 819f716..441d021 100644
 --- a/src/system.rs
 +++ b/src/system.rs
 @@ -1,22 +1,17 @@
@@ -103,6 +103,6 @@ index 071090b..f34406f 100644
  	// account has made.
 -	pub fn inc_nonce(&mut self, who: &String) {
 +	pub fn inc_nonce(&mut self, who: &AccountId) {
- 		let nonce = *self.nonce.get(who).unwrap_or(&0);
+ 		let nonce: u32 = *self.nonce.get(who).unwrap_or(&0);
  		let new_nonce = nonce + 1;
  		self.nonce.insert(who.clone(), new_nonce);

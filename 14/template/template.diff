@@ -30,7 +30,7 @@ index 808d673..b79655a 100644
 +	/* TODO: Print the final runtime state after all transactions. */
  }
 diff --git a/src/system.rs b/src/system.rs
-index 4689438..56f3b9a 100644
+index 0121c0b..c56e4b1 100644
 --- a/src/system.rs
 +++ b/src/system.rs
 @@ -2,6 +2,7 @@ use std::collections::BTreeMap;

@@ -20,3 +20,5 @@ Let's take a look at that process.
 Hopefully from this process, you can see how all of the abstractions we have introduced has made integrating new Pallets into your runtime quite easy.
 
 We will make this process even easier in the near future using macros!
+
+By the end of this step, everything should compile without warnings.

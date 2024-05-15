@@ -19,7 +19,7 @@ The Proof of Existence Pallet uses the blockchain to provide a secure and immuta
 
 Because the blockchain acts as an immutable ledger whose history cannot be changed, when some data is placed on the blockchain, it can be referenced at a future time to show that some data already existed in the past.
 
-For example, imagine you knew the outcome of the next Presidential Election., but before you reveal it, you want to make sure that you prove that you had discovered it at a certain time. You could put some sort of data on the blockchain which represents the cure you found, and then later, when you get your research reviewed and published,
+For example, imagine you discovered a cure to cancer, but before you reveal it, you want to make sure that you can prove when you had made the discovery. To do this, you could put some sort of data on the blockchain which represents the cure. At a later date, when you get your research published and reviewed, you would be able to use the blockchain as verifiable evidence of when you first made the discovery.
 
 Normally, you would not put the raw contents of your claim on the blockchain but a [hash](https://en.wikipedia.org/wiki/Cryptographic_hash_function) of the data, which is both smaller and obfuscates the data in your claim before you are ready to reveal it.
 
@@ -48,3 +48,5 @@ Let's start to create this pallet:
 4. In your `main.rs` file, import the `proof_of_existence` module.
 
 Make sure that everything compiles after you complete these steps.
+
+Compiler warnings about "never read/used" are okay.

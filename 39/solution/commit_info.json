@@ -1,5 +1,5 @@
 {
-  "commitHash": "dfaa0e5395c2c93b309ca8d6c38b042429f253fe",
+  "commitHash": "f214b80e0256ee633e24da449f5f61e4bbac47bf",
   "commitMessage": "solution: use call macro in balances",
   "files": "M\tREADME.md\nM\tsrc/balances.rs\nM\tsrc/main.rs\n"
 }

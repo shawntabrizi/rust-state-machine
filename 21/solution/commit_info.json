@@ -1,5 +1,5 @@
 {
-  "commitHash": "df87e65e9aa4fb82fb487d968d49970e2947e3de",
+  "commitHash": "bda78be634edb7110690c2c447c48004d22528fa",
   "commitMessage": "solution: make balances module configurable",
   "files": "M\tREADME.md\nM\tsrc/balances.rs\nM\tsrc/main.rs\n"
 }

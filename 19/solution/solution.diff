@@ -22,7 +22,7 @@ index df9057a..8d30b1b 100644
  }
  
 diff --git a/src/system.rs b/src/system.rs
-index e0a0a92..b496b5b 100644
+index 2b2467d..e648777 100644
 --- a/src/system.rs
 +++ b/src/system.rs
 @@ -1,38 +1,26 @@
@@ -85,9 +85,9 @@ index e0a0a92..b496b5b 100644
  	// Increment the nonce of an account. This helps us keep track of how many transactions each
  	// account has made.
  	pub fn inc_nonce(&mut self, who: &AccountId) {
--		let nonce = *self.nonce.get(who).unwrap_or(&0);
+-		let nonce: u32 = *self.nonce.get(who).unwrap_or(&0);
 -		let new_nonce = nonce + 1;
-+		let nonce = *self.nonce.get(&who).unwrap_or(&Nonce::zero());
++		let nonce: Nonce = *self.nonce.get(who).unwrap_or(&Nonce::zero());
 +		let new_nonce = nonce + Nonce::one();
  		self.nonce.insert(who.clone(), new_nonce);
  	}

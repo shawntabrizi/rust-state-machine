@@ -51,4 +51,4 @@ Follow the instructions in the template to complete:
 2. `fn inc_block_number`
 3. `fn inc_nonce`
 
-Then write tests which verify that these functions work as expected, and that your state is correctly updated.
+Then write tests which verify that these functions work as expected, and that your state is correctly updated. There should be no compiler warnings after this step!

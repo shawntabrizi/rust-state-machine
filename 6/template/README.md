@@ -105,4 +105,6 @@ To make our module useful, we need to at least have some functions which will al
 
 	Note that we do our little trick here! Rather than exposing an API which forces the user downstream to handle an `Option`, we instead are able to have our API always return a `u128` by converting any user with `None` value into `0`.
 
+As always, confirm everything is still compiling. Warnings are okay.
+
 Next we will write our first test and actually interact with our balances module.

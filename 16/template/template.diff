@@ -17,7 +17,7 @@ index e09906c..51aea28 100644
  /// It is a simple module which keeps track of how much balance each account has in this state
  /// machine.
 diff --git a/src/system.rs b/src/system.rs
-index dda7af9..071090b 100644
+index 9c3af4e..819f716 100644
 --- a/src/system.rs
 +++ b/src/system.rs
 @@ -1,5 +1,14 @@

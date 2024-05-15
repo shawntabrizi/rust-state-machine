@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index f0257a6..199f7de 100644
+index 4df59dc..03f54a0 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -20,8 +20,7 @@ mod types {
@@ -35,8 +35,8 @@ index f0257a6..199f7de 100644
 -			/* TODO: Update your extrinsics to use the nested enum. */
  			support::Extrinsic {
  				caller: alice.clone(),
--				call: RuntimeCall::BalancesTransfer { to: bob, amount: 20 },
-+				call: RuntimeCall::Balances(balances::Call::Transfer { to: bob, amount: 20 }),
+-				call: RuntimeCall::BalancesTransfer { to: bob, amount: 30 },
++				call: RuntimeCall::Balances(balances::Call::Transfer { to: bob, amount: 30 }),
  			},
  			support::Extrinsic {
  				caller: alice,

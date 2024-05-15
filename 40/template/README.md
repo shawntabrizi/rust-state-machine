@@ -24,7 +24,13 @@ Let's take the opportunity to show you how you can peek deeper into what the mac
 
 Rust provides the command `cargo expand` which allows you to output the generated rust code after all macros have been applied to your project.
 
-Run the following command:
+To install `cargo expand`:
+
+```bash
+cargo install cargo-expand
+```
+
+Then, run the following command:
 
 ```bash
 cargo expand > out.rs

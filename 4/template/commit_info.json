@@ -1,5 +1,5 @@
 {
-  "commitHash": "e1c99780cc745864a38f2ce821ee62dd5e00011b",
+  "commitHash": "60323dc44cd82e5d69d3941bca3f825230c700b8",
   "commitMessage": "template: introduce balances module",
   "files": "M\tREADME.md\nA\tsrc/balances.rs\nM\tsrc/main.rs\n"
 }

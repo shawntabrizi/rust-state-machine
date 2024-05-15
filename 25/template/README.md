@@ -21,3 +21,5 @@ It's time to define the concrete `Block` type that we will use to enhance our si
 As you can see, the `Block` is composed of layers of generic types, allowing the whole structure to be flexible and customizable to our needs.
 
 Pay attention to the generic type definitions to ensure that you use all the correct generic parameters in all the right places.
+
+Your code should still compile with some "never constructed/used" warnings.

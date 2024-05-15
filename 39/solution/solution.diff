@@ -48,7 +48,7 @@ index 42d66d0..68b2bb3 100644
  mod tests {
  	struct TestConfig;
 diff --git a/src/main.rs b/src/main.rs
-index 5fc9afe..cd18ca2 100644
+index 877327b..2459b9f 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -125,15 +125,14 @@ fn main() {
@@ -59,7 +59,7 @@ index 5fc9afe..cd18ca2 100644
 -				call: RuntimeCall::Balances(balances::Call::Transfer {
 +				call: RuntimeCall::Balances(balances::Call::transfer {
  					to: bob.clone(),
- 					amount: 20,
+ 					amount: 30,
  				}),
  			},
  			support::Extrinsic {

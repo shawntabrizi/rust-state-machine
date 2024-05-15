@@ -39,7 +39,7 @@ enum Result<T, E> {
 }
 ```
 
-`T` and `E` are generic parameters that allow you to customize the result type for your needs. For the purposes of this tutorial, we will always return `Ok(())` when everything completes okay, and a `Err(&static str)` to describe any errors with a basic string.
+`T` and `E` are generic parameters that allow you to customize the result type for your needs. For the purposes of this tutorial, we will always return `Ok(())` when everything completes okay, and a `Err(&'static str)` to describe any errors with a basic string.
 
 You can then define the `Result` type like:
 
@@ -69,4 +69,4 @@ In this case, we are writing code which completely handles the `Option` type in 
 
 Follow the instructions in the template to create a safe and simple transfer function in your Balances Pallet.
 
-Create a test showing that everything is working as expected, including error handling.
+Create a test showing that everything is working as expected, including error handling. There should be no compiler warnings!

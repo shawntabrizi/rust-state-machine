@@ -1,5 +1,5 @@
 {
-  "commitHash": "40271e5c1f62e196ae7993fa96d9d84d3a11d59b",
+  "commitHash": "deef2c9492fe59f2e877a09e4fe048825b6c3139",
   "commitMessage": "solution: introduce increment block number and nonce with test",
   "files": "M\tREADME.md\nM\tsrc/system.rs\n"
 }

@@ -1,5 +1,5 @@
 {
-  "commitHash": "5ff082bac1d4c25d2d5c42dbc21c662d821d5377",
+  "commitHash": "24c36340842a53095a3b6012469ba1395b103c32",
   "commitMessage": "solution: introduce macros",
   "files": "M\tCargo.lock\nM\tCargo.toml\nM\tREADME.md\nA\tmacros/Cargo.toml\nA\tmacros/src/call/expand.rs\nA\tmacros/src/call/mod.rs\nA\tmacros/src/call/parse.rs\nM\tmacros/src/lib.rs\nA\tmacros/src/runtime/expand.rs\nA\tmacros/src/runtime/mod.rs\nA\tmacros/src/runtime/parse.rs\n"
 }

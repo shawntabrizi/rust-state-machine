@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index cab75e0..79eb013 100644
+index 38dc445..ebcbdb2 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -19,18 +19,12 @@ mod types {
@@ -101,7 +101,7 @@ index cab75e0..79eb013 100644
 -				call: RuntimeCall::Balances(balances::Call::transfer {
 +				call: RuntimeCall::balances(balances::Call::transfer {
  					to: bob.clone(),
- 					amount: 20,
+ 					amount: 30,
  				}),
  			},
  			support::Extrinsic {

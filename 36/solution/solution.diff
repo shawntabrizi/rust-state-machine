@@ -1,15 +1,15 @@
 diff --git a/src/main.rs b/src/main.rs
-index 8e1547b..5a55bad 100644
+index 81d043c..05b7cf3 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -125,26 +125,59 @@ fn main() {
  		extrinsics: vec![
  			support::Extrinsic {
  				caller: alice.clone(),
--				call: RuntimeCall::Balances(balances::Call::Transfer { to: bob, amount: 20 }),
+-				call: RuntimeCall::Balances(balances::Call::Transfer { to: bob, amount: 30 }),
 +				call: RuntimeCall::Balances(balances::Call::Transfer {
 +					to: bob.clone(),
-+					amount: 20,
++					amount: 30,
 +				}),
  			},
  			support::Extrinsic {

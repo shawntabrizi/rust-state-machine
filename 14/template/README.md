@@ -54,3 +54,5 @@ To do this, we need to add `#[derive(Debug)]` to the `struct Runtime`.
 However... `struct Runtime` is composed of `system::Pallet` and `balances::Pallet`, so these structs ALSO need to implement the Debug trait.
 
 Complete the `TODO`s across the different files in your project and print out your final runtime at the end of the `main` function.
+
+You can use `cargo run` to see the output of your `println`. Everything should compile and run without warnings.

@@ -31,7 +31,7 @@ index d681065..40dc8ac 100644
  	// Create a new instance of the main Runtime, by creating a new instance of each pallet.
  	fn new() -> Self {
 diff --git a/src/system.rs b/src/system.rs
-index 5c2a7f5..52cd57f 100644
+index 6841ce7..724491e 100644
 --- a/src/system.rs
 +++ b/src/system.rs
 @@ -2,66 +2,70 @@ use core::ops::AddAssign;
@@ -104,10 +104,10 @@ index 5c2a7f5..52cd57f 100644
  	// Increment the nonce of an account. This helps us keep track of how many transactions each
  	// account has made.
 -	pub fn inc_nonce(&mut self, who: &AccountId) {
--		let nonce = *self.nonce.get(&who).unwrap_or(&Nonce::zero());
+-		let nonce: Nonce = *self.nonce.get(who).unwrap_or(&Nonce::zero());
 -		let new_nonce = nonce + Nonce::one();
 +	pub fn inc_nonce(&mut self, who: &T::AccountId) {
-+		let nonce = *self.nonce.get(&who).unwrap_or(&T::Nonce::zero());
++		let nonce: T::Nonce = *self.nonce.get(who).unwrap_or(&T::Nonce::zero());
 +		let new_nonce = nonce + T::Nonce::one();
  		self.nonce.insert(who.clone(), new_nonce);
  	}
