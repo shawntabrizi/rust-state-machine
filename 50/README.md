@@ -26,4 +26,6 @@ Just like before, you simply need to match the `Call` variant with the appropria
 
 Follow the `TODO`s in the template to complete the logic for Pallet level dispatch.
 
+The "never constructed" warning for the `Transfer` variant is okay.
+
 In the next step, we will use this logic to improve our dispatch logic in our Runtime.

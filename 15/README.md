@@ -21,3 +21,5 @@ We will see the importance of the System Pallet evolve as you walk through the s
 3. Import the `system` module into your `main.rs` file.
 
 You will notice that the instructions here are quite brief. You have already done all of these steps before, so you should already be familiar with everything you need to complete this step.
+
+Confirm everything is compiling. You should expect some "never used/constructed" warnings. That is okay.

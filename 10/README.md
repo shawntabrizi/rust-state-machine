@@ -36,6 +36,6 @@ For that, we will go back to the `main.rs` file, and create our first `#[test]` 
 	}
 	```
 
-4. We can run our tests using `cargo test`, where hopefully you should see that it passes.
+4. We can run our tests using `cargo test`, where hopefully you should see that it passes. **There should be no compiler warnings now!**
 
 I hope at this point you can start to see the beginnings of your simple blockchain state machine.

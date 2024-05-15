@@ -61,3 +61,5 @@ Now that you understand what is in the support module, add it to your project.
 2. Copy and paste the content provided into your file.
 3. Import the support module at the top of your `main.rs` file.
 4. Finally, replace your `Result<(), &'static str>` with `crate::support::DispatchResult` in the `fn transfer` function in your Balances Pallet.
+
+Introducing this new module will cause your compiler to emit lots of "never constructed" warnings. Everything should still compile, so that is okay. We will use these new types soon.
