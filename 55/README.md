@@ -48,3 +48,5 @@ Let's start to create this pallet:
 4. In your `main.rs` file, import the `proof_of_existence` module.
 
 Make sure that everything compiles after you complete these steps.
+
+Compiler warnings about "never read/used" are okay.

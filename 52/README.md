@@ -48,4 +48,4 @@ Since we have updated the construction of the `RuntimeCall` enum, we will also n
 
 Now is the time to complete this step and glue together Pallet level dispatch with the Runtime level dispatch logic.
 
-Follow the `TODO`s provided in the template to get your full end to end dispatch logic running.
+Follow the `TODO`s provided in the template to get your full end to end dispatch logic running. By the end of this step there should be no compiler warnings.

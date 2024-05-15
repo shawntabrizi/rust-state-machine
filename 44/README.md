@@ -66,3 +66,5 @@ To get the extrinsic number `i`, use you chain the [`enumerate()`](https://doc.r
 You should now have all the tools and information needed to successfully write your `execute_block` function.
 
 Follow the `TODO`s provided by the template, and make sure to include the `impl crate::support::Dispatch for Runtime` that we provided for you, and that we will implement in the next steps.
+
+Your code should still compile with some "never constructed/used" warnings.

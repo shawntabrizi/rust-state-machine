@@ -43,3 +43,5 @@ This panic will NOT be triggered if there is an error in an extrinsic, as we "sw
 Go ahead and use the `Block` type and `execute_block` function to update the logic of your `main` function.
 
 Follow the `TODO`s provided in the template to complete this step
+
+By the end of this step, your code should compile, test, and run successfully, all without compiler warnings!

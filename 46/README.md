@@ -51,3 +51,5 @@ Note that we propagate up any errors returned by our function call with the `?` 
 ## Write Your Dispatch Logic
 
 Follow the `TODO`s provided in the template to build your `RuntimeCall` and complete your `dispatch` logic.
+
+Your code should still compile with some "never constructed/used" warnings. Just one more step and we will get rid of all those warnings!

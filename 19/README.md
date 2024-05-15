@@ -19,3 +19,5 @@ Certainly this sounds pretty abstract, but it will make more sense as we complet
 Just like our Pallets, our Runtime will be represented with a simple `struct`, however in this case, the fields of our `struct` will be our Pallets!
 
 Complete the instructions for creating a new runtime which includes our System and Balances pallets. For this, you will need to take advantage of the `new()` functions we exposed for each of the Pallets.
+
+Make sure your code is formatted and everything is still compiling. Compiler warnings about "never read/used" are okay.

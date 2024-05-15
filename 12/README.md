@@ -69,4 +69,4 @@ In this case, we are writing code which completely handles the `Option` type in 
 
 Follow the instructions in the template to create a safe and simple transfer function in your Balances Pallet.
 
-Create a test showing that everything is working as expected, including error handling.
+Create a test showing that everything is working as expected, including error handling. There should be no compiler warnings!

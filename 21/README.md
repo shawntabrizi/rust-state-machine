@@ -61,3 +61,5 @@ On real blockchain systems, users are still charged a transaction fee, even when
 Do you think you understand everything it takes to simulate your first block?
 
 Follow the instructions provided by the template to turn your `main` function from "Hello, World!" to actually executing your blockchain's runtime.
+
+At the end of this step, everything should compile and run without warnings!
