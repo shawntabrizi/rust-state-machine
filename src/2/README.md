@@ -14,7 +14,27 @@
 
 <div id="Source" class="maintab tabcontent active">
 
-No files edited in this step.
+<div class="tab">
+<button class="subtab tablinks file-source file-added active" onclick="switchSubTab(event, 'rustfmt.toml')" data-id="rustfmt.toml">rustfmt.toml</button>
+<button class="subtab tablinks file-source file-modified" onclick="switchSubTab(event, 'src/main.rs')" data-id="src/main.rs">src/main.rs</button>
+</div>
+<div id="source/rustfmt.toml" class="subtab tabcontent active" data-id="rustfmt.toml">
+
+```toml
+{{#include ./source/rustfmt.toml}}
+```
+
+</div>
+
+<div id="source/src/main.rs" class="subtab tabcontent" data-id="src/main.rs">
+
+```rust
+{{#include ./source/src/main.rs}}
+```
+
+</div>
+
+
 
 </div>
 

@@ -16,13 +16,35 @@
 
 <div id="Template" class="maintab tabcontent active">
 
-No files edited in this step.
+<div class="tab">
+<button class="subtab tablinks file-template file-modified active" onclick="switchSubTab(event, 'src/balances.rs')" data-id="src/balances.rs">src/balances.rs</button>
+</div>
+<div id="template/src/balances.rs" class="subtab tabcontent active" data-id="src/balances.rs">
+
+```rust
+{{#include ./template/src/balances.rs}}
+```
+
+</div>
+
+
 
 </div>
 
 <div id="Solution" class="maintab tabcontent">
 
-No files edited in this step.
+<div class="tab">
+<button class="subtab tablinks file-solution file-modified active" onclick="switchSubTab(event, 'src/balances.rs')" data-id="src/balances.rs">src/balances.rs</button>
+</div>
+<div id="solution/src/balances.rs" class="subtab tabcontent active" data-id="src/balances.rs">
+
+```rust
+{{#include ./solution/src/balances.rs}}
+```
+
+</div>
+
+
 
 </div>
 

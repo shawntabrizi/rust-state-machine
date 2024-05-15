@@ -16,13 +16,53 @@
 
 <div id="Template" class="maintab tabcontent active">
 
-No files edited in this step.
+<div class="tab">
+<button class="subtab tablinks file-template file-modified active" onclick="switchSubTab(event, 'src/main.rs')" data-id="src/main.rs">src/main.rs</button>
+<button class="subtab tablinks file-template file-modified" onclick="switchSubTab(event, 'src/proof_of_existence.rs')" data-id="src/proof_of_existence.rs">src/proof_of_existence.rs</button>
+</div>
+<div id="template/src/main.rs" class="subtab tabcontent active" data-id="src/main.rs">
+
+```rust
+{{#include ./template/src/main.rs}}
+```
+
+</div>
+
+<div id="template/src/proof_of_existence.rs" class="subtab tabcontent" data-id="src/proof_of_existence.rs">
+
+```rust
+{{#include ./template/src/proof_of_existence.rs}}
+```
+
+</div>
+
+
 
 </div>
 
 <div id="Solution" class="maintab tabcontent">
 
-No files edited in this step.
+<div class="tab">
+<button class="subtab tablinks file-solution file-modified active" onclick="switchSubTab(event, 'src/main.rs')" data-id="src/main.rs">src/main.rs</button>
+<button class="subtab tablinks file-solution file-modified" onclick="switchSubTab(event, 'src/proof_of_existence.rs')" data-id="src/proof_of_existence.rs">src/proof_of_existence.rs</button>
+</div>
+<div id="solution/src/main.rs" class="subtab tabcontent active" data-id="src/main.rs">
+
+```rust
+{{#include ./solution/src/main.rs}}
+```
+
+</div>
+
+<div id="solution/src/proof_of_existence.rs" class="subtab tabcontent" data-id="src/proof_of_existence.rs">
+
+```rust
+{{#include ./solution/src/proof_of_existence.rs}}
+```
+
+</div>
+
+
 
 </div>
 

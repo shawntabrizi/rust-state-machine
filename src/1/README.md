@@ -14,7 +14,27 @@
 
 <div id="Source" class="maintab tabcontent active">
 
-No files edited in this step.
+<div class="tab">
+<button class="subtab tablinks file-source file-added active" onclick="switchSubTab(event, 'Cargo.toml')" data-id="Cargo.toml">Cargo.toml</button>
+<button class="subtab tablinks file-source file-added" onclick="switchSubTab(event, 'src/main.rs')" data-id="src/main.rs">src/main.rs</button>
+</div>
+<div id="source/Cargo.toml" class="subtab tabcontent active" data-id="Cargo.toml">
+
+```toml
+{{#include ./source/Cargo.toml}}
+```
+
+</div>
+
+<div id="source/src/main.rs" class="subtab tabcontent" data-id="src/main.rs">
+
+```rust
+{{#include ./source/src/main.rs}}
+```
+
+</div>
+
+
 
 </div>
 
