@@ -1,5 +1,5 @@
 {
-  "commitHash": "b6933071ae2fdd70567c833f5167303fbfed502b",
+  "commitHash": "ce0a53d7cab31845739ab1de28b775d642dce046",
   "commitMessage": "template: introduce the runtime to main",
   "files": "M\tREADME.md\nM\tsrc/main.rs\n"
 }

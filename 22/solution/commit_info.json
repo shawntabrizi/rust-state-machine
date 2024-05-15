@@ -1,5 +1,5 @@
 {
-  "commitHash": "8f250c421bd4ea87ae998f950f20441c62109eef",
+  "commitHash": "1d922511d9a6a46789afe900a37082180d958dbf",
   "commitMessage": "solution: tightly couple balances to system",
   "files": "M\tREADME.md\nM\tsrc/balances.rs\nM\tsrc/main.rs\n"
 }

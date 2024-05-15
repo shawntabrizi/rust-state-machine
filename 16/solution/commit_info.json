@@ -1,5 +1,5 @@
 {
-  "commitHash": "97661d49238a008e451faf68516402b967956b2a",
+  "commitHash": "80b26efc931080597fc1f285994928a0cd82a312",
   "commitMessage": "solution: define common types within modules",
   "files": "M\tREADME.md\nM\tsrc/balances.rs\nM\tsrc/system.rs\n"
 }

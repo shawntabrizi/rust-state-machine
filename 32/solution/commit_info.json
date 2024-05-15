@@ -1,5 +1,5 @@
 {
-  "commitHash": "40f90af90c08142192f77b0000ebe8bbb4a9cf35",
+  "commitHash": "60f4e16205061d7a68c0b66590a4ebbd6a93646e",
   "commitMessage": "solution: introduce proof of existence module",
   "files": "M\tREADME.md\nM\tsrc/main.rs\nM\tsrc/proof_of_existence.rs\n"
 }

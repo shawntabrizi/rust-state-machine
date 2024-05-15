@@ -1,5 +1,5 @@
 {
-  "commitHash": "de21d299b8d3089282be21ea3cc1344cf6fd04b5",
+  "commitHash": "37d10612556a23ff7b911a0886139b058f7b1ff4",
   "commitMessage": "solution: add set and get balances",
   "files": "M\tREADME.md\nM\tsrc/balances.rs\n"
 }

@@ -1,5 +1,5 @@
 {
-  "commitHash": "1c5186b6a3f8c7a2ae4ed8933b6a7ee4334e6997",
+  "commitHash": "41eff092284aecb4a844268b2d00a8c55bbbed96",
   "commitMessage": "template: use runtime macro in main",
   "files": "M\tREADME.md\nM\tsrc/main.rs\n"
 }

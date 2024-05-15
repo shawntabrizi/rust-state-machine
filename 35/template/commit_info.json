@@ -1,5 +1,5 @@
 {
-  "commitHash": "d4d1291f83d33b0024fab3b13fd97e1038ac8bfc",
+  "commitHash": "8b6fe8ba88c7fc6bf0132e66827889cc1e15ab5e",
   "commitMessage": "template: integrate proof of existence into the runtime",
   "files": "M\tREADME.md\nM\tsrc/main.rs\n"
 }

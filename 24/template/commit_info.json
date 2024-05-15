@@ -1,5 +1,5 @@
 {
-  "commitHash": "84de50f8cb59000bc631070cea0d7e17017462eb",
+  "commitHash": "035848616d1fc41083471fec797f16b6b35abd3c",
   "commitMessage": "template: introduce support traits and types",
   "files": "M\tREADME.md\nM\tsrc/balances.rs\nM\tsrc/main.rs\nA\tsrc/support.rs\n"
 }

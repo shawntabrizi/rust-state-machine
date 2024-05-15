@@ -1,5 +1,5 @@
 {
-  "commitHash": "ac59d101c80e830beac77cb2fa21f6c86c28592b",
+  "commitHash": "bcdd98fa74a51c1968d6e3753c2ea339f70f2efe",
   "commitMessage": "template: make system module generic",
   "files": "M\tREADME.md\nM\tsrc/main.rs\nM\tsrc/system.rs\n"
 }

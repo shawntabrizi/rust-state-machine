@@ -1,5 +1,5 @@
 {
-  "commitHash": "f3c2997f6d69779749e17a0e5e0076bad6021238",
+  "commitHash": "3a68256249248e4552104118d3f8efca5f1b39a5",
   "commitMessage": "template: make balances module generic",
   "files": "M\tREADME.md\nM\tsrc/balances.rs\nM\tsrc/main.rs\n"
 }
