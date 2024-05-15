@@ -37,7 +37,7 @@ where
 	// Increment the nonce of an account. This helps us keep track of how many transactions each
 	// account has made.
 	pub fn inc_nonce(&mut self, who: &AccountId) {
-		let nonce = *self.nonce.get(&who).unwrap_or(&Nonce::zero());
+		let nonce: Nonce = *self.nonce.get(&who).unwrap_or(&Nonce::zero());
 		let new_nonce = nonce + Nonce::one();
 		self.nonce.insert(who.clone(), new_nonce);
 	}

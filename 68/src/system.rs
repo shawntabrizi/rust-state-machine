@@ -48,7 +48,7 @@ impl<T: Config> Pallet<T> {
 	// Increment the nonce of an account. This helps us keep track of how many transactions each
 	// account has made.
 	pub fn inc_nonce(&mut self, who: &T::AccountId) {
-		let nonce = *self.nonce.get(&who).unwrap_or(&T::Nonce::zero());
+		let nonce: T::Nonce = *self.nonce.get(&who).unwrap_or(&T::Nonce::zero());
 		let new_nonce = nonce + T::Nonce::one();
 		self.nonce.insert(who.clone(), new_nonce);
 	}
