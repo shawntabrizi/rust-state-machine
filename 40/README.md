@@ -2,6 +2,12 @@
 
 In this step, we will introduce a `support` module to help bring in various types and traits that we will use to enhance our simple state machine.
 
+This `support` module parallels something similar to the [`frame_support` crate](https://docs.rs/frame-support/latest/frame_support/) that you would find in the Polkadot SDK.
+
+The reason the `frame_support` crate exists, is to allow multiple other crates use common types and trait, while avoiding [cyclic dependencies](https://users.rust-lang.org/t/how-to-resolve-cyclic-dependency/51387), which is not allowed in Rust.
+
+Our simple state machine will not experience this problem explicitly, since we are building everything in a single crate, but the structure of the project will still follow these best practices.
+
 ## Constructing a Block
 
 The first set of primitives provided by the `support` module are a set of structs that we need to construct a simple `Block`.
