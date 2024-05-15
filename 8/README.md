@@ -2,7 +2,7 @@
 
 Now that we have established the basics of our balances module, let's add ways to interact with it.
 
-To do this, we will continue to create more functions implemented on `BalancesModule` which grants access to read, write, and update the `balances: BTreeMap` we created.
+To do this, we will continue to create more functions implemented on `Pallet` which grants access to read, write, and update the `balances: BTreeMap` we created.
 
 Finally, we will see what it looks like to actually start interacting with our balances pallet from the `main.rs` file.
 
@@ -77,10 +77,10 @@ As you can see, our initial state machine starts that everyone has no balance.
 
 To make our module useful, we need to at least have some functions which will allow us to mint new balances for users, and to read those balances.
 
-1. Create a new function inside `impl BalancesModule` called `fn set_balance`:
+1. Create a new function inside `impl Pallet` called `fn set_balance`:
 
 	```rust
-	impl BalancesModule {
+	impl Pallet {
 		pub fn set_balance(&mut self, who: &String, amount: u128) {
 			self.balances.insert(who.clone(), amount);
 		}
@@ -91,7 +91,7 @@ To make our module useful, we need to at least have some functions which will al
 
 	As you can see, this function simply takes input about which user we want to set the balance of, and what balance we want to set. This then pushes that information into our `BTreeMap`, and that is all.
 
-2. Create a new function inside `impl BalancesModule` called `fn balance`:
+2. Create a new function inside `impl Pallet` called `fn balance`:
 
 	```rust
 	pub fn balance(&self, who: &String) -> u128 {
