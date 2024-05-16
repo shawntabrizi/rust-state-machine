@@ -4,7 +4,7 @@ We want to make our code more modular and extensible.
 
 Currently, all dispatch happens through the `RuntimeCall`, which is hardcoding dispatch logic for each of the Pallets in our system.
 
-What we would prefer is for Pallet level dispatch logic to live in the Pallet itself, and our Runtime taking advantage of that. We ave already seen end to end what it takes to set up call dispatch, so let's do it again at the Pallet level.
+What we would prefer is for Pallet level dispatch logic to live in the Pallet itself, and our Runtime taking advantage of that. We have already seen end to end what it takes to set up call dispatch, so let's do it again at the Pallet level.
 
 ## Pallet Call
 
