@@ -50,9 +50,9 @@ We will go through each of these more deeply as we include the macros into our c
 
 All of the macros are contained within their own crate which will be a folder in your project.
 
-Download the folder contents for the macros here: [download](https://download-directory.github.io?url=https://github.com/shawntabrizi/rust-state-machine/tree/master/macros)
+Download the folder contents for the macros here: [download](https://download-directory.github.io?url=https://github.com/shawntabrizi/rust-state-machine/tree/gitorial/macros)
 
-> If that link does not work, you can extract the `macros` folder however is best for you from the source repository for this tutorial: https://github.com/shawntabrizi/rust-state-machine
+> If that link does not work, you can extract the `macros` folder however is best for you from the source repository for this tutorial: https://github.com/shawntabrizi/rust-state-machine/tree/gitorial/
 
 Once you have the contents of the macros folder:
 
