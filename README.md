@@ -16,7 +16,19 @@ This tutorial will teach and review many Rust concepts, however it is not a repl
 
 This repository is not meant to be used directly, but as the source for generating an interactive tutorial using the source code and readme files included at each commit.
 
-If you browse the [commit history](https://github.com/shawntabrizi/rust-state-machine/commits/master) of this tutorial, you will see that each commit is designed to be a single step in the tutorial.
+This repository manages 3 branches, each with its own history and purpose:
+
+- [`master`](https://github.com/shawntabrizi/rust-state-machine): This is an expanded version of each step and file of the tutorial. Each step has its own full source code and README which is used for that step in the tutorial.
+- [`gitorial`](https://github.com/shawntabrizi/rust-state-machine/tree/gitorial): This branch repackages all the steps of the tutorial into a single Git history. You can actually take a [look at the history](https://github.com/shawntabrizi/rust-state-machine/commits/gitorial/) of the `gitorial` branch, and see how each steps evolves using the Git diff.
+- `mdbook`: This is a special repackaging of the tutorial for generating an [mdBook](https://github.com/rust-lang/mdBook) that can be directly used by students.
+
+If you have small changes that need to be made to a single step, feel free to open an issue or make a PR against the `master` branch. However, for more complex changes which may affect multiple steps, consider learning more about the `gitorial` format.
+
+### More about Gitorial
+
+The heart of this tutorial is the [Gitorial format](https://github.com/gitorial-sdk).
+
+If you browse the [commit history](https://github.com/shawntabrizi/rust-state-machine/commits/gitorial/) of the `gitorial` branch, you will see that each commit is designed to be a single step in the tutorial.
 
 All commits are prefixed with one of:
 
@@ -26,39 +38,32 @@ All commits are prefixed with one of:
 - `action`: This denotes a step in the tutorial where the user needs to complete some action, not necessarily write any code. For example, the user might need to import a new crate. In this case, it does not make sense to have a `template` and `solution`, but just the final outcome after the action was taken. The previous commit can be used for generating a `diff`. The `README.md` file should contain any information the user needs to complete the action successfully.
 - `readme`: This is only applied to the last commit in this repo, and denotes that this commit was specifically for make a `README.md` for users that browse this repository on github. This step should not be used in the tutorial generation.
 
-## Exporting the Tutorial
-
-Included with this repo is an `export_tutorial.sh` script.
-
-This will generate an `output` folder where each commit is placed in an independent folder with the step number. For example:
-
-```text
-output/
-├─ 1/
-│  ├─ src/
-│  │  ├─ main.rs
-│  ├─ Cargo.toml
-│  ├─ README.md
-├─ 2/
-│  ├─ src/
-│  │  ├─ main.rs
-│  │  ├─ balances.rs
-│  ├─ Cargo.toml
-│  ├─ README.md
-├─ 3/
-│  ├─ ...
-```
-
-This should provide a very basic example of how to turn this repository into step by step documentation.
-
-More specific tooling can be created to customize this process further for your specific needs and output.
+You can use Git to make changes to the history of the repo, and then use `git merge` to propagate those changes cleanly into the rest of your repo.
 
 ## Maintenance
 
-This tutorial depends on having structured git history. To accomplish this, we use git in ways it was not intended. I apologize in advance to those offended by what they are going to read below.
+Maintaining the repo means keeping all three of the main branches in sync.
 
-This tutorial is updated and maintained by modifying its git history and force pushing changes back to master.
+For this, you can use the [`gitorial-cli`](https://github.com/gitorial-sdk/cli).
 
-This allows us to maintain all the different snapshots of code needed by the reader, without having to individually maintain many copies of the same file. Making breaking changes to a step simply requires you to fix merge conflicts as you rebase those changes.
+Once you have made changes to the appropriate branch, you can use these commands to get all branches in order:
 
-As a result, you should expect that the entire git history of this tutorial could change at any time.
+- Convert `master` to an up to date `gitorial` branch:
+
+    ```sh
+	gitorial-cli repack -p /path/to/rust-state-machine -i master -s steps -o gitorial2
+	```
+
+	Then check your work, and `git reset --hard` the `gitorial` branch with `gitorial2`.
+
+- Convert `gitorial` to an up to date `mdbook` branch:
+
+	```sh
+	gitorial-cli mdbook -p /path/to/rust-state-machine -i gitorial -o mdbook
+	```
+
+- Convert `gitorial` to an up to date `master` branch:
+
+	```sh
+	gitorial-cli unpack -p /path/to/rust-state-machine -i gitorial -o master -s steps
+	```
