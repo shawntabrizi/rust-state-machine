@@ -22,7 +22,7 @@ for dir in steps/*/; do
     echo "Running cargo +nightly fmt"
     cargo +nightly fmt
 
-    echo "Running cargo clippy --fix"
+    echo "Running cargo clippy"
     RUSTFLAGS="-A unused" cargo clippy
 
     echo "Running cargo test"
