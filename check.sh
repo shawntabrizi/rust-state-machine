@@ -8,6 +8,12 @@ fi
 
 # Iterate through each subdirectory in the 'steps' directory
 for dir in steps/*/; do
+  # Check if the directory contains a Cargo.toml file
+  if [ ! -f "$dir/Cargo.toml" ]; then
+    echo "Skipping directory (no Cargo.toml found): $dir"
+    continue
+  fi
+
   if [ -d "$dir" ]; then
     echo "Entering directory: $dir"
     cd "$dir"
@@ -17,7 +23,7 @@ for dir in steps/*/; do
     cargo +nightly fmt
 
     echo "Running cargo clippy --fix"
-    RUSTFLAGS="-A unused" cargo clippy --fix --allow-dirty
+    RUSTFLAGS="-A unused" cargo clippy
 
     echo "Running cargo test"
     RUSTFLAGS="-A unused" cargo test
