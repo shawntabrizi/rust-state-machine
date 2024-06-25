@@ -81,7 +81,7 @@ To make our module useful, we need to at least have some functions which will al
 
 	```rust
 	impl Pallet {
-		pub fn set_balance(&mut self, who: &str, amount: u128) {
+		pub fn set_balance(&mut self, who: &String, amount: u128) {
 			self.balances.insert(who.to_owned(), amount);
 		}
 

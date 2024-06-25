@@ -15,7 +15,7 @@ impl Pallet {
 	}
 
 	/// Set the balance of an account `who` to some `amount`.
-	pub fn set_balance(&mut self, who: &str, amount: u128) {
+	pub fn set_balance(&mut self, who: &String, amount: u128) {
 		self.balances.insert(who.to_owned(), amount);
 	}
 
@@ -32,9 +32,9 @@ mod tests {
 	fn init_balances() {
 		let mut balances = super::Pallet::new();
 
-		assert_eq!(balances.balance("alice"), 0);
-		balances.set_balance("alice", 100);
-		assert_eq!(balances.balance("alice"), 100);
+		assert_eq!(balances.balance(&"alice".to_string()), 0);
+		balances.set_balance(&"alice".to_string(), 100);
+		assert_eq!(balances.balance(&"alice".to_string()), 100);
 		assert_eq!(balances.balance("bob"), 0);
 	}
 }

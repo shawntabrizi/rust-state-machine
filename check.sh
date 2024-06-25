@@ -19,6 +19,9 @@ fi
 
 # Iterate through each subdirectory in the 'steps' directory
 for dir in steps/*/; do
+  # Extract the directory name
+  dir_name=$(basename "$dir")
+
   # Check if the directory contains a Cargo.toml file
   if [ ! -f "$dir/Cargo.toml" ]; then
     echo "Skipping directory (no Cargo.toml found): $dir"
@@ -36,7 +39,13 @@ for dir in steps/*/; do
       cargo +nightly fmt -- --check
 
       echo "Checking cargo clippy"
-      RUSTFLAGS="-A unused" cargo +nightly clippy -- -D warnings
+      if [[ "$dir_name" =~ ^([1-9]|1[0-9]|2[0-6])$ ]]; then
+        # We specifically allow `clippy::ptr-arg` in the first 26 steps, because
+        # it helps minimize transition to generic types
+        RUSTFLAGS="-A unused -A clippy::ptr-arg" cargo +nightly clippy -- -D warnings
+      else
+        RUSTFLAGS="-A unused" cargo +nightly clippy -- -D warnings
+      fi
 
       echo "Checking cargo test"
       RUSTFLAGS="-A unused -D warnings" cargo test
@@ -47,7 +56,13 @@ for dir in steps/*/; do
       RUSTFLAGS="-A unused" cargo +nightly fmt
 
       echo "Running cargo clippy"
-      RUSTFLAGS="-A unused" cargo +nightly clippy  --fix --allow-dirty
+      if [[ "$dir_name" =~ ^([1-9]|1[0-9]|2[0-6])$ ]]; then
+        # We specifically allow `clippy::ptr-arg` in the first 26 steps, because
+        # it helps minimize transition to generic types
+        RUSTFLAGS="-A unused -A clippy::ptr-arg" cargo +nightly clippy --fix --allow-dirty
+      else
+        RUSTFLAGS="-A unused" cargo +nightly clippy --fix --allow-dirty
+      fi
 
       echo "Running cargo test"
       RUSTFLAGS="-A unused -D warnings" cargo test
