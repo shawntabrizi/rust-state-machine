@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Default to 'check' mode if no argument is provided
+MODE=${1:-check}
+
+# Check if the mode is valid
+if [[ "$MODE" != "check" && "$MODE" != "fix" ]]; then
+  echo "Invalid mode: $MODE. Use 'check' or 'fix'."
+  exit 1
+fi
+
 # Check if the 'steps' directory exists
 if [ ! -d "steps" ]; then
   echo "Directory 'steps' does not exist."
@@ -18,15 +27,27 @@ for dir in steps/*/; do
     echo "Entering directory: $dir"
     cd "$dir"
 
-    # Run cargo fmt and cargo clippy
-    echo "Running cargo +nightly fmt"
-    cargo +nightly fmt
+    # Run cargo fmt and cargo clippy based on the mode
+    if [ "$MODE" == "check" ]; then
 
-    echo "Running cargo clippy"
-    RUSTFLAGS="-A unused" cargo clippy
+      echo "Running cargo fmt"
+      cargo +nightly fmt -- --check
 
-    echo "Running cargo test"
-    RUSTFLAGS="-A unused" cargo test
+      echo "Running cargo clippy"
+      RUSTFLAGS="-A unused" cargo +nightly clippy -- -D warnings
+
+      echo "Running cargo test"
+      RUSTFLAGS="-A unused" cargo test
+
+    elif [ "$MODE" == "fix" ]; then
+
+      echo "Running cargo +nightly fmt"
+      RUSTFLAGS="-A unused" cargo +nightly fmt
+
+      echo "Running cargo +nightly clippy"
+      RUSTFLAGS="-A unused" cargo +nightly clippy  --fix --allow-dirty
+
+    fi
 
     # Return to the previous directory
     cd - > /dev/null
