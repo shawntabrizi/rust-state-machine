@@ -21,7 +21,7 @@ impl Pallet {
 
 	/// Get the balance of an account `who`.
 	/// If the account has no stored balance, we return zero.
-	pub fn balance(&self, who: &str) -> u128 {
+	pub fn balance(&self, who: &String) -> u128 {
 		*self.balances.get(who).unwrap_or(&0)
 	}
 }
@@ -35,6 +35,6 @@ mod tests {
 		assert_eq!(balances.balance(&"alice".to_string()), 0);
 		balances.set_balance(&"alice".to_string(), 100);
 		assert_eq!(balances.balance(&"alice".to_string()), 100);
-		assert_eq!(balances.balance("bob"), 0);
+		assert_eq!(balances.balance(&"bob".to_string()), 0);
 	}
 }

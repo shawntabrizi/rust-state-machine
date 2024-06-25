@@ -94,7 +94,7 @@ To make our module useful, we need to at least have some functions which will al
 2. Create a new function inside `impl Pallet` called `fn balance`:
 
 	```rust
-	pub fn balance(&self, who: &str) -> u128 {
+	pub fn balance(&self, who: &String) -> u128 {
 		*self.balances.get(who).unwrap_or(&0)
 	}
 	```

@@ -38,7 +38,7 @@ impl Pallet {
 
 	// Increment the nonce of an account. This helps us keep track of how many transactions each
 	// account has made.
-	pub fn inc_nonce(&mut self, who: &str) {
+	pub fn inc_nonce(&mut self, who: &String) {
 		let nonce: u32 = *self.nonce.get(who).unwrap_or(&0);
 		let new_nonce = nonce + 1;
 		self.nonce.insert(who.to_owned(), new_nonce);
@@ -51,7 +51,7 @@ mod test {
 	fn init_system() {
 		let mut system = super::Pallet::new();
 		system.inc_block_number();
-		system.inc_nonce("alice");
+		system.inc_nonce(&"alice".to_string());
 
 		assert_eq!(system.block_number(), 1);
 		assert_eq!(system.nonce.get("alice"), Some(&1));
