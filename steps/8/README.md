@@ -95,7 +95,7 @@ To make our module useful, we need to at least have some functions which will al
 
 	```rust
 	pub fn balance(&self, who: &str) -> u128 {
-		*self.balances.get(&who).unwrap_or(&0)
+		*self.balances.get(who).unwrap_or(&0)
 	}
 	```
 

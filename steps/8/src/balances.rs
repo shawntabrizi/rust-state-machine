@@ -15,7 +15,7 @@ impl Pallet {
 	}
 
 	/// Set the balance of an account `who` to some `amount`.
-	pub fn set_balance(&mut self, who: &String, amount: u128) {
+	pub fn set_balance(&mut self, who: &str, amount: u128) {
 		/* Insert `amount` into the BTreeMap under `who`. */
 		unimplemented!()
 	}
