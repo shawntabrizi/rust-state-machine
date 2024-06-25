@@ -16,8 +16,8 @@ for dir in steps/*/; do
     echo "Running cargo +nightly fmt"
     cargo +nightly fmt
 
-    # echo "Running cargo +nightly clippy"
-    # cargo +nightly clippy
+    echo "Running cargo clippy --fix"
+    cargo clippy --fix
 
     # Return to the previous directory
     cd - > /dev/null
