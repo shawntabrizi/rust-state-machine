@@ -6,7 +6,7 @@ mod system;
 pub struct Runtime {
 	/* TODO:
 		- Create a field `system` which is of type `system::Pallet`.
-	 	- Create a field `balances` which is of type `balances::Pallet`.
+		- Create a field `balances` which is of type `balances::Pallet`.
 	*/
 }
 
