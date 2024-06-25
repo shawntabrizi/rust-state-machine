@@ -51,7 +51,7 @@ mod test {
 	fn init_system() {
 		let mut system = super::Pallet::new();
 		system.inc_block_number();
-		system.inc_nonce(&"alice".to_string());
+		system.inc_nonce("alice");
 
 		assert_eq!(system.block_number(), 1);
 		assert_eq!(system.nonce.get("alice"), Some(&1));
