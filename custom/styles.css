@@ -51,6 +51,7 @@
 	cursor: pointer;
 	padding: 14px 16px;
 	transition: 0.3s;
+	color: #fff;
 }
 
 /* Change background color of buttons on hover */
@@ -66,9 +67,12 @@
 /* Style the tab content */
 .tabcontent {
 	display: none;
-	padding: 6px 12px;
 	border: 1px solid #333;
 	border-top: none;
+}
+
+.tabcontent pre {
+	margin: 0px;
 }
 
 .tabcontent.active {
@@ -76,13 +80,13 @@
 }
 
 .file-modified {
-	color: darkorange;
+	color: darkorange !important;
 }
 
 .file-solution.file-modified {
-	color: skyblue;
+	color: skyblue !important;
 }
 
 .file-added {
-	color: limegreen;
+	color: limegreen !important;
 }
