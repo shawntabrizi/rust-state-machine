@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Default to 'check' mode if no argument is provided
 MODE=${1:-check}
 
@@ -30,22 +32,25 @@ for dir in steps/*/; do
     # Run cargo fmt and cargo clippy based on the mode
     if [ "$MODE" == "check" ]; then
 
-      echo "Running cargo fmt"
+      echo "Checking cargo fmt"
       cargo +nightly fmt -- --check
 
-      echo "Running cargo clippy"
+      echo "Checking cargo clippy"
       RUSTFLAGS="-A unused" cargo +nightly clippy -- -D warnings
 
-      echo "Running cargo test"
-      RUSTFLAGS="-A unused" cargo test
+      echo "Checking cargo test"
+      RUSTFLAGS="-A unused -D warnings" cargo test
 
     elif [ "$MODE" == "fix" ]; then
 
-      echo "Running cargo +nightly fmt"
+      echo "Running cargo fmt"
       RUSTFLAGS="-A unused" cargo +nightly fmt
 
-      echo "Running cargo +nightly clippy"
+      echo "Running cargo clippy"
       RUSTFLAGS="-A unused" cargo +nightly clippy  --fix --allow-dirty
+
+      echo "Running cargo test"
+      RUSTFLAGS="-A unused -D warnings" cargo test
 
     fi
 
