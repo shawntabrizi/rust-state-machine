@@ -19,6 +19,9 @@ for dir in steps/*/; do
     echo "Running cargo clippy --fix"
     RUSTFLAGS="-A unused" cargo clippy --fix --allow-dirty
 
+    echo "Running cargo test"
+    RUSTFLAGS="-A unused" cargo test
+
     # Return to the previous directory
     cd - > /dev/null
   fi
