@@ -4,7 +4,7 @@ use std::collections::BTreeMap;
 /// It is a simple module which keeps track of how much balance each account has in this state
 /// machine.
 pub struct Pallet {
-	// A simple storage mapping from accounts (`&'static str`) to their balances (`u128`).
+	// A simple storage mapping from accounts (`String`) to their balances (`u128`).
 	balances: BTreeMap<String, u128>,
 }
 
