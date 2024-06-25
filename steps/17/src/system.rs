@@ -30,7 +30,7 @@ impl Pallet {
 
 	// Increment the nonce of an account. This helps us keep track of how many transactions each
 	// account has made.
-	pub fn inc_nonce(&mut self, who: &String) {
+	pub fn inc_nonce(&mut self, who: &str) {
 		/* TODO: Get the current nonce of `who`, and increment it by one. */
 		unimplemented!()
 	}

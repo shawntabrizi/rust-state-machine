@@ -29,10 +29,10 @@ impl Pallet {
 
 	// Increment the nonce of an account. This helps us keep track of how many transactions each
 	// account has made.
-	pub fn inc_nonce(&mut self, who: &String) {
+	pub fn inc_nonce(&mut self, who: &str) {
 		let nonce: u32 = *self.nonce.get(who).unwrap_or(&0);
 		let new_nonce = nonce + 1;
-		self.nonce.insert(who.clone(), new_nonce);
+		self.nonce.insert(who.to_owned(), new_nonce);
 	}
 }
 
