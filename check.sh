@@ -41,7 +41,7 @@ for dir in steps/*/; do
       echo "Checking cargo clippy"
       if [[ "$dir_name" =~ ^([1-9]|1[0-9]|2[0-6])$ ]]; then
         # We specifically allow `clippy::ptr-arg` in the first 26 steps, because
-        # it helps minimize transition to generic types
+        # it helps minimize the transition to generic types.
         RUSTFLAGS="-A unused -A clippy::ptr-arg" cargo +nightly clippy -- -D warnings
       else
         RUSTFLAGS="-A unused" cargo +nightly clippy -- -D warnings
@@ -58,7 +58,7 @@ for dir in steps/*/; do
       echo "Running cargo clippy"
       if [[ "$dir_name" =~ ^([1-9]|1[0-9]|2[0-6])$ ]]; then
         # We specifically allow `clippy::ptr-arg` in the first 26 steps, because
-        # it helps minimize transition to generic types
+        # it helps minimize the transition to generic types.
         RUSTFLAGS="-A unused -A clippy::ptr-arg" cargo +nightly clippy --fix --allow-dirty
       else
         RUSTFLAGS="-A unused" cargo +nightly clippy --fix --allow-dirty
