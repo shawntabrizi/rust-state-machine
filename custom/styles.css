@@ -11,19 +11,24 @@
 
 /* -- Two Col Layout -- */
 
-.content-row {
-	display: flex;
-	flex-wrap: wrap;
-}
-
 .content-col {
-	gap: 10px;
-	width: 50%;
+	width: 100%;
+	padding-bottom: 50px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 1024px) {
+
+	/* -- Override Content Padding - Move to Col -- */
+	.content {
+		padding: 0px;
+	}
+
 	.content-col {
-		width: 100%;
+		width: calc(50% - 10px);
+		height: calc(100vh - 102px);
+		float: left;
+		overflow: scroll;
+		padding: 0px 5px 50px 5px;
 	}
 }
 
