@@ -39,7 +39,7 @@ where
 	pub fn inc_nonce(&mut self, who: &AccountId) {
 		let nonce: Nonce = *self.nonce.get(who).unwrap_or(&Nonce::zero());
 		let new_nonce = nonce + Nonce::one();
-		self.nonce.insert(who.to_owned(), new_nonce);
+		self.nonce.insert(who.clone(), new_nonce);
 	}
 }
 

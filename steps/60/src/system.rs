@@ -50,7 +50,7 @@ impl<T: Config> Pallet<T> {
 	pub fn inc_nonce(&mut self, who: &T::AccountId) {
 		let nonce: T::Nonce = *self.nonce.get(who).unwrap_or(&T::Nonce::zero());
 		let new_nonce = nonce + T::Nonce::one();
-		self.nonce.insert(who.to_owned(), new_nonce);
+		self.nonce.insert(who.clone(), new_nonce);
 	}
 }
 

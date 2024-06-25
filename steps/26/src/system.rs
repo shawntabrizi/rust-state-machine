@@ -41,7 +41,7 @@ impl Pallet {
 	pub fn inc_nonce(&mut self, who: &String) {
 		let nonce: u32 = *self.nonce.get(who).unwrap_or(&0);
 		let new_nonce = nonce + 1;
-		self.nonce.insert(who.to_owned(), new_nonce);
+		self.nonce.insert(who.clone(), new_nonce);
 	}
 }
 
