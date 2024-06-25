@@ -1,8 +1,8 @@
 diff --git a/src/proof_of_existence.rs b/src/proof_of_existence.rs
-index 587dfc7..f9d9059 100644
+index a1755b34..4e2e0ac7 100644
 --- a/src/proof_of_existence.rs
 +++ b/src/proof_of_existence.rs
-@@ -56,28 +56,31 @@ impl<T: Config> Pallet<T> {
+@@ -56,27 +56,32 @@ impl<T: Config> Pallet<T> {
  // We should expect that the caller of each call will be provided by the dispatcher,
  // and not included as a parameter of the call.
  pub enum Call<T: Config> {
@@ -22,16 +22,16 @@ index 587dfc7..f9d9059 100644
  
  /// Implementation of the dispatch logic, mapping from `POECall` to the appropriate underlying
  /// function we want to execute.
- impl<T: Config> crate::support::Dispatch for Pallet<T> {
--	/*
--		TODO:
--		Implement `crate::support::Dispatch` for `Pallet<T>`.
+-/*
+-	TODO:
+-	Implement `crate::support::Dispatch` for `Pallet<T>`.
++impl<T: Config> crate::support::Dispatch for Pallet<T> {
 +	type Caller = T::AccountId;
 +	type Call = Call<T>;
  
--		In your `dispatch` logic, match on `call` and forward the `caller` and `claim` data to the
--		appropriate function.
--	*/
+-	In your `dispatch` logic, match on `call` and forward the `caller` and `claim` data to the
+-	appropriate function.
+-*/
 +	fn dispatch(
 +		&mut self,
 +		caller: Self::Caller,
@@ -47,6 +47,7 @@ index 587dfc7..f9d9059 100644
 +		}
 +		Ok(())
 +	}
- }
++}
  
  #[cfg(test)]
+ mod test {

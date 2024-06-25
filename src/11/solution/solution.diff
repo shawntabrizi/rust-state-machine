@@ -1,5 +1,5 @@
 diff --git a/src/system.rs b/src/system.rs
-index de474ba..0121c0b 100644
+index b46402c3..967578d0 100644
 --- a/src/system.rs
 +++ b/src/system.rs
 @@ -17,22 +17,21 @@ impl Pallet {
@@ -30,22 +30,23 @@ index de474ba..0121c0b 100644
  	}
  }
  
-@@ -40,11 +39,12 @@ impl Pallet {
+@@ -40,13 +39,12 @@ impl Pallet {
  mod test {
  	#[test]
  	fn init_system() {
 -		/* TODO: Create a test which checks the following:
 -			- Increment the current block number.
 -			- Increment the nonce of `alice`.
--			- Check the block number is what we expect.
--			- Check the nonce of `alice` is what we expect.
--		*/
 +		let mut system = super::Pallet::new();
 +		system.inc_block_number();
 +		system.inc_nonce(&"alice".to_string());
-+
+ 
+-			- Check the block number is what we expect.
+-			- Check the nonce of `alice` is what we expect.
+-			- Check the nonce of `bob` is what we expect.
+-		*/
 +		assert_eq!(system.block_number(), 1);
-+		assert_eq!(system.nonce.get(&"alice".to_string()), Some(&1));
-+		assert_eq!(system.nonce.get(&"bob".to_string()), None);
++		assert_eq!(system.nonce.get("alice"), Some(&1));
++		assert_eq!(system.nonce.get("bob"), None);
  	}
  }

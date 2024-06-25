@@ -1,8 +1,8 @@
 diff --git a/src/system.rs b/src/system.rs
-index 99d537c..de474ba 100644
+index 99d537c8..b46402c3 100644
 --- a/src/system.rs
 +++ b/src/system.rs
-@@ -14,4 +14,37 @@ impl Pallet {
+@@ -14,4 +14,39 @@ impl Pallet {
  	pub fn new() -> Self {
  		Self { block_number: 0, nonce: BTreeMap::new() }
  	}
@@ -35,8 +35,10 @@ index 99d537c..de474ba 100644
 +		/* TODO: Create a test which checks the following:
 +			- Increment the current block number.
 +			- Increment the nonce of `alice`.
++
 +			- Check the block number is what we expect.
 +			- Check the nonce of `alice` is what we expect.
++			- Check the nonce of `bob` is what we expect.
 +		*/
 +	}
  }

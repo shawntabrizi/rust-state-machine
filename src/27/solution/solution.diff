@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index 8c36355..c8e03cc 100644
+index ea8261d0..d3cbb031 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -20,10 +20,7 @@ mod types {
@@ -18,8 +18,8 @@ index 8c36355..c8e03cc 100644
  	fn execute_block(&mut self, block: types::Block) -> support::DispatchResult {
  		self.system.inc_block_number();
  		if block.header.block_number != self.system.block_number() {
--			return Err(&"block number does not match what is expected")
-+			return Err(&"block number does not match what is expected");
+-			return Err("block number does not match what is expected")
++			return Err("block number does not match what is expected");
  		}
  		// An extrinsic error is not enough to trigger the block to be invalid. We capture the
  		// result, and emit an error message if one is emitted.

@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index ff6022a..c89ae74 100644
+index c1203d12..170ad380 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -103,34 +103,25 @@ fn main() {

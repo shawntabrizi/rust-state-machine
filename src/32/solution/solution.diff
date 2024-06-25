@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index 2adb057..818f42d 100644
+index e15cf4f3..6dd23260 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -1,5 +1,5 @@
@@ -10,7 +10,7 @@ index 2adb057..818f42d 100644
  mod system;
  
 diff --git a/src/proof_of_existence.rs b/src/proof_of_existence.rs
-index 87ea242..5e7de2a 100644
+index 87ea242e..5e7de2a7 100644
 --- a/src/proof_of_existence.rs
 +++ b/src/proof_of_existence.rs
 @@ -14,12 +14,12 @@ pub trait Config: crate::system::Config {

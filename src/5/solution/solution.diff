@@ -1,14 +1,17 @@
 diff --git a/src/balances.rs b/src/balances.rs
-index b184c3e..f2f602c 100644
+index 003e8383..43377478 100644
 --- a/src/balances.rs
 +++ b/src/balances.rs
-@@ -4,15 +4,13 @@ use std::collections::BTreeMap;
+@@ -1,18 +1,16 @@
+-/* TODO: Import `std::collections::BTreeMap` so it can be used below. */
++use std::collections::BTreeMap;
+ 
+ /// This is the Balances Module.
  /// It is a simple module which keeps track of how much balance each account has in this state
  /// machine.
  pub struct Pallet {
--	// A simple storage mapping from accounts (`String`) to their balances (`u128`).
+ 	// A simple storage mapping from accounts (`String`) to their balances (`u128`).
 -	/* TODO: Add a field `balances` which is a `BTreeMap` fom `String` to `u128`. */
-+	// A simple storage mapping from accounts (`&'static str`) to their balances (`u128`).
 +	balances: BTreeMap<String, u128>,
  }
  

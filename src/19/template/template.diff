@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index b314856..df9057a 100644
+index b314856b..df9057af 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -7,12 +7,14 @@ mod system;
@@ -18,7 +18,7 @@ index b314856..df9057a 100644
  	balances: balances::Pallet<types::AccountId, types::Balance>,
  }
 diff --git a/src/system.rs b/src/system.rs
-index 441d021..2b2467d 100644
+index b63ab24e..a50b5e77 100644
 --- a/src/system.rs
 +++ b/src/system.rs
 @@ -4,6 +4,13 @@ type AccountId = String;

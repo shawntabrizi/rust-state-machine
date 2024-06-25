@@ -1,10 +1,10 @@
 diff --git a/src/balances.rs b/src/balances.rs
-index 4a1da04..b184c3e 100644
+index 4a1da04e..003e8383 100644
 --- a/src/balances.rs
 +++ b/src/balances.rs
 @@ -1 +1,18 @@
 -pub struct Pallet {}
-+use std::collections::BTreeMap;
++/* TODO: Import `std::collections::BTreeMap` so it can be used below. */
 +
 +/// This is the Balances Module.
 +/// It is a simple module which keeps track of how much balance each account has in this state

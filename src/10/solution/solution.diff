@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index d2fffb8..815fd74 100644
+index d2fffb8b..815fd741 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -1,5 +1,5 @@
@@ -10,7 +10,7 @@ index d2fffb8..815fd74 100644
  fn main() {
  	println!("Hello, world!");
 diff --git a/src/system.rs b/src/system.rs
-index b4e6ef4..99d537c 100644
+index b4e6ef4e..99d537c8 100644
 --- a/src/system.rs
 +++ b/src/system.rs
 @@ -1,17 +1,17 @@

@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index df9057a..8d30b1b 100644
+index df9057af..8d30b1be 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -7,15 +7,15 @@ mod system;
@@ -22,7 +22,7 @@ index df9057a..8d30b1b 100644
  }
  
 diff --git a/src/system.rs b/src/system.rs
-index 2b2467d..e648777 100644
+index a50b5e77..c7563896 100644
 --- a/src/system.rs
 +++ b/src/system.rs
 @@ -1,38 +1,26 @@

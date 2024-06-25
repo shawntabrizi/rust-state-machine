@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index 48d0045..aafcfed 100644
+index 902eb9ac..9e1570c6 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -137,19 +137,18 @@ fn main() {
@@ -14,14 +14,14 @@ index 48d0045..aafcfed 100644
  				caller: alice.clone(),
 -				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::CreateClaim {
 +				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::create_claim {
- 					claim: &"Hello, world!",
+ 					claim: "Hello, world!",
  				}),
  			},
  			support::Extrinsic {
  				caller: bob.clone(),
 -				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::CreateClaim {
 +				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::create_claim {
- 					claim: &"Hello, world!",
+ 					claim: "Hello, world!",
  				}),
  			},
 @@ -161,13 +160,13 @@ fn main() {
@@ -30,18 +30,18 @@ index 48d0045..aafcfed 100644
  				caller: alice,
 -				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::RevokeClaim {
 +				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::revoke_claim {
- 					claim: &"Hello, world!",
+ 					claim: "Hello, world!",
  				}),
  			},
  			support::Extrinsic {
  				caller: bob,
 -				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::CreateClaim {
 +				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::create_claim {
- 					claim: &"Hello, world!",
+ 					claim: "Hello, world!",
  				}),
  			},
 diff --git a/src/proof_of_existence.rs b/src/proof_of_existence.rs
-index 35181ca..b0ebdca 100644
+index f88d4398..10aa7af7 100644
 --- a/src/proof_of_existence.rs
 +++ b/src/proof_of_existence.rs
 @@ -18,7 +18,6 @@ pub struct Pallet<T: Config> {
@@ -54,7 +54,7 @@ index 35181ca..b0ebdca 100644
  	pub fn new() -> Self {
 @@ -29,7 +28,10 @@ impl<T: Config> Pallet<T> {
  	pub fn get_claim(&self, claim: &T::Content) -> Option<&T::AccountId> {
- 		self.claims.get(&claim)
+ 		self.claims.get(claim)
  	}
 +}
  

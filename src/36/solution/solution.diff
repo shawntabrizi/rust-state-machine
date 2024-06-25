@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index 81d043c..05b7cf3 100644
+index 73b69ef4..d2e384e3 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -125,26 +125,59 @@ fn main() {
@@ -32,13 +32,13 @@ index 81d043c..05b7cf3 100644
 +			support::Extrinsic {
 +				caller: alice.clone(),
 +				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::CreateClaim {
-+					claim: &"Hello, world!",
++					claim: "Hello, world!",
 +				}),
 +			},
 +			support::Extrinsic {
 +				caller: bob.clone(),
 +				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::CreateClaim {
-+					claim: &"Hello, world!",
++					claim: "Hello, world!",
 +				}),
 +			},
 +		],
@@ -50,13 +50,13 @@ index 81d043c..05b7cf3 100644
 +			support::Extrinsic {
 +				caller: alice,
 +				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::RevokeClaim {
-+					claim: &"Hello, world!",
++					claim: "Hello, world!",
 +				}),
 +			},
 +			support::Extrinsic {
 +				caller: bob,
 +				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::CreateClaim {
-+					claim: &"Hello, world!",
++					claim: "Hello, world!",
 +				}),
 +			},
 +		],

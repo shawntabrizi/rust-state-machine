@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index 38dc445..ebcbdb2 100644
+index ab632aab..6bb6513c 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -19,18 +19,12 @@ mod types {
@@ -44,7 +44,7 @@ index 38dc445..ebcbdb2 100644
 -	fn execute_block(&mut self, block: types::Block) -> support::DispatchResult {
 -		self.system.inc_block_number();
 -		if block.header.block_number != self.system.block_number() {
--			return Err(&"block number does not match what is expected");
+-			return Err("block number does not match what is expected");
 -		}
 -		// An extrinsic error is not enough to trigger the block to be invalid. We capture the
 -		// result, and emit an error message if one is emitted.
@@ -117,14 +117,14 @@ index 38dc445..ebcbdb2 100644
  				caller: alice.clone(),
 -				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::create_claim {
 +				call: RuntimeCall::proof_of_existence(proof_of_existence::Call::create_claim {
- 					claim: &"Hello, world!",
+ 					claim: "Hello, world!",
  				}),
  			},
  			support::Extrinsic {
  				caller: bob.clone(),
 -				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::create_claim {
 +				call: RuntimeCall::proof_of_existence(proof_of_existence::Call::create_claim {
- 					claim: &"Hello, world!",
+ 					claim: "Hello, world!",
  				}),
  			},
 @@ -165,13 +99,13 @@ fn main() {
@@ -133,13 +133,13 @@ index 38dc445..ebcbdb2 100644
  				caller: alice,
 -				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::revoke_claim {
 +				call: RuntimeCall::proof_of_existence(proof_of_existence::Call::revoke_claim {
- 					claim: &"Hello, world!",
+ 					claim: "Hello, world!",
  				}),
  			},
  			support::Extrinsic {
  				caller: bob,
 -				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::create_claim {
 +				call: RuntimeCall::proof_of_existence(proof_of_existence::Call::create_claim {
- 					claim: &"Hello, world!",
+ 					claim: "Hello, world!",
  				}),
  			},

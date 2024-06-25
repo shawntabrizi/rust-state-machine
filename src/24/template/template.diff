@@ -1,5 +1,5 @@
 diff --git a/src/balances.rs b/src/balances.rs
-index 989fa71..a86d892 100644
+index 989fa71d..a86d8927 100644
 --- a/src/balances.rs
 +++ b/src/balances.rs
 @@ -38,6 +38,7 @@ impl<T: Config> Pallet<T> {
@@ -11,7 +11,7 @@ index 989fa71..a86d892 100644
  		&mut self,
  		caller: T::AccountId,
 diff --git a/src/main.rs b/src/main.rs
-index dd1d1f6..20811be 100644
+index dd1d1f69..20811be3 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -1,4 +1,5 @@
@@ -22,7 +22,7 @@ index dd1d1f6..20811be 100644
  // These are the concrete types we will use in our simple state machine.
 diff --git a/src/support.rs b/src/support.rs
 new file mode 100644
-index 0000000..08dc1ea
+index 00000000..08dc1eae
 --- /dev/null
 +++ b/src/support.rs
 @@ -0,0 +1,42 @@

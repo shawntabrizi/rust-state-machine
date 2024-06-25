@@ -1,5 +1,5 @@
 diff --git a/src/balances.rs b/src/balances.rs
-index 947ad84..42d66d0 100644
+index 947ad847..42d66d0f 100644
 --- a/src/balances.rs
 +++ b/src/balances.rs
 @@ -34,7 +34,10 @@ impl<T: Config> Pallet<T> {
@@ -29,7 +29,7 @@ index 947ad84..42d66d0 100644
  	type Caller = T::AccountId;
  	type Call = Call<T>;
 diff --git a/src/main.rs b/src/main.rs
-index 05b7cf3..877327b 100644
+index d2e384e3..69ba65b5 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -125,6 +125,7 @@ fn main() {

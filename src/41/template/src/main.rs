@@ -66,7 +66,7 @@ impl Runtime {
 	fn execute_block(&mut self, block: types::Block) -> support::DispatchResult {
 		self.system.inc_block_number();
 		if block.header.block_number != self.system.block_number() {
-			return Err(&"block number does not match what is expected");
+			return Err("block number does not match what is expected");
 		}
 		// An extrinsic error is not enough to trigger the block to be invalid. We capture the
 		// result, and emit an error message if one is emitted.
@@ -148,13 +148,13 @@ fn main() {
 			support::Extrinsic {
 				caller: alice.clone(),
 				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::create_claim {
-					claim: &"Hello, world!",
+					claim: "Hello, world!",
 				}),
 			},
 			support::Extrinsic {
 				caller: bob.clone(),
 				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::create_claim {
-					claim: &"Hello, world!",
+					claim: "Hello, world!",
 				}),
 			},
 		],
@@ -166,13 +166,13 @@ fn main() {
 			support::Extrinsic {
 				caller: alice,
 				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::revoke_claim {
-					claim: &"Hello, world!",
+					claim: "Hello, world!",
 				}),
 			},
 			support::Extrinsic {
 				caller: bob,
 				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::create_claim {
-					claim: &"Hello, world!",
+					claim: "Hello, world!",
 				}),
 			},
 		],

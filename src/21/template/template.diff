@@ -1,5 +1,5 @@
 diff --git a/src/balances.rs b/src/balances.rs
-index e333e0d..9f5c453 100644
+index e333e0d9..9f5c4531 100644
 --- a/src/balances.rs
 +++ b/src/balances.rs
 @@ -1,6 +1,11 @@
@@ -38,7 +38,7 @@ index e333e0d..9f5c453 100644
  	fn init_balances() {
  		let mut balances = super::Pallet::<String, u128>::new();
 diff --git a/src/main.rs b/src/main.rs
-index 40dc8ac..343797e 100644
+index 40dc8ac5..343797ef 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -25,6 +25,12 @@ impl system::Config for Runtime {
