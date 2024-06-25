@@ -21,7 +21,7 @@ impl Pallet {
 
 	/// Get the balance of an account `who`.
 	/// If the account has no stored balance, we return zero.
-	pub fn balance(&self, who: &String) -> u128 {
+	pub fn balance(&self, who: &str) -> u128 {
 		*self.balances.get(who).unwrap_or(&0)
 	}
 }

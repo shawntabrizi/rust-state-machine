@@ -21,7 +21,7 @@ impl Pallet {
 
 	/// Get the balance of an account `who`.
 	/// If the account has no stored balance, we return zero.
-	pub fn balance(&self, who: &String) -> u128 {
+	pub fn balance(&self, who: &str) -> u128 {
 		*self.balances.get(who).unwrap_or(&0)
 	}
 
@@ -53,10 +53,10 @@ mod tests {
 	fn init_balances() {
 		let mut balances = super::Pallet::new();
 
-		assert_eq!(balances.balance(&"alice".to_string()), 0);
-		balances.set_balance(&"alice".to_string(), 100);
-		assert_eq!(balances.balance(&"alice".to_string()), 100);
-		assert_eq!(balances.balance(&"bob".to_string()), 0);
+		assert_eq!(balances.balance("alice"), 0);
+		balances.set_balance("alice", 100);
+		assert_eq!(balances.balance("alice"), 100);
+		assert_eq!(balances.balance("bob"), 0);
 	}
 
 	#[test]
@@ -68,10 +68,10 @@ mod tests {
 			Err("Not enough funds.")
 		);
 
-		balances.set_balance(&"alice".to_string(), 100);
+		balances.set_balance("alice", 100);
 		assert_eq!(balances.transfer("alice".to_string(), "bob".to_string(), 51), Ok(()));
-		assert_eq!(balances.balance(&"alice".to_string()), 49);
-		assert_eq!(balances.balance(&"bob".to_string()), 51);
+		assert_eq!(balances.balance("alice"), 49);
+		assert_eq!(balances.balance("bob"), 51);
 
 		assert_eq!(
 			balances.transfer("alice".to_string(), "bob".to_string(), 51),
