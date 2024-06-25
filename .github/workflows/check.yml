@@ -21,7 +21,7 @@ jobs:
         with:
           toolchain: nightly
           override: true
-          components: clippy
+          components: rustfmt, clippy
 
       - name: Run format, lint, and test script
         run: ./check.sh
