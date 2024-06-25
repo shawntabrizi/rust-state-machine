@@ -70,15 +70,13 @@ pub enum Call<T: Config> {
 
 /// Implementation of the dispatch logic, mapping from `POECall` to the appropriate underlying
 /// function we want to execute.
-impl<T: Config> crate::support::Dispatch for Pallet<T> {
-	/*
-		TODO:
-		Implement `crate::support::Dispatch` for `Pallet<T>`.
+/*
+	TODO:
+	Implement `crate::support::Dispatch` for `Pallet<T>`.
 
-		In your `dispatch` logic, match on `call` and forward the `caller` and `claim` data to the
-		appropriate function.
-	*/
-}
+	In your `dispatch` logic, match on `call` and forward the `caller` and `claim` data to the
+	appropriate function.
+*/
 
 #[cfg(test)]
 mod test {
