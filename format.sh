@@ -17,7 +17,7 @@ for dir in steps/*/; do
     cargo +nightly fmt
 
     echo "Running cargo clippy --fix"
-    cargo clippy --fix
+    cargo clippy --fix --allow-dirty
 
     # Return to the previous directory
     cd - > /dev/null
