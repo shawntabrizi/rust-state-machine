@@ -43,6 +43,7 @@ mod test {
 		/* TODO: Create a test which checks the following:
 			- Increment the current block number.
 			- Increment the nonce of `alice`.
+
 			- Check the block number is what we expect.
 			- Check the nonce of `alice` is what we expect.
 			- Check the nonce of `bob` is what we expect.
