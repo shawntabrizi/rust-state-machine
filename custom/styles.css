@@ -9,6 +9,19 @@
 	margin: auto;
 }
 
+/* -- Nav -- */
+
+.nav-chapters {
+	/* Make nav buttons not full height on wide screen. */
+	top: auto;
+	margin: 10px;
+	font-size: 2.5em;
+	text-align: center;
+	text-decoration: none;
+	width: 90px;
+	border-radius: 5px;
+}
+
 /* -- Two Col Layout -- */
 
 .content-col {
@@ -16,7 +29,7 @@
 	padding-bottom: 50px;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1081px) {
 
 	/* -- Override Content Padding - Move to Col -- */
 	.content {
@@ -37,9 +50,9 @@
 /* Style the tab */
 .tab {
 	overflow: hidden;
-	border: 1px solid #333;
-	background-color: #111;
-	color: #fff;
+	border: 1px solid color-mix(in srgb, var(--sidebar-bg), #888 15%);
+	background-color: var(--sidebar-bg);
+	color: var(--sidebar-fg);
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -51,23 +64,23 @@
 	cursor: pointer;
 	padding: 14px 16px;
 	transition: 0.3s;
-	color: #fff;
+	color: var(--sidebar-fg);
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-	background-color: #222;
+	background-color: color-mix(in srgb, var(--sidebar-bg), #888 30%);
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-	background-color: #333;
+	background-color: color-mix(in srgb, var(--sidebar-bg), #888 50%);
 }
 
 /* Style the tab content */
 .tabcontent {
 	display: none;
-	border: 1px solid #333;
+	border: 1px solid color-mix(in srgb, var(--sidebar-bg), #888 15%);
 	border-top: none;
 }
 
@@ -80,13 +93,13 @@
 }
 
 .file-modified {
-	color: darkorange !important;
+	color: darkorange;
 }
 
 .file-solution.file-modified {
-	color: skyblue !important;
+	color: light-dark(darkblue, skyblue);
 }
 
 .file-added {
-	color: limegreen !important;
+	color: light-dark(darkgreen, limegreen);
 }
