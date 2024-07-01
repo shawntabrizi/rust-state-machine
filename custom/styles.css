@@ -93,13 +93,13 @@
 }
 
 .file-modified {
-	color: darkorange;
+	color: darkorange !important;
 }
 
 .file-solution.file-modified {
-	color: light-dark(darkblue, skyblue);
+	color: light-dark(darkblue, skyblue) !important;
 }
 
 .file-added {
-	color: light-dark(darkgreen, limegreen);
+	color: light-dark(darkgreen, limegreen) !important;
 }
