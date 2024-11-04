@@ -14,7 +14,9 @@ Well, currently there are definitions of the account type in both the Balances P
 
 Truthfully, the advantage of generic types will not be super obvious in this tutorial, but when building a blockchain SDK like the Substrate, this kind of flexibility will allow ecosystem developers to reach their full potential.
 
-For example, teams have used Substrate to build fully compatible Ethereum blockchains, while other teams have experimented with cutting edge cryptographic primitives. This generic framework allows both teams to be successful.
+As a simple example, we have defined the `Balance` type as u128 in our implementation. If we make the pallet generic, future developers can decide what concrete type `Balance` will be, depending on their needs. You could imagine that Alice will use our pallet with u32 balances, while Bob might use it with u64 balances. In either case, they will not need to edit the code of the Balances pallet, they can simply specify the concrete type of `Balance` when adding the pallet to their runtime.
+
+For another example, teams have used Substrate to build fully compatible Ethereum blockchains, while other teams have experimented with cutting edge cryptographic primitives. This generic framework allows both teams to be successful.
 
 ## Generic Types
 
