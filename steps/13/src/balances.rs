@@ -40,9 +40,9 @@ impl Pallet {
 		let new_caller_balance = caller_balance.checked_sub(amount).ok_or("Not enough funds.")?;
 		let new_to_balance = to_balance.checked_add(amount).ok_or("Overflow")?;
 
-		self.balances.insert(caller, new_caller_balance);
-		self.balances.insert(to, new_to_balance);
-
+		self.set_balance(&caller, new_caller_balance);
+		self.set_balance(&to, new_to_balance);
+		
 		Ok(())
 	}
 }
