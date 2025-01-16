@@ -19,7 +19,7 @@ In order to generate the code that we want, we need to keep track of:
 
 These things are tracked with `CallDef` and `CallVariantDef`.
 
-Also, during the parsing process, we might want to check for certain consistencies in the code being parsed. In this case, we require that every callable function muse have `caller` as their first parameter with type `T::AccountId`. This should make sense to you since you have designed a number of different callable functions, and they all follow this pattern.
+Also, during the parsing process, we might want to check for certain consistencies in the code being parsed. In this case, we require that every callable function must have `caller` as their first parameter with type `T::AccountId`. This should make sense to you since you have designed a number of different callable functions, and they all follow this pattern.
 
 This checking logic is handled by `fn check_caller_arg`.
 

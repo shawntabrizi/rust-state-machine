@@ -16,12 +16,12 @@ pub trait Config {}
 
 Traits can contain within it two things:
 
-1. functions which must be implemented by the type
-2. associated types
+1. Functions which must be implemented by the type.
+2. Associated types.
 
 ### Custom Functions
 
-The more obvious use of traits is to define custom functions
+The more obvious use of traits is to define custom functions.
 
 Let's say we want to expose a function which returns the name of something.
 
@@ -143,7 +143,7 @@ Here we are basically saying that `Pallet` will use `Runtime` as its generic typ
 
 Phew. That was a lot.
 
-Let's practice all you have learned to create `Config` trait for your System Pallet, and then configure the pallet for the `Runtime` in `main.rs`.
+Let's practice all you have learned to create a `Config` trait for your System Pallet, and then configure the pallet for the `Runtime` in `main.rs`.
 
 1. Define the `Config` trait which will have your 3 associated types `AccountId`, `BlockNumber`, and `Nonce`.
 2. Make sure these types have their trait constraints defined in `Config`.

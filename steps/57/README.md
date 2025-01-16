@@ -4,7 +4,7 @@ The Proof of Existence Pallet is quite simple, so let's build out the logic need
 
 ## Get Claim
 
-Our Pallet has a simple storage map from some claim content to the owner of that claim.
+Our Pallet has a simple storage map from some claimed content to the owner of that claim.
 
 The `get_claim` function should act as a simple read function returning the `T::AccountId` of the owner, if there is any. In the case we query a claim which has no owner, we should return `None`.
 
@@ -36,8 +36,8 @@ Keeping things in the current state just makes querying for information easier.
 
 To revoke a claim, we need to check two things:
 
-1. The the claim exists.
-2. That the person who wants to revoke the claim is the owner of that claim.
+1. The claim exists.
+2. The person who wants to revoke the claim is the owner of that claim.
 
 You should be able to handle all of this logic by calling the `get_claim` function and using `ok_or` to return an error when the claim does not exist. If the claim does exist, you should be able to directly extract the owner from the state query.
 
