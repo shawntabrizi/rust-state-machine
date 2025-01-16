@@ -68,7 +68,7 @@ pub enum Call<T: Config> {
 	RemoveMe(core::marker::PhantomData<T>),
 }
 
-/// Implementation of the dispatch logic, mapping from `POECall` to the appropriate underlying
+/// Implementation of the dispatch logic, mapping from `Call` to the appropriate underlying
 /// function we want to execute.
 /*
 	TODO:
