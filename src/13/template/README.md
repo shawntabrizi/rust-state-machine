@@ -27,7 +27,7 @@ In our situation, you can simply call low level functions like `set_balance` bef
 Let's quickly break down the steps of executing a basic block:
 
 1. First we increment the blocknumber, since each new block will have a new blocknumber.
-2. Then we go through an execute each transaction in that block:
+2. Then we go through and execute each transaction in that block:
 	1. Each transaction for our blockchain will come from a user, thus we will increment the users nonce as we process their transaction.
 	2. Then we will attempt to execute the function they want to call, for example `transfer`.
 	3. Repeat this process for every transaction.

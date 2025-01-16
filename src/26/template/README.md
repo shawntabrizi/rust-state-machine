@@ -59,7 +59,7 @@ eprintln!(
 
 This allows you to see the block number, extrinsic number, and the error message whenever there is an extrinsic error. This can be very helpful when you have many blocks being imported each with potentially many extrinsics.
 
-To get the extrinsic number `i`, use you chain the [`enumerate()`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.enumerate) function after the `into_iter()`.
+To get the extrinsic number `i`, chain the [`enumerate()`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.enumerate) function after the `into_iter()`.
 
 ## Build Your Execute Block Function
 

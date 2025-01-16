@@ -12,7 +12,7 @@ Let's look at some examples.
 
 ### Trait Functions
 
-We can extend our previous example to show what trait inheritance does with functions
+We can extend our previous example to show what trait inheritance does with functions:
 
 ```rust
 pub trait GetName {
@@ -28,7 +28,7 @@ pub trait SayName: GetName {
 }
 ```
 
-Note how in the definition of `trait SayName`, we reference `GetName` after a colon. This `SayName`, your object must also implement `GetName`. Note that we could even program a "default" implementation of `get_name` by using the `Self::name()` function.
+Note how in the definition of `trait SayName`, we reference `GetName` after a colon. This `SayName`, your object, must also implement `GetName`. Note that we could even program a "default" implementation of `get_name` by using the `Self::name()` function.
 
 So when we implement these traits, it looks like:
 

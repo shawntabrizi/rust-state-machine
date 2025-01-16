@@ -18,7 +18,7 @@ pub enum RuntimeCall {
 
 In this case, we have a variant `RuntimeCall::Balances`, which itself contains a type `balances::Call`. This means we can access all the calls exposed by `balances:Call` under this variant. As we create more pallets or extend our calls, this nested structure will scale very well.
 
-We call the `RuntimeCall` an "outer enum", and the `balances::Call` an "inter enum". This construction of using outer and inter enums is very common in the Polkadot SDK.
+We call the `RuntimeCall` an "outer enum", and the `balances::Call` an "inner enum". This construction of using outer and inner enums is very common in the Polkadot SDK.
 
 ## Re-Dispatching to Pallet
 

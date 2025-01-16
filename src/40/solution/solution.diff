@@ -41,7 +41,7 @@ index 902eb9ac..9e1570c6 100644
  				}),
  			},
 diff --git a/src/proof_of_existence.rs b/src/proof_of_existence.rs
-index f88d4398..10aa7af7 100644
+index d84e9c61..10aa7af7 100644
 --- a/src/proof_of_existence.rs
 +++ b/src/proof_of_existence.rs
 @@ -18,7 +18,6 @@ pub struct Pallet<T: Config> {
@@ -75,7 +75,7 @@ index f88d4398..10aa7af7 100644
 -	RevokeClaim { claim: T::Content },
 -}
 -
--/// Implementation of the dispatch logic, mapping from `POECall` to the appropriate underlying
+-/// Implementation of the dispatch logic, mapping from `Call` to the appropriate underlying
 -/// function we want to execute.
 -impl<T: Config> crate::support::Dispatch for Pallet<T> {
 -	type Caller = T::AccountId;
