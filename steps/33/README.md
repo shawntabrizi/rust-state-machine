@@ -16,8 +16,8 @@ pub trait Config {}
 
 Traits can contain within it two things:
 
-1. Functions which must be implemented by the type
-2. Associated types
+1. Functions which must be implemented by the type.
+2. Associated types.
 
 ### Custom Functions
 
