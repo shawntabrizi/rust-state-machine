@@ -17,7 +17,7 @@ index e09906cb..51aea28f 100644
  /// It is a simple module which keeps track of how much balance each account has in this state
  /// machine.
 diff --git a/src/system.rs b/src/system.rs
-index 2fc5d764..a4740a6b 100644
+index 2fc5d764..4116a13f 100644
 --- a/src/system.rs
 +++ b/src/system.rs
 @@ -1,5 +1,14 @@
@@ -25,7 +25,7 @@ index 2fc5d764..a4740a6b 100644
  
 +/*
 +	TODO: Define the common types used in this pallet:
-+		- `AccountID`
++		- `AccountId`
 +		- `BlockNumber`
 +		- `Nonce`
 +

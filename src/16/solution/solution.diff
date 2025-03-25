@@ -57,7 +57,7 @@ index 51aea28f..543111e7 100644
  		let caller_balance = self.balance(&caller);
  		let to_balance = self.balance(&to);
 diff --git a/src/system.rs b/src/system.rs
-index a4740a6b..b63ab24e 100644
+index 4116a13f..b63ab24e 100644
 --- a/src/system.rs
 +++ b/src/system.rs
 @@ -1,22 +1,17 @@
@@ -65,7 +65,7 @@ index a4740a6b..b63ab24e 100644
  
 -/*
 -	TODO: Define the common types used in this pallet:
--		- `AccountID`
+-		- `AccountId`
 -		- `BlockNumber`
 -		- `Nonce`
 -
