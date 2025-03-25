@@ -25,6 +25,12 @@ impl system::Config for Runtime {
 	type Nonce = types::Nonce;
 }
 
+/*
+	TODO:
+	Implement the `balances::Config` trait you created on your `Runtime`.
+	Use `Self` to satisfy the generic parameter required for `balances::Pallet`.
+*/
+
 impl Runtime {
 	// Create a new instance of the main Runtime, by creating a new instance of each pallet.
 	fn new() -> Self {
