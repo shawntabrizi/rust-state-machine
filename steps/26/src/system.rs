@@ -2,7 +2,7 @@ use std::collections::BTreeMap;
 
 /*
 	TODO: Define the common types used in this pallet:
-		- `AccountID`
+		- `AccountId`
 		- `BlockNumber`
 		- `Nonce`
 
