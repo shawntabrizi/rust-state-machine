@@ -61,12 +61,7 @@ impl<T: Config> Pallet<T> {
 // We should expect that the caller of each call will be provided by the dispatcher,
 // and not included as a parameter of the call.
 pub enum Call<T: Config> {
-	/* TODO: Create an enum variant `Transfer` which contains named fields:
-		- `to`: a `T::AccountId`
-		- `amount`: a `T::Balance`
-	*/
-	/* TODO: Remove the `RemoveMe` placeholder. */
-	RemoveMe(core::marker::PhantomData<T>),
+	Transfer { to: T::AccountId, amount: T::Balance },
 }
 
 /// Implementation of the dispatch logic, mapping from `BalancesCall` to the appropriate underlying
@@ -80,7 +75,11 @@ impl<T: Config> crate::support::Dispatch for Pallet<T> {
 		caller: Self::Caller,
 		call: Self::Call,
 	) -> crate::support::DispatchResult {
-		/* TODO: use a `match` statement to route the `Call` to the appropriate pallet function. */
+		match call {
+			Call::Transfer { to, amount } => {
+				self.transfer(caller, to, amount)?;
+			},
+		}
 		Ok(())
 	}
 }
