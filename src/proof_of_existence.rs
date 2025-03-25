@@ -18,6 +18,7 @@ pub struct Pallet<T: Config> {
 	claims: BTreeMap<T::Content, T::AccountId>,
 }
 
+/* TODO: Add the `#[macros::call]` attribute here too. Make the changes needed to this pallet. */
 impl<T: Config> Pallet<T> {
 	/// Create a new instance of the Proof of Existence Module.
 	pub fn new() -> Self {
