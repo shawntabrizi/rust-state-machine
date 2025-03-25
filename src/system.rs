@@ -4,6 +4,13 @@ type AccountId = String;
 type BlockNumber = u32;
 type Nonce = u32;
 
+/*
+	TODO:
+	Update the `Pallet` struct to be generic over the `AccountId`, `BlockNumber`, and `Nonce` type.
+	You won't need the type definitions above after you are done.
+	Types will now be defined in `main.rs`. See the TODOs there.
+*/
+
 /// This is the System Pallet.
 /// It handles low level state needed for your blockchain.
 #[derive(Debug)]
@@ -13,6 +20,14 @@ pub struct Pallet {
 	/// A map from an account to their nonce.
 	nonce: BTreeMap<AccountId, Nonce>,
 }
+
+/*
+	TODO:
+	The generic types need to satisfy certain traits in order to be used in the functions below.
+	See if you can figure them out yourself.
+
+	NOTE: You might need to adjust some of the functions below to satisfy the borrow checker.
+*/
 
 impl Pallet {
 	/// Create a new instance of the System Pallet.
@@ -44,6 +59,10 @@ impl Pallet {
 mod test {
 	#[test]
 	fn init_system() {
+		/*
+			TODO:
+			When creating an instance of `Pallet`, you should explicitly define the types you use.
+		*/
 		let mut system = super::Pallet::new();
 		system.inc_block_number();
 		system.inc_nonce(&"alice".to_string());
