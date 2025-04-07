@@ -107,13 +107,59 @@ Let's try to understand this syntax real quick.
 1. There is a generic type `T`. `T` has no meaningful name because it represents a bunch of stuff, and this is the convention most commonly used in Rust.
 2. `T` is required to implement the trait `Config`, which we previously defined.
 3. Because `T` implements `Config`, and `Config` has the associated types `AccountId`, `BlockNumber`, and `Nonce`, we can access those types like so:
-	- `T::AccountId`
-	- `T::BlockNumber`
-	- `T::Nonce`
+   - `T::AccountId`
+   - `T::BlockNumber`
+   - `T::Nonce`
 
 There is no meaningful difference between what we had before with 3 generic parameters, and a single generic parameter represented by a `Config` trait, but it certainly makes everything more scalable, easy to read, and easy to configure.
 
 In this context, we call the trait `Config` because it is used to configure all the types for our Pallet.
+
+## Why This Approach Makes Code More Configurable
+
+It does more than just make the code less verbose (by using `T::` instead of specifying each type). It fundamentally changes how we can configure our system.
+
+1. All types that our system requires are specified in one place - the implementation of the `Config` trait. This ensures consistency across your entire runtime.
+
+2. Instead of hardcoding specific types (like `String` or `u32`), we're now working with abstract type placeholders (`T::AccountId`, `T::BlockNumber`). This means we can swap out the actual types without changing any of the pallet code - this is called `Type-Level Abstraction`.
+
+3. The `mod types {}` section in main.rs exists to define these types in one place, so they can be consistently referenced. Without this, you might accidentally use different concrete types in different pallets (like `u32` in one place and `u64` in another), causing compilation errors or, worse, subtle bugs.
+
+4. One of the most powerful aspects is that different pallet runtimes can implement the same `Config` trait with completely different concrete types.
+
+   For example:
+
+   ```rust
+   // In a production runtime
+   impl my_pallet::Config for Runtime {
+       type AccountId = AccountId32;
+       type BlockNumber = u32;
+       type Nonce = u64;
+      // etc...
+   }
+
+   // In a test runtime
+   impl my_pallet::Config for Test {
+       type AccountId = String;
+       type BlockNumber = u16;
+       type Nonce = u8;
+      // etc...
+   }
+   ```
+
+   - Notice how we have the freedom to choose our types in each configuration? They both represent the same pallet Config, but are configurable to different runtimes.
+
+### Why Every Pallet's Config Trait Needs Implementation on the Runtime
+
+Every pallet requires its corresponding `Config` trait to be implemented on the Runtime for several important reasons:
+
+1. **Type Resolution**: When we write `Pallet<Self>` inside the Runtime struct, Rust needs to know what the concrete types for `T::AccountId`, `T::BlockNumber`, etc. should be. It finds these by looking at the `impl system::Config for Runtime` block. Adversely, the `impl system::Config for Test` block commonly found in a mock's Test version of the runtime allows for complete separation and freedom for testing purposes.
+
+2. **Central Configuration Point**: The Runtime becomes the central place where all type decisions are made, creating a clean architecture where pallets depend on the Runtime (via their Config traits) rather than directly on each other.
+
+3. **Type Consistency**: When multiple pallets need to work with the same types (e.g., both System and Balances need to use `AccountId`), implementing their Config traits on Runtime ensures they use the same concrete types.
+
+In our example, we're using the actual Runtime struct as the type that implements all Config traits, which is why you see `Self` in `system::Pallet<Self>` - it's referring to the Runtime itself!
 
 ### Implementing the Config Trait
 
