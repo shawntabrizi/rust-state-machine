@@ -153,7 +153,7 @@ It does more than just make the code less verbose (by using `T::` instead of spe
 
 Every pallet requires its corresponding `Config` trait to be implemented on the Runtime for several important reasons:
 
-1. **Type Resolution**: When we write `Pallet<Self>` inside the Runtime struct, Rust needs to know what the concrete types for `T::AccountId`, `T::BlockNumber`, etc. should be. It finds these by looking at the `impl system::Config for Runtime` block. Adversely, the `impl system::Config for Test` block commonly found in a mock's Test version of the runtime allows for complete separation and freedom for testing purposes.
+1. **Type Resolution**: When we write `Pallet<Self>` inside the Runtime struct, Rust needs to know what the concrete types for `T::AccountId`, `T::BlockNumber`, etc. should be. It finds these by looking at the `impl system::Config for Runtime` block. In contrast, the `impl system::Config for Test` block commonly found in a mock's Test version of the runtime allows for complete separation and freedom for testing purposes.
 
 2. **Central Configuration Point**: The Runtime becomes the central place where all type decisions are made, creating a clean architecture where pallets depend on the Runtime (via their Config traits) rather than directly on each other.
 
