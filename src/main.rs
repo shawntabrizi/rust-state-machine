@@ -1,5 +1,5 @@
 mod balances;
-/* TODO: Import the `proof_of_existence` module. */
+mod proof_of_existence;
 mod support;
 mod system;
 
