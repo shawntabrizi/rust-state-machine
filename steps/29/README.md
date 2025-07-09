@@ -6,7 +6,7 @@ Our goal over the next few steps will be to continually make our runtime more ge
 
 The flexibility of generic runtime means that we can write code which works for multiple different configurations and types.
 
-For example, up until now, we have been using `&'static str` to represent the accounts of users. This is obviously not the right thing to do, but is easy to implement for a basic blockchain tutorial like this.
+For example, up until now, we have been using `String` to represent the accounts of users. This is obviously not the right thing to do, but is easy to implement for a basic blockchain tutorial like this.
 
 What would you need to change in order to use more traditional cryptographic public keys?
 
@@ -83,7 +83,7 @@ But now that `Pallet` is generic, we need to concretely define those types when 
 That syntax looks like:
 
 ```rust
-let mut balances = super::Pallet::<&'static str, u128>::new();
+let mut balances = super::Pallet::<String, u128>::new();
 ```
 
 You will notice that now the types are defined wherever the generic `struct Pallet` is being instantiated. This means that you can extract the types out of your Pallets, and move them into the Runtime.

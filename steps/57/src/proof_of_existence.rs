@@ -58,7 +58,7 @@ mod test {
 	}
 
 	impl crate::system::Config for TestConfig {
-		type AccountId = &'static str;
+		type AccountId = String;
 		type BlockNumber = u32;
 		type Nonce = u32;
 	}
