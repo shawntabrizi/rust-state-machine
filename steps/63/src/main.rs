@@ -147,5 +147,5 @@ fn main() {
 	/* TODO: Execute your new block(s). */
 
 	// Simply print the debug format of our runtime state.
-	println!("{:#?}", runtime);
+	println!("{runtime:#?}");
 }

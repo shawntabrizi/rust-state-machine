@@ -109,14 +109,11 @@ fn main() {
 
 	// first transaction
 	runtime.system.inc_nonce(&alice);
-	let _res = runtime
-		.balances
-		.transfer(alice.clone(), bob, 30)
-		.map_err(|e| eprintln!("{}", e));
+	let _res = runtime.balances.transfer(alice.clone(), bob, 30).map_err(|e| eprintln!("{e}"));
 
 	// second transaction
 	runtime.system.inc_nonce(&alice);
-	let _res = runtime.balances.transfer(alice, charlie, 20).map_err(|e| eprintln!("{}", e));
+	let _res = runtime.balances.transfer(alice, charlie, 20).map_err(|e| eprintln!("{e}"));
 
 	/*
 		TODO: Replace the logic above with a new `Block`.
@@ -133,5 +130,5 @@ fn main() {
 	*/
 
 	// Simply print the debug format of our runtime state.
-	println!("{:#?}", runtime);
+	println!("{runtime:#?}");
 }

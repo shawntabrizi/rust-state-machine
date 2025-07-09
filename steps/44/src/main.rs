@@ -96,14 +96,11 @@ fn main() {
 
 	// first transaction
 	runtime.system.inc_nonce(&alice);
-	let _res = runtime
-		.balances
-		.transfer(alice.clone(), bob, 30)
-		.map_err(|e| eprintln!("{}", e));
+	let _res = runtime.balances.transfer(alice.clone(), bob, 30).map_err(|e| eprintln!("{e}"));
 
 	// second transaction
 	runtime.system.inc_nonce(&alice);
-	let _res = runtime.balances.transfer(alice, charlie, 20).map_err(|e| eprintln!("{}", e));
+	let _res = runtime.balances.transfer(alice, charlie, 20).map_err(|e| eprintln!("{e}"));
 
-	println!("{:#?}", runtime);
+	println!("{runtime:#?}");
 }

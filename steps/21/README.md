@@ -47,7 +47,7 @@ Absolutely not! This is the kind of error that our runtime should be able to han
 When a transaction returns an error we should show that error to the user, and then "swallow" the result. For example:
 
 ```rust
-let _res = i_can_return_error().map_err(|e| eprintln!("{}", e));
+let _res = i_can_return_error().map_err(|e| eprintln!("{e}"));
 ```
 
 In this case, you can see that any error that `i_can_return_error` would return gets printed to the console, but otherwise, the `Result` of that function gets placed in an unused variable `_res`.
