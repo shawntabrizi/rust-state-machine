@@ -1,8 +1,8 @@
 diff --git a/src/main.rs b/src/main.rs
-index c1203d12..170ad380 100644
+index 033f8e94..ef898a4a 100644
 --- a/src/main.rs
 +++ b/src/main.rs
-@@ -103,34 +103,25 @@ fn main() {
+@@ -103,31 +103,25 @@ fn main() {
  	// Initialize the system with some initial balance.
  	runtime.balances.set_balance(&alice, 100);
  
@@ -12,14 +12,11 @@ index c1203d12..170ad380 100644
 -
 -	// first transaction
 -	runtime.system.inc_nonce(&alice);
--	let _res = runtime
--		.balances
--		.transfer(alice.clone(), bob, 30)
--		.map_err(|e| eprintln!("{}", e));
+-	let _res = runtime.balances.transfer(alice.clone(), bob, 30).map_err(|e| eprintln!("{e}"));
 -
 -	// second transaction
 -	runtime.system.inc_nonce(&alice);
--	let _res = runtime.balances.transfer(alice, charlie, 20).map_err(|e| eprintln!("{}", e));
+-	let _res = runtime.balances.transfer(alice, charlie, 20).map_err(|e| eprintln!("{e}"));
 -
 -	/*
 -		TODO: Replace the logic above with a new `Block`.
@@ -54,4 +51,4 @@ index c1203d12..170ad380 100644
 +	runtime.execute_block(block_1).expect("invalid block");
  
  	// Simply print the debug format of our runtime state.
- 	println!("{:#?}", runtime);
+ 	println!("{runtime:#?}");

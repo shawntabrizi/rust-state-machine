@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index 597aca68..691aaccc 100644
+index e6524abe..a1de6afe 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -10,6 +10,15 @@ mod types {

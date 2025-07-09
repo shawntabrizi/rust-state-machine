@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index 8a874e18..e15cf4f3 100644
+index 5ebc4c66..d4aa6bff 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -1,4 +1,5 @@

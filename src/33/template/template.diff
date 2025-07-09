@@ -1,5 +1,5 @@
 diff --git a/src/proof_of_existence.rs b/src/proof_of_existence.rs
-index 5e7de2a7..b85acdf7 100644
+index 5e7de2a7..c7323cc3 100644
 --- a/src/proof_of_existence.rs
 +++ b/src/proof_of_existence.rs
 @@ -1,3 +1,4 @@
@@ -46,7 +46,7 @@ index 5e7de2a7..b85acdf7 100644
 +	}
 +
 +	impl crate::system::Config for TestConfig {
-+		type AccountId = &'static str;
++		type AccountId = String;
 +		type BlockNumber = u32;
 +		type Nonce = u32;
 +	}

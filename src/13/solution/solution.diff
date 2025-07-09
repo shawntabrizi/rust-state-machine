@@ -1,8 +1,8 @@
 diff --git a/src/main.rs b/src/main.rs
-index 6c117f65..808d6732 100644
+index 6c117f65..8554121f 100644
 --- a/src/main.rs
 +++ b/src/main.rs
-@@ -16,22 +16,25 @@ impl Runtime {
+@@ -16,22 +16,22 @@ impl Runtime {
  }
  
  fn main() {
@@ -29,14 +29,11 @@ index 6c117f65..808d6732 100644
 -		- We should capture the result of the transfer in an unused variable like `_res`.
 -	*/
 +	runtime.system.inc_nonce(&alice);
-+	let _res = runtime
-+		.balances
-+		.transfer(alice.clone(), bob, 30)
-+		.map_err(|e| eprintln!("{}", e));
++	let _res = runtime.balances.transfer(alice.clone(), bob, 30).map_err(|e| eprintln!("{e}"));
  
  	// second transaction
 -	/* TODO: Increment the nonce of `alice` again. */
 -	/* TODO: Execute another balance transfer, this time from `alice` to `charlie` for 20. */
 +	runtime.system.inc_nonce(&alice);
-+	let _res = runtime.balances.transfer(alice, charlie, 20).map_err(|e| eprintln!("{}", e));
++	let _res = runtime.balances.transfer(alice, charlie, 20).map_err(|e| eprintln!("{e}"));
  }

@@ -11,7 +11,7 @@ index 989fa71d..a86d8927 100644
  		&mut self,
  		caller: T::AccountId,
 diff --git a/src/main.rs b/src/main.rs
-index dd1d1f69..20811be3 100644
+index d3c0c0aa..871d1e31 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -1,4 +1,5 @@

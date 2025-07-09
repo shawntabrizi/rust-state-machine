@@ -1,5 +1,5 @@
 diff --git a/src/proof_of_existence.rs b/src/proof_of_existence.rs
-index 1af1cf8b..a99a482f 100644
+index b68e0596..f6daa7c5 100644
 --- a/src/proof_of_existence.rs
 +++ b/src/proof_of_existence.rs
 @@ -56,27 +56,32 @@ impl<T: Config> Pallet<T> {

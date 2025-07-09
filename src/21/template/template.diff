@@ -38,7 +38,7 @@ index e333e0d9..9f5c4531 100644
  	fn init_balances() {
  		let mut balances = super::Pallet::<String, u128>::new();
 diff --git a/src/main.rs b/src/main.rs
-index 40dc8ac5..343797ef 100644
+index 4993f018..61a2135b 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -25,6 +25,12 @@ impl system::Config for Runtime {

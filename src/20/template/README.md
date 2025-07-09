@@ -48,7 +48,8 @@ And then call that function on the object which implements it.
 
 ```rust
 fn main() {
-	println!("{}", Shawn::name());
+	let name = Shawn::name();
+	println!("{name}");
 }
 ```
 

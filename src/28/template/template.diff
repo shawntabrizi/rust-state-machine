@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index d3cbb031..c1203d12 100644
+index 0dc7c948..033f8e94 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -93,11 +93,14 @@ impl crate::support::Dispatch for Runtime {
@@ -17,9 +17,9 @@ index d3cbb031..c1203d12 100644
  	runtime.balances.set_balance(&alice, 100);
  
  	// start emulating a block
-@@ -115,5 +118,20 @@ fn main() {
+@@ -112,5 +115,20 @@ fn main() {
  	runtime.system.inc_nonce(&alice);
- 	let _res = runtime.balances.transfer(alice, charlie, 20).map_err(|e| eprintln!("{}", e));
+ 	let _res = runtime.balances.transfer(alice, charlie, 20).map_err(|e| eprintln!("{e}"));
  
 +	/*
 +		TODO: Replace the logic above with a new `Block`.
@@ -36,5 +36,5 @@ index d3cbb031..c1203d12 100644
 +	*/
 +
 +	// Simply print the debug format of our runtime state.
- 	println!("{:#?}", runtime);
+ 	println!("{runtime:#?}");
  }

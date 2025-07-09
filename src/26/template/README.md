@@ -39,7 +39,7 @@ Once we have the `call` and `caller`, we want to pass them to the `dispatch` log
 That will look something like:
 
 ```rust
-let _res = self.dispatch(caller, call).map_err(|e| eprintln!("{}", e));
+let _res = self.dispatch(caller, call).map_err(|e| eprintln!("{e}"));
 ```
 
 Note that in Rust, if you want to access a function within a trait, like we do here with `dispatch`, you need to explicitly import that trait into your project.

@@ -1,5 +1,5 @@
 diff --git a/src/proof_of_existence.rs b/src/proof_of_existence.rs
-index b85acdf7..cd75fa24 100644
+index c7323cc3..3244a6cf 100644
 --- a/src/proof_of_existence.rs
 +++ b/src/proof_of_existence.rs
 @@ -26,15 +26,16 @@ impl<T: Config> Pallet<T> {
@@ -51,13 +51,13 @@ index b85acdf7..cd75fa24 100644
 -		*/
 +		let mut poe = super::Pallet::<TestConfig>::new();
 +		assert_eq!(poe.get_claim(&"Hello, world!"), None);
-+		assert_eq!(poe.create_claim("alice", "Hello, world!"), Ok(()));
-+		assert_eq!(poe.get_claim(&"Hello, world!"), Some(&"alice"));
++		assert_eq!(poe.create_claim("alice".to_string(), "Hello, world!"), Ok(()));
++		assert_eq!(poe.get_claim(&"Hello, world!"), Some(&"alice".to_string()));
 +		assert_eq!(
-+			poe.create_claim("bob", "Hello, world!"),
++			poe.create_claim("bob".to_string(), "Hello, world!"),
 +			Err("this content is already claimed")
 +		);
-+		assert_eq!(poe.revoke_claim("alice", "Hello, world!"), Ok(()));
-+		assert_eq!(poe.create_claim("bob", "Hello, world!"), Ok(()));
++		assert_eq!(poe.revoke_claim("alice".to_string(), "Hello, world!"), Ok(()));
++		assert_eq!(poe.create_claim("bob".to_string(), "Hello, world!"), Ok(()));
  	}
  }

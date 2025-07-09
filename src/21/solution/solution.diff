@@ -107,7 +107,7 @@ index 9f5c4531..43b49262 100644
  		assert_eq!(
  			balances.transfer("alice".to_string(), "bob".to_string(), 51),
 diff --git a/src/main.rs b/src/main.rs
-index 343797ef..fe677ae7 100644
+index 61a2135b..34ff5bfc 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -16,7 +16,7 @@ mod types {

@@ -11,7 +11,7 @@ index 78f233df..1b9d9d85 100644
  	// A simple storage mapping from accounts (`String`) to their balances (`u128`).
  	balances: BTreeMap<String, u128>,
 diff --git a/src/main.rs b/src/main.rs
-index 808d6732..b79655ae 100644
+index 8554121f..a2e06f25 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -3,6 +3,7 @@ mod system;
@@ -22,10 +22,10 @@ index 808d6732..b79655ae 100644
  pub struct Runtime {
  	system: system::Pallet,
  	balances: balances::Pallet,
-@@ -37,4 +38,6 @@ fn main() {
+@@ -34,4 +35,6 @@ fn main() {
  	// second transaction
  	runtime.system.inc_nonce(&alice);
- 	let _res = runtime.balances.transfer(alice, charlie, 20).map_err(|e| eprintln!("{}", e));
+ 	let _res = runtime.balances.transfer(alice, charlie, 20).map_err(|e| eprintln!("{e}"));
 +
 +	/* TODO: Print the final runtime state after all transactions. */
  }

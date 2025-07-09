@@ -1,5 +1,5 @@
 diff --git a/src/balances.rs b/src/balances.rs
-index 1effef7a..e333e0d9 100644
+index a5d63fe0..e333e0d9 100644
 --- a/src/balances.rs
 +++ b/src/balances.rs
 @@ -1,38 +1,20 @@
@@ -31,7 +31,7 @@ index 1effef7a..e333e0d9 100644
 -/*
 -	TODO:
 -	The generic types need to satisfy certain traits in order to be used in the functions below.
--		- AccountId: Ord
+-		- AccountId: Ord + Clone
 -		- Balance: Zero + CheckedSub + CheckedAdd + Copy
 -
 -	You could figure these traits out yourself by letting the compiler tell you what you're missing.
@@ -95,7 +95,7 @@ index 1effef7a..e333e0d9 100644
  		assert_eq!(
  			balances.transfer("alice".to_string(), "bob".to_string(), 51),
 diff --git a/src/main.rs b/src/main.rs
-index 1cfc058c..b314856b 100644
+index 43d1d492..757c65a0 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -5,9 +5,8 @@ mod system;

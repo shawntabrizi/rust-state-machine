@@ -38,7 +38,7 @@ With the `Debug` trait derived, you can now print the `struct` to console:
 
 ```rust
 let my_instance = MyStruct { field1: 42, field2: "Hello".to_string() };
-println!("{:#?}", my_instance);
+println!("{my_instance:#?}");
 ```
 
 The characters `:#?` help [format](https://doc.rust-lang.org/std/fmt/) the output to make it more readable.

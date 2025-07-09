@@ -64,7 +64,7 @@ mod test {
 	}
 
 	impl crate::system::Config for TestConfig {
-		type AccountId = &'static str;
+		type AccountId = String;
 		type BlockNumber = u32;
 		type Nonce = u32;
 	}
@@ -73,13 +73,13 @@ mod test {
 	fn basic_proof_of_existence() {
 		let mut poe = super::Pallet::<TestConfig>::new();
 		assert_eq!(poe.get_claim(&"Hello, world!"), None);
-		assert_eq!(poe.create_claim("alice", "Hello, world!"), Ok(()));
-		assert_eq!(poe.get_claim(&"Hello, world!"), Some(&"alice"));
+		assert_eq!(poe.create_claim("alice".to_string(), "Hello, world!"), Ok(()));
+		assert_eq!(poe.get_claim(&"Hello, world!"), Some(&"alice".to_string()));
 		assert_eq!(
-			poe.create_claim("bob", "Hello, world!"),
+			poe.create_claim("bob".to_string(), "Hello, world!"),
 			Err("this content is already claimed")
 		);
-		assert_eq!(poe.revoke_claim("alice", "Hello, world!"), Ok(()));
-		assert_eq!(poe.create_claim("bob", "Hello, world!"), Ok(()));
+		assert_eq!(poe.revoke_claim("alice".to_string(), "Hello, world!"), Ok(()));
+		assert_eq!(poe.create_claim("bob".to_string(), "Hello, world!"), Ok(()));
 	}
 }

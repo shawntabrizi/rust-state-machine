@@ -29,7 +29,7 @@ index 947ad847..42d66d0f 100644
  	type Caller = T::AccountId;
  	type Call = Call<T>;
 diff --git a/src/main.rs b/src/main.rs
-index d2e384e3..69ba65b5 100644
+index 7ca036a3..030b1bf9 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -125,6 +125,7 @@ fn main() {

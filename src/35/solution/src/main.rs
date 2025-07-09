@@ -139,5 +139,5 @@ fn main() {
 	runtime.execute_block(block_1).expect("invalid block");
 
 	// Simply print the debug format of our runtime state.
-	println!("{:#?}", runtime);
+	println!("{runtime:#?}");
 }

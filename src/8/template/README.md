@@ -21,7 +21,7 @@ Methods like `checked_add` and `checked_sub` return `Option` to indicate success
 ```rust
 let result = a.checked_add(b);
 match result {
-    Some(sum) => println!("Sum: {}", sum),
+    Some(sum) => println!("Sum: {sum}"),
     None => println!("Overflow occurred."),
 }
 ```
