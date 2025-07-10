@@ -115,7 +115,7 @@ There is no meaningful difference between what we had before with 3 generic para
 
 In this context, we call the trait `Config` because it is used to configure all the types for our Pallet.
 
-## Why This Approach Makes Code More Configurable
+### The Power of Type-Level Abstraction
 
 It does more than just make the code less verbose (by using `T::` instead of specifying each type). It fundamentally changes how we can configure our system.
 
@@ -149,21 +149,9 @@ It does more than just make the code less verbose (by using `T::` instead of spe
 
    - Notice how we have the freedom to choose our types in each configuration? They both represent the same pallet Config, but are configurable to different runtimes.
 
-### Why Every Pallet's Config Trait Needs Implementation on the Runtime
+## Implementing the Config Trait
 
-Every pallet requires its corresponding `Config` trait to be implemented on the Runtime for several important reasons:
-
-1. **Type Resolution**: When we write `Pallet<Self>` inside the Runtime struct, Rust needs to know what the concrete types for `T::AccountId`, `T::BlockNumber`, etc. should be. It finds these by looking at the `impl system::Config for Runtime` block. In contrast, the `impl system::Config for Test` block commonly found in a mock's Test version of the runtime allows for complete separation and freedom for testing purposes.
-
-2. **Central Configuration Point**: The Runtime becomes the central place where all type decisions are made, creating a clean architecture where pallets depend on the Runtime (via their Config traits) rather than directly on each other.
-
-3. **Type Consistency**: When multiple pallets need to work with the same types (e.g., both System and Balances need to use `AccountId`), implementing their Config traits on Runtime ensures they use the same concrete types.
-
-In our example, we're using the actual Runtime struct as the type that implements all Config traits, which is why you see `Self` in `system::Pallet<Self>` - it's referring to the Runtime itself!
-
-### Implementing the Config Trait
-
-Let's round this out with showing how you can actually implement and use the `Config` trait.
+Let's round this out by showing how you can actually implement and use the `Config` trait.
 
 Just like before, we need some object which will implement this trait. In our case, we can use the `Runtime` struct itself.
 
@@ -184,6 +172,18 @@ pub struct Runtime {
 ```
 
 Here we are basically saying that `Pallet` will use `Runtime` as its generic type, but this is defined within the `Runtime`, so we refer to it as `Self`.
+
+### The Runtime is a Configuration Hub
+
+Every pallet requires its corresponding `Config` trait to be implemented in the `Runtime` for several important reasons:
+
+1. **Type Resolution**: When we write `Pallet<Self>` inside the Runtime struct, Rust needs to know what the concrete types for `T::AccountId`, `T::BlockNumber`, etc. should be. It finds these by looking at the `impl system::Config for Runtime` block. In contrast, the `impl system::Config for Test` block commonly found in a mock's Test version of the runtime allows for complete separation and freedom for testing purposes.
+
+2. **Central Configuration Point**: The Runtime becomes the central place where all type decisions are made, creating a clean architecture where pallets depend on the Runtime (via their Config traits) rather than directly on each other.
+
+3. **Type Consistency**: When multiple pallets need to work with the same types (e.g., both System and Balances need to use `AccountId`), implementing their Config traits on Runtime ensures they use the same concrete types.
+
+4. **Modularity and Composability**: This pattern allows pallets to be completely independent and reusable. A pallet doesn't need to know which other pallets exist in the runtime - it only needs its Config trait implemented. This means you can mix and match different pallets in different runtimes (production, test, development) without modifying the pallet code itself.
 
 ## Make Your System Configurable
 
