@@ -116,7 +116,7 @@ There is no meaningful difference between what we had before with 3 generic para
 
 In this context, we call the trait `Config` because it is used to configure all the types for our Pallet.
 
-## Implementing the Config Trait
+### Implementing the Config Trait
 
 Let's round this out by showing how you can actually implement and use the `Config` trait.
 
@@ -140,7 +140,7 @@ pub struct Runtime {
 
 Here we are basically saying that `Pallet` will use `Runtime` as its generic type, but this is defined within the `Runtime`, so we refer to it as `Self`.
 
-### The Power of Associated Types
+## The Power of Associated Types
 
 Using traits with associated types does more than just make the code less verbose; it fundamentally changes how we can configure our blockchain system.
 
@@ -176,15 +176,18 @@ Using traits with associated types does more than just make the code less verbos
 
 ### The Runtime is a Configuration Hub
 
-Every pallet requires its corresponding `Config` trait to be implemented in the `Runtime` for several important reasons:
+You should be able to see a bigger idea forming based on how we have designed our blockchain system.
 
-1. **Type Resolution**: When we write `Pallet<Self>` inside the Runtime struct, Rust needs to know what the concrete types for `T::AccountId`, `T::BlockNumber`, etc. should be. It finds these by looking at the `impl system::Config for Runtime` block. In contrast, the `impl system::Config for Test` block commonly found in a mock's Test version of the runtime allows for complete separation and freedom for testing purposes.
+You don't *program* the runtime, you **configure** it.
 
-2. **Central Configuration Point**: The Runtime becomes the central place where all type decisions are made, creating a clean architecture where pallets depend on the Runtime (via their Config traits) rather than directly on each other.
+- We have designed our blockchain system with reusable pieces of application logic: the pallets.
+- Each of these pallets are written generically, and are entirely configurable.
+- Our runtime includes all of the pallets and pieces of logic it wants to use.
+- Our runtime aggregates and propagates all the expected types for our blockchain system.
 
-3. **Type Consistency**: When multiple pallets need to work with the same types (e.g., both System and Balances need to use `AccountId`), implementing their Config traits on Runtime ensures they use the same concrete types.
+This pattern allows pallets to be completely independent and reusable. A pallet doesn't need to know which other pallets exist in the runtime, it only needs its `Config` trait implemented. This means you can mix and match different pallets in different runtimes (production, test, development) without modifying the pallet code itself.
 
-4. **Modularity and Composability**: This pattern allows pallets to be completely independent and reusable. A pallet doesn't need to know which other pallets exist in the runtime - it only needs its Config trait implemented. This means you can mix and match different pallets in different runtimes (production, test, development) without modifying the pallet code itself.
+This is the difference between building a single purpose blockchain and building a blockchain SDK, allowing for reusable, modular components, and ultimately bootstrap a powerful ecosystem of blockchain developers.
 
 ## Make Your System Configurable
 
