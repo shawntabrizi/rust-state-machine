@@ -125,6 +125,7 @@ fn main() {
 		extrinsics: vec![
 			support::Extrinsic {
 				caller: alice.clone(),
+				/* TODO: Update the enum name to match what is generated with the macro. */
 				call: RuntimeCall::Balances(balances::Call::Transfer {
 					to: bob.clone(),
 					amount: 30,
