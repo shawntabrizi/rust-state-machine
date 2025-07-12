@@ -24,7 +24,7 @@ pub struct Pallet {
 /*
 	TODO:
 	The generic types need to satisfy certain traits in order to be used in the functions below.
-		- AccountId: Ord
+		- AccountId: Ord + Clone
 		- Balance: Zero + CheckedSub + CheckedAdd + Copy
 
 	You could figure these traits out yourself by letting the compiler tell you what you're missing.

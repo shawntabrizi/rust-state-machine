@@ -16,7 +16,7 @@ mod types {
 	pub type Extrinsic = crate::support::Extrinsic<AccountId, crate::RuntimeCall>;
 	pub type Header = crate::support::Header<BlockNumber>;
 	pub type Block = crate::support::Block<Header, Extrinsic>;
-	pub type Content = &'static str;
+	pub type Content = String;
 }
 
 // This is our main Runtime.
@@ -82,13 +82,13 @@ fn main() {
 			support::Extrinsic {
 				caller: alice.clone(),
 				call: RuntimeCall::proof_of_existence(proof_of_existence::Call::create_claim {
-					claim: "Hello, world!",
+					claim: "Hello, world!".to_string(),
 				}),
 			},
 			support::Extrinsic {
 				caller: bob.clone(),
 				call: RuntimeCall::proof_of_existence(proof_of_existence::Call::create_claim {
-					claim: "Hello, world!",
+					claim: "Hello, world!".to_string(),
 				}),
 			},
 		],
@@ -100,13 +100,13 @@ fn main() {
 			support::Extrinsic {
 				caller: alice,
 				call: RuntimeCall::proof_of_existence(proof_of_existence::Call::revoke_claim {
-					claim: "Hello, world!",
+					claim: "Hello, world!".to_string(),
 				}),
 			},
 			support::Extrinsic {
 				caller: bob,
 				call: RuntimeCall::proof_of_existence(proof_of_existence::Call::create_claim {
-					claim: "Hello, world!",
+					claim: "Hello, world!".to_string(),
 				}),
 			},
 		],
@@ -119,5 +119,5 @@ fn main() {
 	runtime.execute_block(block_3).expect("invalid block");
 
 	// Simply print the debug format of our runtime state.
-	println!("{:#?}", runtime);
+	println!("{runtime:#?}");
 }

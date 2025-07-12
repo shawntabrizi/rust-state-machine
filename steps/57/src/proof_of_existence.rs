@@ -54,11 +54,11 @@ mod test {
 	struct TestConfig;
 
 	impl super::Config for TestConfig {
-		type Content = &'static str;
+		type Content = String;
 	}
 
 	impl crate::system::Config for TestConfig {
-		type AccountId = &'static str;
+		type AccountId = String;
 		type BlockNumber = u32;
 		type Nonce = u32;
 	}

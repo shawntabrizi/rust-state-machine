@@ -88,11 +88,11 @@ mod test {
 	struct TestConfig;
 
 	impl super::Config for TestConfig {
-		type Content = &'static str;
+		type Content = String;
 	}
 
 	impl crate::system::Config for TestConfig {
-		type AccountId = &'static str;
+		type AccountId = String;
 		type BlockNumber = u32;
 		type Nonce = u32;
 	}
@@ -100,14 +100,14 @@ mod test {
 	#[test]
 	fn basic_proof_of_existence() {
 		let mut poe = super::Pallet::<TestConfig>::new();
-		assert_eq!(poe.get_claim(&"Hello, world!"), None);
-		assert_eq!(poe.create_claim("alice", "Hello, world!"), Ok(()));
-		assert_eq!(poe.get_claim(&"Hello, world!"), Some(&"alice"));
+		assert_eq!(poe.get_claim(&"Hello, world!".to_string()), None);
+		assert_eq!(poe.create_claim("alice".to_string(), "Hello, world!".to_string()), Ok(()));
+		assert_eq!(poe.get_claim(&"Hello, world!".to_string()), Some(&"alice".to_string()));
 		assert_eq!(
-			poe.create_claim("bob", "Hello, world!"),
+			poe.create_claim("bob".to_string(), "Hello, world!".to_string()),
 			Err("this content is already claimed")
 		);
-		assert_eq!(poe.revoke_claim("alice", "Hello, world!"), Ok(()));
-		assert_eq!(poe.create_claim("bob", "Hello, world!"), Ok(()));
+		assert_eq!(poe.revoke_claim("alice".to_string(), "Hello, world!".to_string()), Ok(()));
+		assert_eq!(poe.create_claim("bob".to_string(), "Hello, world!".to_string()), Ok(()));
 	}
 }
