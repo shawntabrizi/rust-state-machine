@@ -1,5 +1,5 @@
 diff --git a/src/system.rs b/src/system.rs
-index b46402c3..967578d0 100644
+index b46402c..967578d 100644
 --- a/src/system.rs
 +++ b/src/system.rs
 @@ -17,22 +17,21 @@ impl Pallet {

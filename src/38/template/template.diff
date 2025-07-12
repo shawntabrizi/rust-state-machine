@@ -1,5 +1,5 @@
 diff --git a/Cargo.toml b/Cargo.toml
-index 42b80bf8..e8026e22 100644
+index 42b80bf..e8026e2 100644
 --- a/Cargo.toml
 +++ b/Cargo.toml
 @@ -7,3 +7,4 @@ edition = "2021"
@@ -9,7 +9,7 @@ index 42b80bf8..e8026e22 100644
 +# TODO: Import the `macros` crate from the path `./macros/`.
 diff --git a/macros/src/lib.rs b/macros/src/lib.rs
 new file mode 100644
-index 00000000..1091d4ca
+index 0000000..1091d4c
 --- /dev/null
 +++ b/macros/src/lib.rs
 @@ -0,0 +1 @@

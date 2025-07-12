@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index 5eb29444..b61e1531 100644
+index 5eb2944..bfda2fb 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -16,14 +16,14 @@ mod types {
@@ -7,7 +7,7 @@ index 5eb29444..b61e1531 100644
  	pub type Header = crate::support::Header<BlockNumber>;
  	pub type Block = crate::support::Block<Header, Extrinsic>;
 -	/* TODO: Add the concrete `Content` type for your runtime. */
-+	pub type Content = &'static str;
++	pub type Content = String;
  }
  
  // These are all the calls which are exposed to the world.

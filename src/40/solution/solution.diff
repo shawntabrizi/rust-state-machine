@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index 38486a14..d854a551 100644
+index addb050..cc62654 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -137,19 +137,18 @@ fn main() {
@@ -14,14 +14,14 @@ index 38486a14..d854a551 100644
  				caller: alice.clone(),
 -				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::CreateClaim {
 +				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::create_claim {
- 					claim: "Hello, world!",
+ 					claim: "Hello, world!".to_string(),
  				}),
  			},
  			support::Extrinsic {
  				caller: bob.clone(),
 -				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::CreateClaim {
 +				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::create_claim {
- 					claim: "Hello, world!",
+ 					claim: "Hello, world!".to_string(),
  				}),
  			},
 @@ -161,13 +160,13 @@ fn main() {
@@ -30,18 +30,18 @@ index 38486a14..d854a551 100644
  				caller: alice,
 -				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::RevokeClaim {
 +				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::revoke_claim {
- 					claim: "Hello, world!",
+ 					claim: "Hello, world!".to_string(),
  				}),
  			},
  			support::Extrinsic {
  				caller: bob,
 -				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::CreateClaim {
 +				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::create_claim {
- 					claim: "Hello, world!",
+ 					claim: "Hello, world!".to_string(),
  				}),
  			},
 diff --git a/src/proof_of_existence.rs b/src/proof_of_existence.rs
-index 55e30229..a388756e 100644
+index 5984259..0df023b 100644
 --- a/src/proof_of_existence.rs
 +++ b/src/proof_of_existence.rs
 @@ -18,7 +18,6 @@ pub struct Pallet<T: Config> {

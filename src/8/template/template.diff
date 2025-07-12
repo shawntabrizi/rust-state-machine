@@ -1,5 +1,5 @@
 diff --git a/src/balances.rs b/src/balances.rs
-index ea4e0424..d2217619 100644
+index ea4e042..d221761 100644
 --- a/src/balances.rs
 +++ b/src/balances.rs
 @@ -24,6 +24,29 @@ impl Pallet {

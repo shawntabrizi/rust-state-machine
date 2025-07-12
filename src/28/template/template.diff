@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index 0dc7c948..033f8e94 100644
+index 0dc7c94..033f8e9 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -93,11 +93,14 @@ impl crate::support::Dispatch for Runtime {

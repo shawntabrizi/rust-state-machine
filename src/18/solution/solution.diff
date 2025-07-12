@@ -1,5 +1,5 @@
 diff --git a/src/balances.rs b/src/balances.rs
-index a5d63fe0..e333e0d9 100644
+index a5d63fe..e333e0d 100644
 --- a/src/balances.rs
 +++ b/src/balances.rs
 @@ -1,38 +1,20 @@
@@ -95,7 +95,7 @@ index a5d63fe0..e333e0d9 100644
  		assert_eq!(
  			balances.transfer("alice".to_string(), "bob".to_string(), 51),
 diff --git a/src/main.rs b/src/main.rs
-index 43d1d492..757c65a0 100644
+index 43d1d49..757c65a 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -5,9 +5,8 @@ mod system;

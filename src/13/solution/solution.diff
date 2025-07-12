@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index 6c117f65..8554121f 100644
+index 6c117f6..8554121 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -16,22 +16,22 @@ impl Runtime {

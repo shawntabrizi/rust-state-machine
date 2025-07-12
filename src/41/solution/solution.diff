@@ -1,9 +1,9 @@
 diff --git a/src/main.rs b/src/main.rs
-index 175378a1..5db0a593 100644
+index 75eea69..bb8f17a 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -19,18 +19,12 @@ mod types {
- 	pub type Content = &'static str;
+ 	pub type Content = String;
  }
  
 -// These are all the calls which are exposed to the world.
@@ -117,14 +117,14 @@ index 175378a1..5db0a593 100644
  				caller: alice.clone(),
 -				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::create_claim {
 +				call: RuntimeCall::proof_of_existence(proof_of_existence::Call::create_claim {
- 					claim: "Hello, world!",
+ 					claim: "Hello, world!".to_string(),
  				}),
  			},
  			support::Extrinsic {
  				caller: bob.clone(),
 -				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::create_claim {
 +				call: RuntimeCall::proof_of_existence(proof_of_existence::Call::create_claim {
- 					claim: "Hello, world!",
+ 					claim: "Hello, world!".to_string(),
  				}),
  			},
 @@ -165,13 +99,13 @@ fn main() {
@@ -133,13 +133,13 @@ index 175378a1..5db0a593 100644
  				caller: alice,
 -				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::revoke_claim {
 +				call: RuntimeCall::proof_of_existence(proof_of_existence::Call::revoke_claim {
- 					claim: "Hello, world!",
+ 					claim: "Hello, world!".to_string(),
  				}),
  			},
  			support::Extrinsic {
  				caller: bob,
 -				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::create_claim {
 +				call: RuntimeCall::proof_of_existence(proof_of_existence::Call::create_claim {
- 					claim: "Hello, world!",
+ 					claim: "Hello, world!".to_string(),
  				}),
  			},
