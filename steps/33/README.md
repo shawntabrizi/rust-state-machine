@@ -108,9 +108,9 @@ Let's try to understand this syntax real quick.
 1. There is a generic type `T`. `T` has no meaningful name because it represents a bunch of stuff, and this is the convention most commonly used in Rust.
 2. `T` is required to implement the trait `Config`, which we previously defined.
 3. Because `T` implements `Config`, and `Config` has the associated types `AccountId`, `BlockNumber`, and `Nonce`, we can access those types like so:
-   - `T::AccountId`
-   - `T::BlockNumber`
-   - `T::Nonce`
+	- `T::AccountId`
+	- `T::BlockNumber`
+	- `T::Nonce`
 
 There is no meaningful difference between what we had before with 3 generic parameters, and a single generic parameter represented by a `Config` trait, but it certainly makes everything more scalable, easy to read, and easy to configure.
 
