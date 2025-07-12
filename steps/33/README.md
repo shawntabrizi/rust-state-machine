@@ -116,42 +116,6 @@ There is no meaningful difference between what we had before with 3 generic para
 
 In this context, we call the trait `Config` because it is used to configure all the types for our Pallet.
 
-### The Power of Type-Level Abstraction
-
-It does more than just make the code less verbose (by using `T::` instead of specifying each type). It fundamentally changes how we can configure our system.
-
-1. All types that our system requires are specified in one place - the implementation of the `Config` trait. This ensures consistency across your entire runtime.
-
-2. Instead of hardcoding specific types (like `String` or `u32`), we're now working with abstract type placeholders (`T::AccountId`, `T::BlockNumber`). This means we can swap out the actual types without changing any of the pallet code - this is called `Type-Level Abstraction`.
-
-3. The `mod types {}` section in main.rs exists to define these types in one place, so they can be consistently referenced. Without this, you might accidentally use different concrete types in different pallets (like `u32` in one place and `u64` in another), causing compilation errors or, worse, subtle bugs.
-
-4. One of the most powerful aspects is that different pallet runtimes can implement the same `Config` trait with completely different concrete types.
-
-	For example:
-
-	```rust
-	// In a production runtime
-	struct Runtime;
-	impl my_pallet::Config for Runtime {
-		type AccountId = AccountId32;
-		type BlockNumber = u32;
-		type Nonce = u64;
-		// etc...
-	}
-
-	// In a test runtime
-	struct Test;
-	impl my_pallet::Config for Test {
-		type AccountId = String;
-		type BlockNumber = u16;
-		type Nonce = u8;
-		// etc...
-	}
-	```
-
-	- Notice how we have the freedom to choose our types in each configuration? They both represent the same pallet Config, but are configurable to different runtimes.
-
 ## Implementing the Config Trait
 
 Let's round this out by showing how you can actually implement and use the `Config` trait.
@@ -175,6 +139,40 @@ pub struct Runtime {
 ```
 
 Here we are basically saying that `Pallet` will use `Runtime` as its generic type, but this is defined within the `Runtime`, so we refer to it as `Self`.
+
+### The Power of Associated Types
+
+Using traits with associated types does more than just make the code less verbose; it fundamentally changes how we can configure our blockchain system.
+
+1. It creates a single place where all types that our blockchain system requires are defined: the implementation of the `Config` trait. As long as you use this single implementation, you ensure type consistency across your entire runtime.
+
+2. It allows us to avoid hardcoding specific types, like `String` or `u32`, and instead use generic data types, like `T::AccountId` and `T::BlockNumber`. This allows us to swap out or change the final configured types in the runtime without changing any of the pallet code.
+
+3. It allows us to create a single spot for us to configure those final types. You can see that we use the `mod types {}` section in `main.rs` to define all the concrete types in one place, so they can be consistently referenced. Without this, you might accidentally use different concrete types in different pallets (like `u32` in one place and `u64` in another), causing compilation errors or, worse, subtle bugs.
+
+4. Finally, it allows us to configure the runtime can implement the same `Config` trait with completely different concrete types. This is an extremely powerful and often used feature in Substrate / the Polkadot-SDK.
+
+	For example, we can create two runtime configurations, one for production and one for testing, and configure them completely differently:
+
+	```rust
+	// In a production runtime
+	struct Runtime;
+	impl my_pallet::Config for Runtime {
+		type AccountId = AccountId32;
+		type BlockNumber = u32;
+		type Nonce = u64;
+		// etc...
+	}
+
+	// In a test runtime
+	struct Test;
+	impl my_pallet::Config for Test {
+		type AccountId = String;
+		type BlockNumber = u16;
+		type Nonce = u8;
+		// etc...
+	}
+	```
 
 ### The Runtime is a Configuration Hub
 
