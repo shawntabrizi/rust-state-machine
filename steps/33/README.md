@@ -25,7 +25,7 @@ The more obvious use of traits is to define custom functions.
 
 Let's say we want to expose a function which returns the name of something.
 
-You could a trait `GetName`:
+You could create a trait `GetName`:
 
 ```rust
 pub trait GetName {
@@ -39,7 +39,7 @@ Then you could implement this trait for any object.
 struct Shawn;
 impl GetName for Shawn {
 	fn name() -> String {
-		return "shawn".to_string();
+		"shawn".to_string()
 	}
 }
 ```
@@ -59,7 +59,7 @@ We won't actually use this feature of traits in our simple blockchain, but there
 
 The other thing you can do with traits is define Associated Types.
 
-This is covered in [chapter 19 of the Rust Book](https://doc.rust-lang.org/book/ch19-03-advanced-traits.html) under "Advance Traits".
+This is covered in [chapter 19 of the Rust Book](https://doc.rust-lang.org/book/ch19-03-advanced-traits.html) under "Advanced Traits".
 
 Let's learn this concept by first looking at the problem we are trying to solve.
 
@@ -112,7 +112,7 @@ Let's try to understand this syntax real quick.
 	- `T::BlockNumber`
 	- `T::Nonce`
 
-There is no meaningful difference between what we had before with 3 generic parameters, and a single generic parameter represented by a `Config` trait, but it certainly makes everything more scalable, easy to read, and easy to configure.
+While this may seem like a purely stylistic change, it enforces a powerful constraint: for any given type implementing `Config` (like our `Runtime`), there can only be one corresponding `AccountId`, `BlockNumber`, and `Nonce`. This guarantees type consistency across the pallet.
 
 In this context, we call the trait `Config` because it is used to configure all the types for our Pallet.
 
@@ -150,7 +150,7 @@ Using traits with associated types does more than just make the code less verbos
 
 3. It allows us to create a single spot for us to configure those final types. You can see that we use the `mod types {}` section in `main.rs` to define all the concrete types in one place, so they can be consistently referenced. Without this, you might accidentally use different concrete types in different pallets (like `u32` in one place and `u64` in another), causing compilation errors or, worse, subtle bugs.
 
-4. Finally, it allows us to configure the runtime can implement the same `Config` trait with completely different concrete types. This is an extremely powerful and often used feature in Substrate / the Polkadot-SDK.
+4. Finally, it allows us to configure different runtimes with completely different concrete types. This is an extremely powerful and often used feature in Substrate / the Polkadot-SDK.
 
 	For example, we can create two runtime configurations, one for production and one for testing, and configure them completely differently:
 
@@ -165,8 +165,8 @@ Using traits with associated types does more than just make the code less verbos
 	}
 
 	// In a test runtime
-	struct Test;
-	impl my_pallet::Config for Test {
+	struct TestConfig;
+	impl my_pallet::Config for TestConfig {
 		type AccountId = String;
 		type BlockNumber = u16;
 		type Nonce = u8;
@@ -187,7 +187,7 @@ You don't *program* the runtime, you **configure** it.
 
 This pattern allows pallets to be completely independent and reusable. A pallet doesn't need to know which other pallets exist in the runtime, it only needs its `Config` trait implemented. This means you can mix and match different pallets in different runtimes (production, test, development) without modifying the pallet code itself.
 
-This is the difference between building a single purpose blockchain and building a blockchain SDK, allowing for reusable, modular components, and ultimately bootstrap a powerful ecosystem of blockchain developers.
+This is the difference between building a single purpose blockchain and building a blockchain SDK, allowing for reusable, modular components, and ultimately bootstrapping a powerful ecosystem of blockchain developers.
 
 ## Make Your System Configurable
 
@@ -209,4 +209,4 @@ You will have the opportunity to do this whole process again for the Balances Pa
 
 Really take time to understand this step, what is happening, and what all of this syntax means to Rust.
 
-Remember that Rust is a language which is completely type safe, so end of the day, all of these generic types and configurations need to make sense to the Rust compiler.
+Remember that Rust is a language which is completely type safe, so at the end of the day, all of these generic types and configurations need to make sense to the Rust compiler.
