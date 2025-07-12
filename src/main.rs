@@ -11,6 +11,12 @@ mod types {
 	pub type Nonce = u32;
 }
 
+/*
+	TODO:
+	Implement the `system::Config` trait you created on your `Runtime`.
+	Use `Self` to satisfy the generic parameter required for `system::Pallet`.
+*/
+
 // This is our main Runtime.
 // It accumulates all of the different pallets we want to use.
 #[derive(Debug)]
