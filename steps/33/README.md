@@ -79,7 +79,7 @@ For this we will use a trait with a bunch of associated types:
 
 ```rust
 pub trait Config {
-	type AccountId: Ord;
+	type AccountId: Ord + Clone;
 	type BlockNumber: Zero + One + AddAssign + Copy;
 	type Nonce: Zero + One + Copy;
 	// and more if needed
