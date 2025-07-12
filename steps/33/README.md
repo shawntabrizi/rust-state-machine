@@ -128,27 +128,29 @@ It does more than just make the code less verbose (by using `T::` instead of spe
 
 4. One of the most powerful aspects is that different pallet runtimes can implement the same `Config` trait with completely different concrete types.
 
-   For example:
+	For example:
 
-   ```rust
-   // In a production runtime
-   impl my_pallet::Config for Runtime {
-       type AccountId = AccountId32;
-       type BlockNumber = u32;
-       type Nonce = u64;
-      // etc...
-   }
+	```rust
+	// In a production runtime
+	struct Runtime;
+	impl my_pallet::Config for Runtime {
+		type AccountId = AccountId32;
+		type BlockNumber = u32;
+		type Nonce = u64;
+		// etc...
+	}
 
-   // In a test runtime
-   impl my_pallet::Config for Test {
-       type AccountId = String;
-       type BlockNumber = u16;
-       type Nonce = u8;
-      // etc...
-   }
-   ```
+	// In a test runtime
+	struct Test;
+	impl my_pallet::Config for Test {
+		type AccountId = String;
+		type BlockNumber = u16;
+		type Nonce = u8;
+		// etc...
+	}
+	```
 
-   - Notice how we have the freedom to choose our types in each configuration? They both represent the same pallet Config, but are configurable to different runtimes.
+	- Notice how we have the freedom to choose our types in each configuration? They both represent the same pallet Config, but are configurable to different runtimes.
 
 ## Implementing the Config Trait
 

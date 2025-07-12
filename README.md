@@ -50,7 +50,7 @@ Once you have made changes to the appropriate branch, you can use these commands
 
 - Convert `master` to an up to date `gitorial` branch:
 
-    ```sh
+	```sh
 	gitorial-cli repack -p /path/to/rust-state-machine -i master -s steps -o gitorial2
 	```
 
