@@ -8,7 +8,7 @@ Let's take a look at that process.
 
 1. The first place to start is adding the `proof_of_existence` field to your `struct Runtime`.
 2. Next you need to update your `fn new()` to also initialize `proof_of_existence`.
-3. After, create a new concrete `type Content` which is a `&'static str`. As mentioned, normally this would be a hash, but for simplicity we are once again a simple static string.
+3. After, create a new concrete `type Content` which is a `String`. As mentioned, normally this would be a hash, but for simplicity we are once again using a simple string.
 
 	> If you want to use a hash now or in the future, it would be as simple as updating this one line to change all the types in your Runtime and Pallet. That is the kind of flexibility we have been working toward!
 
