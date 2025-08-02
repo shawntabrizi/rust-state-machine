@@ -17,7 +17,7 @@ Maps are simple `key -> value` objects, allowing us to define an arbitrary sized
 
 2. Create a `balances` field in `Pallet` using the `BTreeMap`.
 
-	For the `key`, we are using a simple static string for now. This way we can access users like `"alice"`, `"bob"`, etc... This will be changed in the future.
+	For the `key`, we are using a string for now. This way we can access users like `"alice"`, `"bob"`, etc... This will be changed in the future.
 
 	For the `value`, we will use a `u128`, which is the largest natively supported type in Rust. This will allow our users to have very, very large balances if we want.
 
