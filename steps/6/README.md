@@ -34,9 +34,7 @@ Maps are simple `key -> value` objects, allowing us to define an arbitrary sized
 	```rust
 	impl Pallet {
 		pub fn new() -> Self {
-			Self {
-				balances: BTreeMap::new()
-			}
+			Self { balances: BTreeMap::new() }
 		}
 	}
 	```
