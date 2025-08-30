@@ -1,5 +1,5 @@
 diff --git a/src/proof_of_existence.rs b/src/proof_of_existence.rs
-index 5e7de2a..7e56025 100644
+index 5e7de2a7..7e56025c 100644
 --- a/src/proof_of_existence.rs
 +++ b/src/proof_of_existence.rs
 @@ -1,3 +1,4 @@

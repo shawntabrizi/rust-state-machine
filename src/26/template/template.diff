@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index 38c0678..d70bff5 100644
+index 38c06781..d70bff55 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -2,6 +2,8 @@ mod balances;

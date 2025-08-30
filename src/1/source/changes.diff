@@ -1,6 +1,6 @@
 diff --git a/.gitignore b/.gitignore
 new file mode 100644
-index 0000000..400485b
+index 00000000..400485bd
 --- /dev/null
 +++ b/.gitignore
 @@ -0,0 +1,2 @@
@@ -8,7 +8,7 @@ index 0000000..400485b
 +.DS_Store
 diff --git a/Cargo.lock b/Cargo.lock
 new file mode 100644
-index 0000000..75fe297
+index 00000000..75fe297f
 --- /dev/null
 +++ b/Cargo.lock
 @@ -0,0 +1,7 @@
@@ -21,7 +21,7 @@ index 0000000..75fe297
 +version = "0.1.0"
 diff --git a/Cargo.toml b/Cargo.toml
 new file mode 100644
-index 0000000..c7fe36c
+index 00000000..c7fe36cd
 --- /dev/null
 +++ b/Cargo.toml
 @@ -0,0 +1,8 @@
@@ -35,7 +35,7 @@ index 0000000..c7fe36c
 +[dependencies]
 diff --git a/src/main.rs b/src/main.rs
 new file mode 100644
-index 0000000..e7a11a9
+index 00000000..e7a11a96
 --- /dev/null
 +++ b/src/main.rs
 @@ -0,0 +1,3 @@

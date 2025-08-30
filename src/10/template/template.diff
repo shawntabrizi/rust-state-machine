@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index ea8024e..d2fffb8 100644
+index ea8024e5..d2fffb8b 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -1,4 +1,5 @@
@@ -10,7 +10,7 @@ index ea8024e..d2fffb8 100644
  	println!("Hello, world!");
 diff --git a/src/system.rs b/src/system.rs
 new file mode 100644
-index 0000000..b4e6ef4
+index 00000000..b4e6ef4e
 --- /dev/null
 +++ b/src/system.rs
 @@ -0,0 +1,17 @@

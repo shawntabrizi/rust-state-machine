@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index a1702e7..addb050 100644
+index a1702e74..addb0509 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -137,6 +137,7 @@ fn main() {
@@ -11,7 +11,7 @@ index a1702e7..addb050 100644
  		header: support::Header { block_number: 2 },
  		extrinsics: vec![
 diff --git a/src/proof_of_existence.rs b/src/proof_of_existence.rs
-index b6fb63c..5984259 100644
+index b6fb63c4..5984259a 100644
 --- a/src/proof_of_existence.rs
 +++ b/src/proof_of_existence.rs
 @@ -18,6 +18,7 @@ pub struct Pallet<T: Config> {

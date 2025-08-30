@@ -1,5 +1,5 @@
 diff --git a/src/balances.rs b/src/balances.rs
-index 51aea28..543111e 100644
+index 51aea28f..543111e7 100644
 --- a/src/balances.rs
 +++ b/src/balances.rs
 @@ -1,20 +1,15 @@
@@ -57,7 +57,7 @@ index 51aea28..543111e 100644
  		let caller_balance = self.balance(&caller);
  		let to_balance = self.balance(&to);
 diff --git a/src/system.rs b/src/system.rs
-index 4116a13..b63ab24 100644
+index 4116a13f..b63ab24e 100644
 --- a/src/system.rs
 +++ b/src/system.rs
 @@ -1,22 +1,17 @@

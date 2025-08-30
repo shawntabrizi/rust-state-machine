@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index addb050..cc62654 100644
+index addb0509..cc62654d 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -137,19 +137,18 @@ fn main() {
@@ -41,7 +41,7 @@ index addb050..cc62654 100644
  				}),
  			},
 diff --git a/src/proof_of_existence.rs b/src/proof_of_existence.rs
-index 5984259..0df023b 100644
+index 5984259a..0df023bf 100644
 --- a/src/proof_of_existence.rs
 +++ b/src/proof_of_existence.rs
 @@ -18,7 +18,6 @@ pub struct Pallet<T: Config> {

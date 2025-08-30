@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index 5ebc4c6..d4aa6bf 100644
+index 5ebc4c66..d4aa6bff 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -1,4 +1,5 @@
@@ -10,7 +10,7 @@ index 5ebc4c6..d4aa6bf 100644
  
 diff --git a/src/proof_of_existence.rs b/src/proof_of_existence.rs
 new file mode 100644
-index 0000000..87ea242
+index 00000000..87ea242e
 --- /dev/null
 +++ b/src/proof_of_existence.rs
 @@ -0,0 +1,25 @@

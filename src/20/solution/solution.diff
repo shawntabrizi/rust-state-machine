@@ -1,5 +1,5 @@
 diff --git a/src/main.rs b/src/main.rs
-index 65276b1..4993f01 100644
+index 65276b18..4993f018 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -11,20 +11,20 @@ mod types {
@@ -31,7 +31,7 @@ index 65276b1..4993f01 100644
  	// Create a new instance of the main Runtime, by creating a new instance of each pallet.
  	fn new() -> Self {
 diff --git a/src/system.rs b/src/system.rs
-index 1f061b1..8bef991 100644
+index 1f061b1d..8bef9918 100644
 --- a/src/system.rs
 +++ b/src/system.rs
 @@ -2,66 +2,70 @@ use core::ops::AddAssign;

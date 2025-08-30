@@ -1,5 +1,5 @@
 diff --git a/Cargo.lock b/Cargo.lock
-index 10ded84..42a43af 100644
+index 10ded84b..42a43aff 100644
 --- a/Cargo.lock
 +++ b/Cargo.lock
 @@ -8,6 +8,15 @@ version = "1.1.0"
@@ -65,7 +65,7 @@ index 10ded84..42a43af 100644
 +source = "registry+https://github.com/rust-lang/crates.io-index"
 +checksum = "3354b9ac3fae1ff6755cb6db53683adb661634f67557942dea4facebec0fee4b"
 diff --git a/Cargo.toml b/Cargo.toml
-index e8026e2..dae8475 100644
+index e8026e22..dae8475c 100644
 --- a/Cargo.toml
 +++ b/Cargo.toml
 @@ -7,4 +7,4 @@ edition = "2021"
@@ -76,7 +76,7 @@ index e8026e2..dae8475 100644
 +macros = { path = "./macros/" }
 diff --git a/macros/Cargo.toml b/macros/Cargo.toml
 new file mode 100644
-index 0000000..12bf2a9
+index 00000000..12bf2a98
 --- /dev/null
 +++ b/macros/Cargo.toml
 @@ -0,0 +1,13 @@
@@ -95,7 +95,7 @@ index 0000000..12bf2a9
 +syn = { version = "2.0.39", features = ["full", "extra-traits"] }
 diff --git a/macros/src/call/expand.rs b/macros/src/call/expand.rs
 new file mode 100644
-index 0000000..6435527
+index 00000000..64355274
 --- /dev/null
 +++ b/macros/src/call/expand.rs
 @@ -0,0 +1,64 @@
@@ -165,7 +165,7 @@ index 0000000..6435527
 +}
 diff --git a/macros/src/call/mod.rs b/macros/src/call/mod.rs
 new file mode 100644
-index 0000000..ad18b17
+index 00000000..ad18b179
 --- /dev/null
 +++ b/macros/src/call/mod.rs
 @@ -0,0 +1,25 @@
@@ -196,7 +196,7 @@ index 0000000..ad18b17
 +}
 diff --git a/macros/src/call/parse.rs b/macros/src/call/parse.rs
 new file mode 100644
-index 0000000..6ab3d19
+index 00000000..6ab3d192
 --- /dev/null
 +++ b/macros/src/call/parse.rs
 @@ -0,0 +1,141 @@
@@ -342,7 +342,7 @@ index 0000000..6ab3d19
 +	Ok(())
 +}
 diff --git a/macros/src/lib.rs b/macros/src/lib.rs
-index 1091d4c..56a1bcf 100644
+index 1091d4ca..56a1bcf9 100644
 --- a/macros/src/lib.rs
 +++ b/macros/src/lib.rs
 @@ -1 +1,34 @@
@@ -383,7 +383,7 @@ index 1091d4c..56a1bcf 100644
 +}
 diff --git a/macros/src/runtime/expand.rs b/macros/src/runtime/expand.rs
 new file mode 100644
-index 0000000..71ab305
+index 00000000..71ab3054
 --- /dev/null
 +++ b/macros/src/runtime/expand.rs
 @@ -0,0 +1,91 @@
@@ -480,7 +480,7 @@ index 0000000..71ab305
 +}
 diff --git a/macros/src/runtime/mod.rs b/macros/src/runtime/mod.rs
 new file mode 100644
-index 0000000..214c4df
+index 00000000..214c4dfe
 --- /dev/null
 +++ b/macros/src/runtime/mod.rs
 @@ -0,0 +1,25 @@
@@ -511,7 +511,7 @@ index 0000000..214c4df
 +}
 diff --git a/macros/src/runtime/parse.rs b/macros/src/runtime/parse.rs
 new file mode 100644
-index 0000000..9f1db8f
+index 00000000..9f1db8f2
 --- /dev/null
 +++ b/macros/src/runtime/parse.rs
 @@ -0,0 +1,67 @@
