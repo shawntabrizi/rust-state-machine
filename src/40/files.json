@@ -1,0 +1,26 @@
+{
+  "template": [
+    {
+      "label": "src/main.rs",
+      "path": "./template/src/main.rs",
+      "status": "M"
+    },
+    {
+      "label": "src/proof_of_existence.rs",
+      "path": "./template/src/proof_of_existence.rs",
+      "status": "M"
+    }
+  ],
+  "solution": [
+    {
+      "label": "src/main.rs",
+      "path": "./solution/src/main.rs",
+      "status": "M"
+    },
+    {
+      "label": "src/proof_of_existence.rs",
+      "path": "./solution/src/proof_of_existence.rs",
+      "status": "M"
+    }
+  ]
+}

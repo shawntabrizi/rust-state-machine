@@ -1,0 +1,15 @@
+{
+  "template": [
+    {
+      "label": "rustfmt.toml",
+      "path": "./source/rustfmt.toml",
+      "status": "A"
+    },
+    {
+      "label": "src/main.rs",
+      "path": "./source/src/main.rs",
+      "status": "M"
+    }
+  ],
+  "solution": []
+}

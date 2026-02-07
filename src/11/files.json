@@ -1,0 +1,16 @@
+{
+  "template": [
+    {
+      "label": "src/system.rs",
+      "path": "./template/src/system.rs",
+      "status": "M"
+    }
+  ],
+  "solution": [
+    {
+      "label": "src/system.rs",
+      "path": "./solution/src/system.rs",
+      "status": "M"
+    }
+  ]
+}

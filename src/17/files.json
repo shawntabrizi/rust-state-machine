@@ -1,0 +1,10 @@
+{
+  "template": [
+    {
+      "label": "Cargo.toml",
+      "path": "./source/Cargo.toml",
+      "status": "M"
+    }
+  ],
+  "solution": []
+}

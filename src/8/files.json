@@ -1,0 +1,16 @@
+{
+  "template": [
+    {
+      "label": "src/balances.rs",
+      "path": "./template/src/balances.rs",
+      "status": "M"
+    }
+  ],
+  "solution": [
+    {
+      "label": "src/balances.rs",
+      "path": "./solution/src/balances.rs",
+      "status": "M"
+    }
+  ]
+}

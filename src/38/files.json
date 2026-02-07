@@ -1,0 +1,61 @@
+{
+  "template": [
+    {
+      "label": "Cargo.toml",
+      "path": "./template/Cargo.toml",
+      "status": "M"
+    },
+    {
+      "label": "macros/src/lib.rs",
+      "path": "./template/macros/src/lib.rs",
+      "status": "A"
+    }
+  ],
+  "solution": [
+    {
+      "label": "Cargo.toml",
+      "path": "./solution/Cargo.toml",
+      "status": "M"
+    },
+    {
+      "label": "macros/Cargo.toml",
+      "path": "./solution/macros/Cargo.toml",
+      "status": "A"
+    },
+    {
+      "label": "macros/src/call/expand.rs",
+      "path": "./solution/macros/src/call/expand.rs",
+      "status": "A"
+    },
+    {
+      "label": "macros/src/call/mod.rs",
+      "path": "./solution/macros/src/call/mod.rs",
+      "status": "A"
+    },
+    {
+      "label": "macros/src/call/parse.rs",
+      "path": "./solution/macros/src/call/parse.rs",
+      "status": "A"
+    },
+    {
+      "label": "macros/src/lib.rs",
+      "path": "./solution/macros/src/lib.rs",
+      "status": "M"
+    },
+    {
+      "label": "macros/src/runtime/expand.rs",
+      "path": "./solution/macros/src/runtime/expand.rs",
+      "status": "A"
+    },
+    {
+      "label": "macros/src/runtime/mod.rs",
+      "path": "./solution/macros/src/runtime/mod.rs",
+      "status": "A"
+    },
+    {
+      "label": "macros/src/runtime/parse.rs",
+      "path": "./solution/macros/src/runtime/parse.rs",
+      "status": "A"
+    }
+  ]
+}
