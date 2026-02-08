@@ -17,6 +17,7 @@
     <select class="file-select" data-gitorial-files></select>
     <button class="toggle" data-gitorial-toggle>View solution</button>
     <button class="diff-toggle" data-gitorial-diff>View diff</button>
+    <button class="copy-toggle" data-gitorial-copy>Copy code</button>
   </div>
   <div class="gitorial-monaco-editor" data-gitorial-editor></div>
   <div class="gitorial-monaco-footer" data-gitorial-footer></div>

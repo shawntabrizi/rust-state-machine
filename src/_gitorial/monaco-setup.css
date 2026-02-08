@@ -132,9 +132,107 @@ body {
   cursor: pointer;
 }
 
+.gitorial-monaco-toolbar .copy-toggle {
+  background: transparent;
+  color: #f0f0f2;
+  border: 1px solid #3a3a3f;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.gitorial-monaco-toolbar .retry-toggle {
+  background: transparent;
+  color: #f0f0f2;
+  border: 1px solid #6d737d;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  display: none;
+}
+
+.gitorial-monaco-toolbar button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 .gitorial-monaco-editor {
+  position: relative;
+  overflow: hidden;
+  background: #0f0f10;
   height: 70vh;
   min-height: 520px;
+}
+
+.gitorial-monaco-editor .gitorial-monaco-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.gitorial-monaco-editor .gitorial-monaco-fallback {
+  margin: 0;
+  padding: 14px 16px;
+  height: 100%;
+  overflow: auto;
+  background: #0f0f10;
+  color: #d6d9df;
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.45;
+  white-space: normal;
+}
+
+.gitorial-monaco-editor .gitorial-monaco-fallback.hidden {
+  display: none;
+}
+
+.gitorial-monaco-editor .gitorial-monaco-fallback pre {
+  margin: 0;
+  white-space: pre;
+}
+
+.gitorial-monaco-editor .gitorial-monaco-fallback code.hljs {
+  display: block;
+  padding: 0;
+  background: transparent;
+}
+
+.gitorial-monaco-editor .gitorial-monaco-fallback .fallback-diff {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+  height: 100%;
+}
+
+.gitorial-monaco-editor .gitorial-monaco-fallback .fallback-pane {
+  border: 1px solid #2a2a2d;
+  background: #111214;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.gitorial-monaco-editor .gitorial-monaco-fallback .fallback-pane h4 {
+  margin: 0;
+  padding: 10px 12px;
+  font-size: 12px;
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 600;
+  border-bottom: 1px solid #2a2a2d;
+  background: #191a1d;
+  color: #f0f0f2;
+}
+
+.gitorial-monaco-editor .gitorial-monaco-fallback .fallback-pane pre {
+  margin: 0;
+  padding: 12px;
+  height: 100%;
+  overflow: auto;
+  white-space: pre;
 }
 
 .gitorial-monaco-footer {
@@ -173,5 +271,9 @@ body {
   .gitorial-monaco-editor {
     min-height: 480px;
     height: 60vh;
+  }
+
+  .gitorial-monaco-editor .gitorial-monaco-fallback .fallback-diff {
+    grid-template-columns: 1fr;
   }
 }
