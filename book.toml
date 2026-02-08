@@ -1,7 +1,6 @@
 [book]
 authors = ["Shawn Tabrizi"]
 language = "en"
-multilingual = false
 src = "src"
 title = "Rust State Machine"
 
