@@ -8,4 +8,4 @@ title = "Rust State Machine"
 additional-css = ["src/_gitorial/monaco-setup.css"]
 additional-js = ["src/_gitorial/monaco-setup.js"]
 git-repository-url = "https://github.com/shawntabrizi/rust-state-machine"
-git-repository-icon = "fa-github"
+git-repository-icon = "fab-github"
