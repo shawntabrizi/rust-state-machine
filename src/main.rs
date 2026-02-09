@@ -26,6 +26,7 @@ impl system::Config for Runtime {
 }
 
 impl balances::Config for Runtime {
+	/* TODO: After inheriting from the `system::Config` trait, you won't need `AccountId` here. */
 	type AccountId = types::AccountId;
 	type Balance = types::Balance;
 }
