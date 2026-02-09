@@ -52,6 +52,32 @@ impl<T: Config> Pallet<T> {
 	}
 }
 
+// A public enum which describes the calls we want to expose to the dispatcher.
+// We should expect that the caller of each call will be provided by the dispatcher,
+// and not included as a parameter of the call.
+pub enum Call<T: Config> {
+	/*
+		TODO:
+		Create variants for:
+		- `CreateClaim`
+		- `RevokeClaim`
+
+		Remember that you only need to pass in the `claim` data, as `caller` information is passed
+		in through the `dispatch` logic.
+	*/
+	RemoveMe(core::marker::PhantomData<T>),
+}
+
+/// Implementation of the dispatch logic, mapping from `Call` to the appropriate underlying
+/// function we want to execute.
+/*
+	TODO:
+	Implement `crate::support::Dispatch` for `Pallet<T>`.
+
+	In your `dispatch` logic, match on `call` and forward the `caller` and `claim` data to the
+	appropriate function.
+*/
+
 #[cfg(test)]
 mod test {
 	struct TestConfig;
