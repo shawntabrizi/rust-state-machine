@@ -764,6 +764,9 @@
     if (!containers.length) {
       return;
     }
+    if (document.body) {
+      document.body.classList.add('gitorial-has-editor');
+    }
     containers.forEach((container) => {
       if (container.dataset.gitorialInitialized === 'true') {
         return;

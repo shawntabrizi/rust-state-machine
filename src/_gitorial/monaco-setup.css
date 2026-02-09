@@ -1,5 +1,5 @@
 
-:root {
+body.gitorial-has-editor {
   --content-max-width: 100% !important;
 }
 
@@ -10,22 +10,22 @@
 }
 
 html,
-body {
+body.gitorial-has-editor {
   height: 100%;
 }
 
-.page,
-.content,
-.chapter,
-.content main {
+body.gitorial-has-editor .page,
+body.gitorial-has-editor .content,
+body.gitorial-has-editor .chapter,
+body.gitorial-has-editor .content main {
   height: 100%;
 }
 
-.page {
+body.gitorial-has-editor .page {
   overflow-x: hidden;
 }
 
-.nav-chapters {
+body.gitorial-has-editor .nav-chapters {
   top: auto;
   margin: 10px;
   font-size: 2.5em;
@@ -35,11 +35,11 @@ body {
   border-radius: 5px;
 }
 
-.page {
+body.gitorial-has-editor .page {
   max-width: none;
 }
 
-.content {
+body.gitorial-has-editor .content {
   max-width: none;
   padding: 0;
   overflow-x: hidden;
@@ -63,6 +63,10 @@ body {
 .gitorial-step-text h2,
 .gitorial-step-text h3 {
   margin-top: 1.4em;
+}
+
+.gitorial-step-text > :first-child {
+  margin-top: 0.25em;
 }
 
 .gitorial-step-text p {
