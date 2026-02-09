@@ -31,7 +31,7 @@ jobs:
           git config user.email "gitorial-cli@users.noreply.github.com"
 
       - name: Generate gitorial branch
-        run: gitorial-cli build-gitorial -r . -i master -o gitorial --force
+        run: gitorial-cli build-gitorial -r . -i master -o gitorial -s src --force
 
       - name: Push gitorial branch
         run: |
