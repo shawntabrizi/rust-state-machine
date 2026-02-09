@@ -25,3 +25,16 @@ impl Pallet {
 		*self.balances.get(who).unwrap_or(&0)
 	}
 }
+
+#[cfg(test)]
+mod tests {
+	#[test]
+	fn init_balances() {
+		/* TODO: Create a mutable variable `balances`, which is a new instance of `Pallet`. */
+
+		/* TODO: Assert that the balance of `alice` starts at zero. */
+		/* TODO: Set the balance of `alice` to 100. */
+		/* TODO: Assert the balance of `alice` is now 100. */
+		/* TODO: Assert the balance of `bob` has not changed and is 0. */
+	}
+}
