@@ -137,6 +137,7 @@ fn main() {
 		],
 	};
 
+	/* TODO: Update the extrinsics below for the updated format after the macros. */
 	let block_2 = types::Block {
 		header: support::Header { block_number: 2 },
 		extrinsics: vec![
