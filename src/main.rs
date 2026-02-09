@@ -1,5 +1,5 @@
 mod balances;
-/* TODO: Add the support module here. */
+mod support;
 mod system;
 
 // These are the concrete types we will use in our simple state machine.
