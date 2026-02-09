@@ -30,11 +30,11 @@ impl Pallet {
 mod tests {
 	#[test]
 	fn init_balances() {
-		/* TODO: Create a mutable variable `balances`, which is a new instance of `Pallet`. */
+		let mut balances = super::Pallet::new();
 
-		/* TODO: Assert that the balance of `alice` starts at zero. */
-		/* TODO: Set the balance of `alice` to 100. */
-		/* TODO: Assert the balance of `alice` is now 100. */
-		/* TODO: Assert the balance of `bob` has not changed and is 0. */
+		assert_eq!(balances.balance(&"alice".to_string()), 0);
+		balances.set_balance(&"alice".to_string(), 100);
+		assert_eq!(balances.balance(&"alice".to_string()), 100);
+		assert_eq!(balances.balance(&"bob".to_string()), 0);
 	}
 }
