@@ -17,22 +17,21 @@ impl Pallet {
 
 	/// Get the current block number.
 	pub fn block_number(&self) -> u32 {
-		/* TODO: Return the current block number. */
-		unimplemented!()
+		self.block_number
 	}
 
 	// This function can be used to increment the block number.
 	// Increases the block number by one.
 	pub fn inc_block_number(&mut self) {
-		/* TODO: Increment the current block number by one. */
-		unimplemented!()
+		self.block_number += 1;
 	}
 
 	// Increment the nonce of an account. This helps us keep track of how many transactions each
 	// account has made.
 	pub fn inc_nonce(&mut self, who: &String) {
-		/* TODO: Get the current nonce of `who`, and increment it by one. */
-		unimplemented!()
+		let nonce: u32 = *self.nonce.get(who).unwrap_or(&0);
+		let new_nonce = nonce + 1;
+		self.nonce.insert(who.clone(), new_nonce);
 	}
 }
 
@@ -40,13 +39,12 @@ impl Pallet {
 mod test {
 	#[test]
 	fn init_system() {
-		/* TODO: Create a test which checks the following:
-			- Increment the current block number.
-			- Increment the nonce of `alice`.
+		let mut system = super::Pallet::new();
+		system.inc_block_number();
+		system.inc_nonce(&"alice".to_string());
 
-			- Check the block number is what we expect.
-			- Check the nonce of `alice` is what we expect.
-			- Check the nonce of `bob` is what we expect.
-		*/
+		assert_eq!(system.block_number(), 1);
+		assert_eq!(system.nonce.get("alice"), Some(&1));
+		assert_eq!(system.nonce.get("bob"), None);
 	}
 }
