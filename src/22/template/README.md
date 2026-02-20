@@ -67,9 +67,9 @@ pub trait Config: crate::system::Config {
 }
 ```
 
-Here you can see our `balances::Config` trait is inheriting from our `crate::system::Config` trait. This means that all types defined by `system::Config`, including the `AccountId`, is accessible through the `balances::Config` trait. Because of this, we do not need to redefine the `AccountId` type in `balances::Config`.
+Here you can see our `balances::Config` trait is inheriting from our `crate::system::Config` trait. This means that all types defined by `system::Config`, including the `AccountId`, are accessible through the `balances::Config` trait. Because of this, we do not need to redefine the `AccountId` type in `balances::Config`.
 
-In the Polkadot SDK ecosystem, we call this "tight coupling" because a runtime which contains the Balances Pallet must also contain the System Pallet. In a sense these two pallets are tightly coupled to one another. In fact, with Substrate, all pallets are tightly coupled to the System Pallet, because the System Pallet provides all the meta-types for your blockchain system.
+In the Polkadot SDK ecosystem, we call this "tight coupling" because a runtime which contains the Balances Pallet must also contain the System Pallet. In a sense these two pallets are tightly coupled to one another. In fact, in the Polkadot SDK, all pallets are tightly coupled to the System Pallet, because the System Pallet provides all the meta-types for your blockchain system.
 
 ## Tightly Couple Balances To System
 

@@ -20,7 +20,7 @@ mod types {
 // These are all the calls which are exposed to the world.
 // Note that it is just an accumulation of the calls exposed by each module.
 pub enum RuntimeCall {
-	/* TODO: Create an enum variant `BalancesTransfer` which contains named fields:
+	/* TODO: Create an enum variant `BalanceTransfer` which contains named fields:
 		- `to`: an `AccountId`
 		- `amount`: a `Balance`
 	*/
@@ -54,7 +54,7 @@ impl Runtime {
 	fn execute_block(&mut self, block: types::Block) -> support::DispatchResult {
 		self.system.inc_block_number();
 		if block.header.block_number != self.system.block_number() {
-			return Err("block number does not match what is expected")
+			return Err("block number does not match what is expected");
 		}
 		// An extrinsic error is not enough to trigger the block to be invalid. We capture the
 		// result, and emit an error message if one is emitted.

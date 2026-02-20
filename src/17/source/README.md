@@ -6,8 +6,8 @@ Within the ecosystem, many functions and features which you might expect to be i
 
 For our next step, we want to access traits for basic numerical operations like:
 
-- `CheckedAdd` - A type which supports `checked_add`
-- `CheckedSub` - A type which supports `checked_sub`
+- `CheckedAdd` - A type which supports `checked_add()`
+- `CheckedSub` - A type which supports `checked_sub()`
 - `Zero` - A type which can return the value zero when calling `zero()`
 - `One` - A type which can return the value one when calling `one()`
 
@@ -31,7 +31,7 @@ Where is this crate coming from?
 
 The Rust community has a large registry of available crates on [crates.io](https://crates.io/). When you import a crate, it will use `crates.io` by default.
 
-You can also import crates directly from github by specifying the repo where the source code can be found.
+You can also import crates directly from GitHub by specifying the repo where the source code can be found.
 
 That would look something like:
 

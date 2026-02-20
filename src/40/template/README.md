@@ -22,7 +22,7 @@ Check that everything is compiling and running just as before.
 
 Let's take the opportunity to show you how you can peek deeper into what the macros are doing.
 
-Rust provides the command `cargo expand` which allows you to output the generated rust code after all macros have been applied to your project.
+Rust provides the command `cargo expand` which allows you to output the generated Rust code after all macros have been applied to your project.
 
 To install `cargo expand`:
 
@@ -62,8 +62,7 @@ Here are some things you should notice:
 
 	```rust
 	extrinsics: <[_]>::into_vec(
-		#[rustc_box]
-		::alloc::boxed::Box::new([
+		:::alloc::boxed::box_new([
 			// stuff
 		])
 	)
@@ -79,7 +78,7 @@ Here are some things you should notice:
 
 There are two main takeaways for you:
 
-1. Macros ultimately follow all the same rules as regular Rust code, because it does generate regular Rust code. They feel magical, but there is really nothing magic about them.
-2. Macros are an important part of the Rust ecosystem, and heavily used to improve developer experience and code quality.
+1. Macros ultimately follow all the same rules as regular Rust code, because they do generate regular Rust code. They feel magical, but there is really nothing magic about them.
+2. Macros are an important part of the Rust ecosystem, and are heavily used to improve developer experience and code quality.
 
-If you ever use externally developed macros, and you want to look closer at what is going on, `cargo expand` can be a useful tool for you to better understand some of the hidden architectural details of a project. As you jump into the Polkadot SDK, I recommend you continue to use this tool to enhance your learning and understanding.
+If you ever use externally-developed macros, and you want to look closer at what is going on, `cargo expand` can be a useful tool for you to better understand some of the hidden architectural details of a project. As you jump into the Polkadot SDK, I recommend you continue to use this tool to enhance your learning and understanding.

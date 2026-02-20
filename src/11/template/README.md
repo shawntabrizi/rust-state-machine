@@ -6,7 +6,7 @@ Let's add functions which make it useful.
 
 ## Block Number
 
-Your blockchain's blocknumber is stored in the System Pallet, and the System Pallet needs to expose functions which allow us to access and modify the block number.
+Your blockchain's block number is stored in the System Pallet, and the System Pallet needs to expose functions which allow us to access and modify the block number.
 
 For this we need two simple functions:
 
@@ -37,7 +37,7 @@ However, you will see in the templates provided, that these new functions in the
 
 Is this okay?
 
-As you will notice, the `blocknumber` and `nonce` storage items only provide APIs to increment by one. In our System, both of these numbers are represented by `u32`, which means that over 4.2 billion calls to those functions need to occur before an overflow would happen.
+As you will notice, the `block_number` and `nonce` storage items only provide APIs to increment by one. In our System, both of these numbers are represented by `u32`, which means that over 4.2 billion calls to those functions need to occur before an overflow would happen.
 
 Assuming a user does one transaction every block, and a new block is generated every 6 seconds, it would take over 800 years for an overflow to occur. So in this situation, we are preferring an API which requires no error handling rather than one which does.
 

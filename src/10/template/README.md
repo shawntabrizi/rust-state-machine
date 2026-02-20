@@ -8,7 +8,7 @@ For this, we will create a new pallet called the System Pallet.
 
 ## What is the System Pallet?
 
-The System Pallet is a "meta"-pallet which stores all the metadata needed for your blockchain to function. For example, the current blocknumber or the nonce of users on your blockchain.
+The System Pallet is a "meta" pallet which stores all the metadata needed for your blockchain to function. For example, the current block number or the nonce of users on your blockchain.
 
 This pallet does not need to expose any functions to end users, but can still play an important role in our overall state transition function.
 
