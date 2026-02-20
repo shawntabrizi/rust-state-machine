@@ -14,6 +14,6 @@ For this step, try to avoid looking at the solution, and instead refer to the ch
 6. Go to your `main.rs` file, and implement `balances::Config` for the `Runtime` struct.
 7. Update your `Runtime` definition to instantiate `balances::Pallet` with `Self`.
 
-If you have made it this far, I think it is fair to say you have made it over the hardest part of this tutorial, and the hardest part of using Rust in Substrate.
+If you have made it this far, I think it is fair to say you have made it over the hardest part of this tutorial, and the hardest part of using Rust in the Polkadot SDK.
 
 It is important to take a step back and remember that while these abstractions make your code a bit more complicated to fully understand, it also makes your code extremely flexible, at zero cost to performance and safety thanks to the Rust compiler.

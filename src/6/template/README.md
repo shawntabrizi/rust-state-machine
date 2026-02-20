@@ -10,13 +10,17 @@ Finally, we will see what it looks like to actually start interacting with our b
 
 Before we continue, let's take a moment to go over some Rust which we will be using in this next section.
 
-### Option and Option Handling
+### `Option` Type
 
 One of the key principles of Rust is to remove undefined behavior from your code.
 
-One way undefined behavior can happen is by allowing states like `null` to exist. Rust prevents this by having the user explicitly handle all cases, and this is where the creation of the `Option` type comes in. Spend a moment to re-review [the section on `Option`](https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html?highlight=option#the-option-enum-and-its-advantages-over-null-values) from the Rust book if needed.
+One way undefined behavior can happen is by allowing states like `null` to exist. Rust prevents this by having the user explicitly handle all cases, and this is where the `Option` type comes in.
 
-The `BTreeMap` api uses an `Option` when reading values from the map, since it could be that you ask to read the value of some key that you did not set. For example:
+In Rust, the `Option` type is a fundamental part of the standard library, designed to handle scenarios where a value may or may not be present. It's commonly used in situations where the result of an operation might be undefined or absent.
+
+Spend a moment to re-review [the section on `Option`](https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html?highlight=option#the-option-enum-and-its-advantages-over-null-values) from the Rust book if needed.
+
+The `BTreeMap` interface returns an `Option` when looking up keys, since the key you're reading may not have been set yet. For example:
 
 ```rust
 use std::collections::BTreeMap;
@@ -46,13 +50,13 @@ match maybe_value {
 
 > IMPORTANT NOTE!
 
-What you SHOULD NOT do is blindly `unwrap()` options. This will result in a `panic` in your code, which is exactly the kind of thing Rust was designed to prevent! Instead, you should always explicitly handle all of your different logical cases, and if you let Rust do it's job, your code will be super safe.
+What you SHOULD NOT do is blindly `unwrap()` options. This will result in a `panic` in your code, which is exactly the kind of thing Rust was designed to prevent! Instead, you should always explicitly handle all of your different logical cases, and if you let Rust do its job, your code will be super safe.
 
 In the context of what we are designing for with the balances module, we have a map which has an arbitrary number of user keys, and their balance values.
 
 What should we do when we read the balance of a user which does not exist in our map?
 
-Well, the trick here is that in the context of blockchains, a user having `None` balance, and a user having `0` balance is the same. Of course, there is some finer details to be expressed between a user who exists in our state with value 0 and a user which does not exist at all, but for the purposes of our APIs, we can treat them the same.
+Well, the trick here is that in the context of blockchains, a user having `None` balance, and a user having `0` balance is the same. Of course, there are some finer details to be expressed between a user who exists in our state with value 0 and a user which does not exist at all, but for the purposes of our APIs, we can treat them the same.
 
 What does this look like?
 

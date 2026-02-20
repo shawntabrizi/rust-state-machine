@@ -4,7 +4,7 @@ Finally, let's add the `#[macros::runtime]` macro to our `main.rs` file, and rea
 
 ## Runtime Macro
 
-The purpose of the `#[macros::runtime]` macro is to get rid of all of the boilerplate function we implemented for the `Runtime`, including `fn new()` and `fn execute_block()`. Similar to the `Call` macro, it also generates the `enum RuntimeCall` and all the `dispatch` logic for re-dispatching to pallets.
+The purpose of the `#[macros::runtime]` macro is to get rid of all of the boilerplate functions we implemented for the `Runtime`, including `fn new()` and `fn execute_block()`. Similar to the `Call` macro, it also generates the `enum RuntimeCall` and all the `dispatch` logic for re-dispatching to pallets.
 
 We apply the `#[macros::runtime]` attribute on top of the main `struct Runtime` object.
 
@@ -35,11 +35,11 @@ Again, due to the quirks of using macros, our `RuntimeCall` enum will have `snak
 
 One of the assumptions programmed into these macros is the existence of the System Pallet. For example, in the `execute_block` logic, we need access to both `system.inc_block_number` and `system.inc_nonce`.
 
-Some macro level assumptions are intentional, and actually define the architectural decisions of the framework designing those macros. This is the case with the System Pallet, since so much of a blockchain framework depends on a consistent meta-layer.
+Some macro-level assumptions are intentional, and actually define the architectural decisions of the framework designing those macros. This is the case with the System Pallet, since so much of a blockchain framework depends on a consistent meta layer.
 
 Other assumptions exist just because it is easier to write the macro if the assumption is made.
 
-The main takeaway here is that macros can almost always continue to improve, providing better and better user experiences for developers. It just needs someone to identify what improvements need to be made, and someone else to program those improvements into the low level macro code.
+The main takeaway here is that macros can almost always continue to improve, providing better and better user experiences for developers. It just needs someone to identify what improvements need to be made, and someone else to program those improvements into the low-level macro code.
 
 ## Add the Runtime Macro
 
@@ -53,4 +53,4 @@ Let's finally go through the steps to add the `#[macros::runtime]` attribute to 
 	- Change `RuntimeCall::Balances` to `RuntimeCall::balances`.
 	- Change `RuntimeCall::ProofOfExistence` to `RuntimeCall::proof_of_existence`.
 
-And that's it! You have now completed the full tutorial for building a simple rust state machine. 🎉
+And that's it! You have now completed the full tutorial for building a simple Rust state machine. 🎉

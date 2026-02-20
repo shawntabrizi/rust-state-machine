@@ -14,10 +14,13 @@ For that, we will go back to the `main.rs` file, and create our first `#[test]` 
 2. To begin our test, we need to initialize a new instance of our `Pallet`:
 
 	```rust
-	#[test]
-	fn init_balances() {
-		let mut balances = super::Pallet::new();
-	}
+  #[cfg(test)]
+  mod tests {
+  	#[test]
+  	fn init_balances() {
+  		let mut balances = super::Pallet::new();
+  	}
+  }
 	```
 
 	Note that we make this variable `mut` since we plan to mutate our state using our newly created API.

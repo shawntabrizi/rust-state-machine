@@ -86,10 +86,9 @@ impl crate::support::Dispatch for Runtime {
 		// to the appropriate pallet level function.
 		match runtime_call {
 			RuntimeCall::Balances(call) => {
-				self.balances.dispatch(caller, call)?;
+				self.balances.dispatch(caller, call)
 			},
 		}
-		Ok(())
 	}
 }
 

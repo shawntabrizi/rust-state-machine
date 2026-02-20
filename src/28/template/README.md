@@ -15,8 +15,8 @@ let block_1 = types::Block {
 	header: support::Header { block_number: 1 },
 	extrinsics: vec![
 		support::Extrinsic {
-			caller: &"alice",
-			call: RuntimeCall::BalancesTransfer { to: &"bob", amount: 69 },
+			caller: "alice".to_string(),
+			call: RuntimeCall::BalanceTransfer { to: "bob".to_string(), amount: 30 },
 		},
 	],
 };

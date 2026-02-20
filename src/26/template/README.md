@@ -6,11 +6,11 @@ We will now start the process to replace the simple block simulation in our `mai
 
 We have introduced a new function to our `Runtime` called `fn execute_block`.
 
-The steps of this function is exactly the same as our current `main` function, but using the concrete `Block` type we defined to extract details like the expected block number and the extrinsics that we want to execute.
+The steps of this function are exactly the same as our current `main` function, but using the concrete `Block` type we defined to extract details like the expected block number and the extrinsics that we want to execute.
 
 ### Iterating Over a Vector
 
-In order to build our `execute_block` function, we will need to iterate over all the extrinsics in our block, and dispatch those calls. In rust, the common way to access the elements of a vector is to turn it into an iterator.
+In order to build our `execute_block` function, we will need to iterate over all the extrinsics in our block, and dispatch those calls. In Rust, the common way to access the elements of a vector is to turn it into an iterator.
 
 There are two functions used for turning a vector into an interator, `iter` and `into_iter`, and their difference lies in ownership:
 

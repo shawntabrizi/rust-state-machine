@@ -4,7 +4,7 @@ In Rust, `derive` macros provide a convenient way to automatically implement tra
 
 ## Macros
 
-In the most simple terms, Macros are rust code that write more rust code.
+In the most simple terms, macros are Rust code that write more Rust code.
 
 Macros can make your code easier to read, help avoid repetition, and even let you create your own special rules for coding in Rust.
 
@@ -16,7 +16,7 @@ For now, treat them as "magic".
 
 Think of traits in Rust as shared rules for different types. They allow you to define a set of things that types must be able to do. This way, you can make sure different parts of your code follow the same rules.
 
-Take a look at [this example](https://doc.rust-lang.org/rust-by-example/trait.html) or re-read [the Rust Book](https://doc.rust-lang.org/book/ch10-02-traits.html) if you need a refresher on Traits.
+Take a look at [this example](https://doc.rust-lang.org/rust-by-example/trait.html) or re-read [the Rust Book](https://doc.rust-lang.org/book/ch10-02-traits.html) if you need a refresher on traits.
 
 We will make and use custom traits later in this tutorial, but know for this step that `#[derive(Debug)]` is a macro which implements the `Debug` trait for your custom types.
 
