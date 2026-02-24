@@ -24,7 +24,7 @@ So when adding a new variant to `RuntimeCall`, it should look something like:
 
 ```rust
 pub enum RuntimeCall {
-	BalanceTransfer { to: types::AccountId, amount: types::Balance },
+	BalancesTransfer { to: types::AccountId, amount: types::Balance },
 }
 ```
 
@@ -38,7 +38,7 @@ Basically, given some `RuntimeCall`, we need to match on the variant being provi
 
 ```rust
 match runtime_call {
-	RuntimeCall::BalanceTransfer { to, amount } => {
+	RuntimeCall::BalancesTransfer { to, amount } => {
 		self.balances.transfer(caller, to, amount)
 	}
 }

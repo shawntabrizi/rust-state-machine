@@ -21,7 +21,7 @@ mod types {
 // Note that it is just an accumulation of the calls exposed by each module.
 pub enum RuntimeCall {
 	/* TODO: Turn this into a nested enum where variant `Balances` contains a `balances::Call`. */
-	BalanceTransfer { to: types::AccountId, amount: types::Balance },
+	BalancesTransfer { to: types::AccountId, amount: types::Balance },
 }
 
 // This is our main Runtime.
@@ -90,7 +90,7 @@ impl crate::support::Dispatch for Runtime {
 				Adjust this logic to handle the nested enums, and simply call the `dispatch` logic
 				on the balances call, rather than the function directly.
 			*/
-			RuntimeCall::BalanceTransfer { to, amount } => {
+			RuntimeCall::BalancesTransfer { to, amount } => {
 				self.balances.transfer(caller, to, amount)
 			},
 		}
@@ -116,11 +116,11 @@ fn main() {
 			/* TODO: Update your extrinsics to use the nested enum. */
 			support::Extrinsic {
 				caller: alice.clone(),
-				call: RuntimeCall::BalanceTransfer { to: bob, amount: 30 },
+				call: RuntimeCall::BalancesTransfer { to: bob, amount: 30 },
 			},
 			support::Extrinsic {
 				caller: alice,
-				call: RuntimeCall::BalanceTransfer { to: charlie, amount: 20 },
+				call: RuntimeCall::BalancesTransfer { to: charlie, amount: 20 },
 			},
 		],
 	};

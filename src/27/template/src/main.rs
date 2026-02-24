@@ -20,7 +20,7 @@ mod types {
 // These are all the calls which are exposed to the world.
 // Note that it is just an accumulation of the calls exposed by each module.
 pub enum RuntimeCall {
-	/* TODO: Create an enum variant `BalanceTransfer` which contains named fields:
+	/* TODO: Create an enum variant `BalancesTransfer` which contains named fields:
 		- `to`: an `AccountId`
 		- `amount`: a `Balance`
 	*/
