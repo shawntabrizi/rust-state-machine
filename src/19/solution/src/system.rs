@@ -16,7 +16,7 @@ impl<AccountId, BlockNumber, Nonce> Pallet<AccountId, BlockNumber, Nonce>
 where
 	AccountId: Ord + Clone,
 	BlockNumber: Zero + One + AddAssign + Copy,
-	Nonce: Zero + One + Copy,
+	Nonce: One + AddAssign + Default,
 {
 	/// Create a new instance of the System Pallet.
 	pub fn new() -> Self {
@@ -37,9 +37,7 @@ where
 	// Increment the nonce of an account. This helps us keep track of how many transactions each
 	// account has made.
 	pub fn inc_nonce(&mut self, who: &AccountId) {
-		let nonce: Nonce = *self.nonce.get(who).unwrap_or(&Nonce::zero());
-		let new_nonce = nonce + Nonce::one();
-		self.nonce.insert(who.clone(), new_nonce);
+		*self.nonce.entry(who.clone()).or_default() += Nonce::one();
 	}
 }
 

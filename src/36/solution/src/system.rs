@@ -13,7 +13,7 @@ pub trait Config {
 	type BlockNumber: Zero + One + AddAssign + Copy;
 	/// A type which can be used to keep track of the number of transactions from each account.
 	/// Usually a basic unsigned integer.
-	type Nonce: Zero + One + Copy;
+	type Nonce: One + AddAssign + Default;
 }
 
 /// This is the System Pallet.
@@ -48,9 +48,7 @@ impl<T: Config> Pallet<T> {
 	// Increment the nonce of an account. This helps us keep track of how many transactions each
 	// account has made.
 	pub fn inc_nonce(&mut self, who: &T::AccountId) {
-		let nonce: T::Nonce = *self.nonce.get(who).unwrap_or(&T::Nonce::zero());
-		let new_nonce = nonce + T::Nonce::one();
-		self.nonce.insert(who.clone(), new_nonce);
+		*self.nonce.entry(who.clone()).or_default() += T::Nonce::one();
 	}
 }
 

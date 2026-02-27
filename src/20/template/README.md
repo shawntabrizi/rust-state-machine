@@ -81,7 +81,7 @@ For this, we will use a trait with a bunch of associated types in `system.rs`:
 pub trait Config {
 	type AccountId: Ord + Clone;
 	type BlockNumber: Zero + One + AddAssign + Copy;
-	type Nonce: Zero + One + Copy;
+	type Nonce: One + AddAssign + Default;
 	// and more if needed
 }
 ```
