@@ -5,7 +5,7 @@
 /// machine.
 pub struct Pallet {
 	// A simple storage mapping from accounts (`String`) to their balances (`u128`).
-	/* TODO: Add a field `balances` which is a `BTreeMap` fom `String` to `u128`. */
+	/* TODO: Add a field `balances` which is a `BTreeMap` from `String` to `u128`. */
 }
 
 impl Pallet {

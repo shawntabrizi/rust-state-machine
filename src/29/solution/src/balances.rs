@@ -19,7 +19,7 @@ pub struct Pallet<T: Config> {
 }
 
 impl<T: Config> Pallet<T> {
-	// Create a new instance of the balances module.
+	/// Create a new instance of the balances module.
 	pub fn new() -> Self {
 		Self { balances: BTreeMap::new() }
 	}

@@ -94,12 +94,9 @@ impl crate::support::Dispatch for Runtime {
 		// This match statement will allow us to correctly route `RuntimeCall`s
 		// to the appropriate pallet level function.
 		match runtime_call {
-			RuntimeCall::Balances(call) => {
-				self.balances.dispatch(caller, call)?;
-			},
+			RuntimeCall::Balances(call) => self.balances.dispatch(caller, call),
 			/* TODO: Dispatch `calls` to the `ProofOfExistence` pallet. */
 		}
-		Ok(())
 	}
 }
 

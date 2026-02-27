@@ -1,6 +1,6 @@
 # Rust Tooling
 
-In this step, we will initialize a basic Rust project, where we can start building our simple Rust state machine.
+In this step, we will set up common Rust developer tooling to help you have the best experience working on this project.
 
 ## rustfmt
 
@@ -26,7 +26,7 @@ To configure the behavior of `rustfmt`, we will create a `rustfmt.toml` file:
 	cargo +nightly fmt
 	```
 
-You shouldn't see any changes this time around, but as you write more code, you will be able to see `cargo +nightly fmt` make everything look pretty, consistent, and easy to read.
+You may see minor formatting changes (such as indentation switching to tabs) based on the `rustfmt.toml` configuration. As you write more code, you will be able to see `cargo +nightly fmt` make everything look pretty, consistent, and easy to read.
 
 > We recommend you run `cargo +nightly fmt` after every step!
 

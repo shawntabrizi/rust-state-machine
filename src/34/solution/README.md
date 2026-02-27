@@ -1,3 +1,3 @@
 # Add Proof of Existence Dispatch
 
-Find the solution to the previous step here.
+You can find the solution to the previous step here.
