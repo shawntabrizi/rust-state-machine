@@ -20,10 +20,7 @@ mod types {
 // These are all the calls which are exposed to the world.
 // Note that it is just an accumulation of the calls exposed by each module.
 pub enum RuntimeCall {
-	/* TODO: Create an enum variant `BalancesTransfer` which contains named fields:
-		- `to`: an `AccountId`
-		- `amount`: a `Balance`
-	*/
+	BalancesTransfer { to: types::AccountId, amount: types::Balance },
 }
 
 // This is our main Runtime.
@@ -84,18 +81,12 @@ impl crate::support::Dispatch for Runtime {
 		caller: Self::Caller,
 		runtime_call: Self::Call,
 	) -> support::DispatchResult {
-		/*
-			TODO:
-			Use a match statement to route the `runtime_call` to call the appropriate function in
-			our pallet. In this case, there is only `self.balances.transfer`.
-
-			Your `runtime_call` won't contain the caller information which is needed to make the
-			`transfer` call, but you have that information from the arguments to the `dispatch`
-			function.
-
-			You should propagate any errors from the call back up this function.
-		*/
-		Ok(())
+		// This match statement will allow us to correctly route `RuntimeCall`s
+		// to the appropriate pallet level function.
+		match runtime_call {
+			RuntimeCall::BalancesTransfer { to, amount } =>
+				self.balances.transfer(caller, to, amount),
+		}
 	}
 }
 
