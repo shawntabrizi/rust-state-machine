@@ -84,9 +84,8 @@ impl crate::support::Dispatch for Runtime {
 		// This match statement will allow us to correctly route `RuntimeCall`s
 		// to the appropriate pallet level function.
 		match runtime_call {
-			RuntimeCall::BalancesTransfer { to, amount } => {
-				self.balances.transfer(caller, to, amount)
-			},
+			RuntimeCall::BalancesTransfer { to, amount } =>
+				self.balances.transfer(caller, to, amount),
 		}
 	}
 }

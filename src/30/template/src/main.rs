@@ -90,9 +90,8 @@ impl crate::support::Dispatch for Runtime {
 				Adjust this logic to handle the nested enums, and simply call the `dispatch` logic
 				on the balances call, rather than the function directly.
 			*/
-			RuntimeCall::BalancesTransfer { to, amount } => {
-				self.balances.transfer(caller, to, amount)
-			},
+			RuntimeCall::BalancesTransfer { to, amount } =>
+				self.balances.transfer(caller, to, amount),
 		}
 	}
 }
