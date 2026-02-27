@@ -67,37 +67,15 @@ Each step builds on the previous one with minimal changes, so you always know ex
 
 ## Getting Started
 
-### Option 1: Interactive Tutorial (Recommended)
-
-The best way to take this tutorial is through the interactive web version, which includes a built-in code editor, diffs, and solutions:
-
-**[Start the Tutorial](https://www.shawntabrizi.com/rust-state-machine/)**
-
-### Option 2: Follow Along Locally
-
 1. Make sure you have [Rust installed](https://rustup.rs/).
+2. Open the tutorial: **[Start the Tutorial](https://www.shawntabrizi.com/rust-state-machine/)**
+3. Create a new Rust project locally and follow along with each step, writing the code in your own project, compiling, and testing as you go.
 
-2. Clone this repository:
-
-	```sh
-	git clone https://github.com/shawntabrizi/rust-state-machine.git
-	cd rust-state-machine
-	```
-
-3. Browse the `src/` directory. Steps are numbered `0` through `41`. Start at `src/0/` and work through each step in order.
-
-4. Each step's `template/` folder is your starting point. Write the code described in the README and `TODO` comments, then compare your work against the `solution/` folder.
-
-5. Run your code at any point:
-
-	```sh
-	cargo run
-	cargo test
-	```
+The website provides the instructions, code templates, diffs, and solutions for each step. Your local project is where you do the actual work.
 
 ## Contributing
 
-If you find a bug, typo, or have ideas to improve the tutorial, please [open an issue](https://github.com/shawntabrizi/rust-state-machine/issues). Pull requests are also welcome.
+If you find a bug, typo, or have ideas to improve the tutorial, please [open an issue](https://github.com/shawntabrizi/rust-state-machine/issues). Pull requests are also welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## License
 
