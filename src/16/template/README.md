@@ -2,9 +2,9 @@
 
 Up till now, we have just been hardcoding raw types into our structs and function definitions.
 
-There are already examples where this can be confusing, for example if you see a function accept a `u32` parameter, is it a `blocknumber` or a `nonce`?
+There are already examples where this can be confusing, for example if you see a function accept a `u32` parameter, is it a *block number* or a *nonce*?
 
-To make our code more clear, let's extract all of our raw types and define custom named types for our structs and functions.
+To make our code clearer, let's extract all of our raw types and define custom named types for our structs and functions.
 
 Across the Balances and System Pallet, we need to define the following types:
 

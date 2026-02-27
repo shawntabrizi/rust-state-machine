@@ -20,7 +20,7 @@ You can see that we keep the `Block` completely generic over the `Header` and `E
 
 #### The Header
 
-The block header contains metadata about the block which is used to verify that the block is valid. In our simple state machine, we only store the blocknumber in the header, but real blockchains like Polkadot have:
+The block header contains metadata about the block which is used to verify that the block is valid. In our simple state machine, we only store the block number in the header, but real blockchains like Polkadot have:
 
 - Parent Hash
 - Block Number

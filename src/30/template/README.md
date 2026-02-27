@@ -1,6 +1,6 @@
 # Nested Dispatch
 
-Now that we have defined Pallet level dispatch logic in the Pallet, we should update our Runtime to take advantage of that logic.
+Now that we have defined pallet-level dispatch logic in the Pallet, we should update our Runtime to take advantage of that logic.
 
 After this, whenever the Pallet logic is updated, the Runtime dispatch logic will also automatically get updated and route calls directly. This makes our code easier to manage, and prevent potential errors or maintenance in the future.
 
@@ -16,15 +16,15 @@ pub enum RuntimeCall {
 }
 ```
 
-In this case, we have a variant `RuntimeCall::Balances`, which itself contains a type `balances::Call`. This means we can access all the calls exposed by `balances:Call` under this variant. As we create more pallets or extend our calls, this nested structure will scale very well.
+In this case, we have a variant `RuntimeCall::Balances`, which itself contains a type `balances::Call`. This means we can access all the calls exposed by `balances:Call` under this variant. As we create more pallets or extend our calls, this nested structure will scale well.
 
-We call the `RuntimeCall` an "outer enum", and the `balances::Call` an "inner enum". This construction of using outer and inner enums is very common in the Polkadot SDK.
+We call the `RuntimeCall` an "outer enum", and the `balances::Call` an "inner enum". This construction of using outer and inner enums is common in the Polkadot SDK.
 
 ## Re-Dispatching to Pallet
 
 Our current `dispatch` logic directly calls the functions in the Pallet. As we mentioned, having this logic live outside of the Pallet can increase the burden of maintenance or errors.
 
-But now that we have defined Pallet level dispatch logic in the Pallet itself, we can use this to make the Runtime dispatch more extensible.
+But now that we have defined pallet-level dispatch logic in the Pallet itself, we can use this to make the Runtime dispatch more extensible.
 
 To do this, rather than calling the Pallet function directly, we can extract the inner call from the `RuntimeCall`, and then use the `balances::Pallet` to dispatch that call to the appropriate logic.
 
@@ -33,7 +33,7 @@ That would look something like:
 ```rust
 match runtime_call {
 	RuntimeCall::Balances(call) => {
-		self.balances.dispatch(caller, call)?;
+		self.balances.dispatch(caller, call)
 	},
 }
 ```
@@ -46,6 +46,6 @@ Since we have updated the construction of the `RuntimeCall` enum, we will also n
 
 ## Enable Nested Dispatch
 
-Now is the time to complete this step and glue together Pallet level dispatch with the Runtime level dispatch logic.
+Now is the time to complete this step and glue together pallet-level dispatch with the runtime-level dispatch logic.
 
 Follow the `TODO`s provided in the template to get your full end to end dispatch logic running. By the end of this step there should be no compiler warnings.

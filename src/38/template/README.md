@@ -6,11 +6,11 @@ At this point, our goal is to see if we can use the power of Rust macros to make
 
 All of this is in preparation for you to work with the Polkadot SDK, which heavily relies on macros like the ones you will see here.
 
-## Auto Generated Code
+## Auto-generated Code
 
 As mentioned earlier, Rust macros are basically code which can generate more code.
 
-As you can see from our simple state machine, there is a lot of boiler plate code that we could generate, following the simple patterns and structures we have designed.
+As you can see from our simple state machine, there is a lot of boilerplate code that we could generate, following the simple patterns and structures we have designed.
 
 For example:
 
@@ -42,7 +42,7 @@ In each of these folders there are 3 files:
 
 1. `mod.rs` - The entry point for the macro, where code is parsed, and then generated.
 2. `parse.rs` - The parsing logic for the macro, extracting the information we need to generate code.
-3. `expand.rs` - The expansion / generation code, which will write new code for us with the data provided.
+3. `expand.rs` - The expansion code, which will generate new code for us with the data provided.
 
 We will go through each of these more deeply as we include the macros into our code.
 

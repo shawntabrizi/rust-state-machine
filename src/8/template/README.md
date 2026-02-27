@@ -1,6 +1,6 @@
 # Enable Balance Transfers
 
-Now that we have initialized and started to use our balances module, let's add probably the most important API: `transfer`.
+Now that we have initialized and started to use our balances module, let's add probably the most important operation: `transfer`.
 
 ## Learn
 
@@ -14,8 +14,6 @@ In a blockchain system, security is paramount. Bad actors may attempt to exploit
 
 Rust's safe math operations prevent overflow and underflow. The `checked_add` and `checked_sub` methods return an `Option` that allows handling potential arithmetic errors safely.
 
-In Rust, the Option type is a fundamental part of the standard library, designed to handle scenarios where a value may or may not be present. It's commonly used in situations where the result of an operation might be undefined or absent.
-
 Methods like `checked_add` and `checked_sub` return `Option` to indicate success or failure due to overflow or underflow.
 
 ```rust
@@ -28,9 +26,9 @@ match result {
 
 ### Error Handling
 
-In Rust, error handling is an integral part of writing robust and safe code. The Result type is commonly used for functions that may encounter errors during their execution.
+In Rust, error handling is an integral part of writing robust and safe code. The `Result` type is commonly used for functions that may encounter errors during their execution.
 
-The Result type is an enum defined in the standard library. It has two variants: `Ok(value)` for a successful result and `Err(error)` for an error:
+The `Result` type is an enum defined in the standard library. It has two variants: `Ok(value)` for a successful result and `Err(error)` for an error:
 
 ```rust
 enum Result<T, E> {
@@ -67,6 +65,6 @@ In this case, we are writing code which completely handles the `Option` type in 
 
 ## Create Transfer
 
-Follow the instructions in the template to create a safe and simple transfer function in your Balances Pallet.
+Follow the instructions in the template to create a safe and simple transfer function in your balances Pallet.
 
 Create a test showing that everything is working as expected, including error handling. There should be no compiler warnings!

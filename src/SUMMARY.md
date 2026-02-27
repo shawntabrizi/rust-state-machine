@@ -29,7 +29,7 @@
     - [26. Executing Blocks](26/README.md)
     - [27. Dispatching Calls](27/README.md)
     - [28. Using Execute Block](28/README.md)
-    - [29. Pallet Level Dispatch](29/README.md)
+    - [29. Pallet-level Dispatch](29/README.md)
     - [30. Nested Dispatch](30/README.md)
 - [31. The Proof of Existence Pallet](31/README.md)
     - [32. Proof of Existence Pallet](32/README.md)

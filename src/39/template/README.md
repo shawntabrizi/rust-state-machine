@@ -4,9 +4,9 @@ Let's start by adding the `#[macros::call]` macro to our Balances Pallet.
 
 ## The Call Macro
 
-The purpose of the `#[macros::call]` macro is to automatically generate the `enum Call` from the functions of the pallet and the pallet level `Dispatch` logic found in each Pallet.
+The purpose of the `#[macros::call]` macro is to automatically generate the `enum Call` from the functions of the pallet and the pallet-level `Dispatch` logic found in each Pallet.
 
-We can place the `#[macros::call]` attribute over our `impl<T: Config> Pallet<T>` where the callable functions are implemented. From there, the macro can parse the whole object, and extract the data it needs. Not all of your functions are intended to be callable, so you can isolate the functions which should be in their own `impl<T: Config> Pallet<T>` as the template does.
+We can place the `#[macros::call]` attribute over our `impl<T: Config> Pallet<T>` where the callable functions are implemented. From there, the macro can parse the whole object, and extract the data it needs. Since not all of your functions are intended to be callable, isolate the functions which should be in their own `impl<T: Config> Pallet<T>` as the template does.
 
 ### Parse
 
@@ -17,15 +17,15 @@ In order to generate the code that we want, we need to keep track of:
 	2. The argument names and types of that function.
 2. The name of the `struct` where those functions are implemented. Normally this is `Pallet`, but we can allow the developer flexibility in their naming.
 
-These things are tracked with `CallDef` and `CallVariantDef`.
+These things are tracked with `CallDef` and `CallVariantDef` in `macros/src/call/{expand,parse}.rs`.
 
 Also, during the parsing process, we might want to check for certain consistencies in the code being parsed. In this case, we require that every callable function must have `caller` as their first parameter with type `T::AccountId`. This should make sense to you since you have designed a number of different callable functions, and they all follow this pattern.
 
-This checking logic is handled by `fn check_caller_arg`.
+This checking logic is handled by `fn check_caller_arg` in `macros/src/call/parse.rs`.
 
 ### Expand
 
-Once we have parsed all the data we need, generating the code is pretty straight forward.
+Once we have parsed all the data we need, generating the code is pretty straightforward.
 
 If you jump down to `let dispatch_impl = quote!` you will see a bunch of code that looks like the templates we used earlier in the tutorial. We just left markers where the macro generation logic should place all the information to write the code we need.
 
@@ -45,7 +45,7 @@ The variant is called `Transfer` because the function it represents is named `fn
 
 However, if we want to generate the `Call` enum, and we only have `fn transfer`, where will we get the specific string `Transfer` with a capital `T`?
 
-It is possible to do string manipulation and adjust everything to make it consistent to what Rust expects, but in this case it is better for our macros to make minimal modifications to user written code.
+It is possible to do string manipulation and adjust everything to make it consistent to what Rust expects, but in this case it is better for our macros to make minimal modifications to user-written code.
 
 What does this mean?
 
@@ -58,7 +58,7 @@ pub enum Call<T: Config> {
 }
 ```
 
-Here you see that `transfer` is exactly the string which comes from the name of the function. Normally all enum variants should be `CamelCase`, but since rust functions are `snake_case`, our enum will have variants which are also `snake_case`. We won't see any warnings about this because we enabled `#[allow(non_camel_case_types)]`.
+Here you see that `transfer` is exactly the string which comes from the name of the function. Normally all enum variants should be `PascalCase`, but since Rust functions are `snake_case`, our enum will have variants which are also `snake_case`. We won't see any warnings about this because we enabled `#[allow(non_camel_case_types)]`.
 
 Ultimately, this has no significant impact on your underlying code. It is just ergonomics and expectations.
 
