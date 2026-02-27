@@ -11,7 +11,7 @@ The structure of our Runtime and Pallets have evolved quite a bit since.
 
 This will be the last pallet we build for this tutorial, but we will build it knowing all of the tips and tricks we have learned so far.
 
-The goal here is for you to ensure that all of the intricacies of Pallet development is well understood and that you are able to navigate all of the Rust code.
+The goal here is for you to ensure that all of the intricacies of Pallet development are well understood and that you are able to navigate all of the Rust code.
 
 ## What is Proof of Existence?
 
@@ -29,7 +29,7 @@ However, for the purposes of this tutorial, we won't introduce hash functions ye
 
 The `BTreeMap` is again the best tool to use for storing data in this Pallet. However, you will notice that the construction of the storage is a bit different than before. Rather than having a map from accounts to some data, we will actually map the content we want to claim to the user who owns it.
 
-This construction of `content -> account` allows an account to be the owner of multiple different claims, but having each claim only be owned by one user.
+This construction of `content -> account` allows an account to be the owner of multiple different claims, while having each claim only owned by one user.
 
 ## Create Your Pallet
 

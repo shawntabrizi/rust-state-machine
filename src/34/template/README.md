@@ -2,9 +2,9 @@
 
 We have already established the nested dispatch pipeline for Pallets in the `Runtime`.
 
-Let's build Pallet level dispatch logic for the Proof of Existence to take advantage of that.
+Let's build pallet-level dispatch logic for the Proof of Existence to take advantage of that.
 
-## Create Pallet Level Dispatch
+## Create Pallet-level Dispatch
 
 There is nothing new here, but we have left more for you to fill out than before.
 

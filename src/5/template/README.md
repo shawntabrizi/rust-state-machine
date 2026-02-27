@@ -8,7 +8,7 @@ For a balance system, we really only need to keep track of one thing: how much b
 
 For this we will use a `BTreeMap`, which we can import from the Rust `std` library.
 
-Maps are simple `key -> value` objects, allowing us to define an arbitrary sized storage where we can map some user identifier (`key`) to their account balance (`value`).
+Maps are simple `key -> value` objects, allowing us to define an arbitrarily-sized storage where we can map some user identifier (`key`) to their account balance (`value`).
 
 1. Import the `BTreeMap` object.
 	```rust
@@ -49,6 +49,6 @@ It is important to note that this is NOT how Pallet storage works with the Polka
 
 In the Polkadot SDK, there is a separate storage layer which manages a proper key-value database which holds all the information (past and present) of our blockchain system. There are abstractions which look and behave just like a `BTreeMap` in the Polkadot SDK, but the underlying logic which maintains that data is much more complex.
 
-Using simple fields in a struct keeps this project simple, and illustrates that each Pallet really is meant to manage it's own storage. However, this simplification also leads to issues if you design more complex systems where multiple pallets interact with one another.
+Using simple fields in a struct keeps this project simple, and illustrates that each Pallet really is meant to manage its own storage. However, this simplification also leads to issues if you design more complex systems where multiple pallets interact with one another.
 
-We won't have any cross pallet interactions in this workshop, however, this is definitely doable with the Polkadot SDK and a proper database.
+We won't have any cross-pallet interactions in this workshop; however, this is definitely doable with the Polkadot SDK and a proper database.

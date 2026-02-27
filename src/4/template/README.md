@@ -12,7 +12,7 @@ We want keep our code organized, so we will not really start building in the `ma
 
 Pretty much every blockchain has logic that handles the balances of users on that blockchain.
 
-This Pallet will tell you: how much balance each user has, provide functions which allow users to transfer those balances, and even some low level functions to allow your blockchain system to manipulate those balances if needed. Think for example if you want to mint new tokens which don't already exist.
+This Pallet will tell you: how much balance each user has, provide functions which allow users to transfer those balances, and even some low-level functions to allow your blockchain system to manipulate those balances if needed. Think for example if you want to mint new tokens which don't already exist.
 
 This is a great starting point, and the very first Pallet we will build.
 

@@ -12,9 +12,9 @@ What would you need to change in order to use more traditional cryptographic pub
 
 Well, currently there are definitions of the account type in both the Balances Pallet and the System Pallet. Imagine if you had many more Pallets too! Such refactoring could be very difficult, but also totally avoided if we used generic types to begin with.
 
-Truthfully, the advantage of generic types will not be super obvious in this tutorial, but when building a blockchain SDK like the Substrate, this kind of flexibility will allow ecosystem developers to reach their full potential.
+Truthfully, the advantage of generic types will not be super obvious in this tutorial, but when building a blockchain framework like [Polkadot SDK](https://github.com/paritytech/polkadot-sdk), this kind of flexibility will allow ecosystem developers to reach their full potential.
 
-For example, teams have used Substrate to build fully compatible Ethereum blockchains, while other teams have experimented with cutting edge cryptographic primitives. This generic framework allows both teams to be successful.
+For example, teams have used Polkadot SDK to build fully compatible Ethereum blockchains, while other teams have experimented with cutting-edge cryptographic primitives. This generic framework allows both teams to be successful.
 
 ## Generic Types
 
@@ -44,7 +44,7 @@ The `Result` generic type is extremely flexible because there are no constraints
 
 However, our Pallets are not that flexible. The `Balance` type cannot literally be any type. Because we have functions like `fn transfer`, we must require that the `Balance` type at least has access to the function `checked_sub`, `checked_add`, and has some representation of `zero`.
 
-This is where the `num` crate will come in hand. From the `num` crate, you can import traits which define types which expose these functions:
+This is where the `num` crate will come in handy. From the `num` crate, you can import traits which define types which expose these functions:
 
 ```rust
 use num::traits::{CheckedAdd, CheckedSub, Zero};

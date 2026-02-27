@@ -6,7 +6,7 @@ Let's do that.
 
 ## Adding Our Calls
 
-Dispatch logic is all about routing a user's extrinsic to the proper Pallet function. So far, the only user callable function we have created is the `transfer` function in the Balances Pallet.
+Dispatch logic is all about routing a user's extrinsic to the proper Pallet function. So far, the only user-callable function we have created is the `transfer` function in the Balances Pallet.
 
 So let's add that call to our `RuntimeCall` enum.
 
@@ -39,14 +39,14 @@ Basically, given some `RuntimeCall`, we need to match on the variant being provi
 ```rust
 match runtime_call {
 	RuntimeCall::BalancesTransfer { to, amount } => {
-		self.balances.transfer(caller, to, amount)?;
+		self.balances.transfer(caller, to, amount)
 	}
 }
 ```
 
 Dispatch logic really is that simple!
 
-Note that we propagate up any errors returned by our function call with the `?` operator. This is important if you want to see the error messages that we set up in the `execute_block` logic.
+Note that we propagate up any errors returned by our function call. This is important if you want to see the error messages that we set up in the `execute_block` logic.
 
 ## Write Your Dispatch Logic
 

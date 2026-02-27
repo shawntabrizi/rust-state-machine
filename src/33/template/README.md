@@ -18,7 +18,7 @@ The only thing that is important is that we check that the claim has not already
 
 Each claim should only have one owner, and whoever makes the claim first gets priority.
 
-You can check if some claim is already in the `claims` storage using the `contains_key` api:
+You can check if some claim is already in the `claims` storage using the `contains_key` function:
 
 ```rust
 if self.claims.contains_key(&claim) {
@@ -28,7 +28,7 @@ if self.claims.contains_key(&claim) {
 
 ## Revoke Claim
 
-Data on the blockchain is not free, and in fact is very expensive to maintain. Giving users the ability to clean up their data is not only good, but encouraged. If a user no longer has a need to store their claim on chain, they should clean it up.
+Data on the blockchain is not free, and in fact is very expensive to maintain. Giving users the ability to clean up their data is not only good, but encouraged. If a user no longer has a need to store their claim on-chain, they should clean it up.
 
 Furthermore, the history of the blockchain is immutable. Even if the data about a claim does not exist in the "current state", it can be shown to have existed in the past.
 

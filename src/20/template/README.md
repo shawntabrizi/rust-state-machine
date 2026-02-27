@@ -73,9 +73,9 @@ pub struct Pallet<AccountId, BlockNumber, BlockLength, BlockWeight, Hash, Nonce,
 }
 ```
 
-Imagine every time you wanted to instantiate this struct, you would need to fill out each and every one of those types. Well systems do get this complex, and more, and the ability to abstract these types one level further can really simplify your code and make it much more readable.
+Imagine every time you wanted to instantiate this struct, you would need to fill out each and every one of those types. Well, systems do get this complex, and more, and the ability to abstract these types one level further can really simplify your code and make it much more readable.
 
-For this we will use a trait with a bunch of associated types:
+For this, we will use a trait with a bunch of associated types in `system.rs`:
 
 ```rust
 pub trait Config {
@@ -112,7 +112,7 @@ Let's try to understand this syntax real quick.
 	- `T::BlockNumber`
 	- `T::Nonce`
 
-While this may seem like a purely stylistic change, it enforces a powerful constraint: for any given type implementing `Config` (like our `Runtime`), there can only be one corresponding `AccountId`, `BlockNumber`, and `Nonce`. This guarantees type consistency across the pallet.
+While this may seem like a purely stylistic change, it enforces a powerful constraint: for any given type implementing `Config` (like our `Runtime`), there can only be one corresponding `AccountId`, `BlockNumber`, and `Nonce`. This guarantees type consistency across all pallets.
 
 In this context, we call the trait `Config` because it is used to configure all the types for our Pallet.
 
@@ -150,7 +150,7 @@ Using traits with associated types does more than just make the code less verbos
 
 3. It allows us to create a single spot for us to configure those final types. You can see that we use the `mod types {}` section in `main.rs` to define all the concrete types in one place, so they can be consistently referenced. Without this, you might accidentally use different concrete types in different pallets (like `u32` in one place and `u64` in another), causing compilation errors or, worse, subtle bugs.
 
-4. Finally, it allows us to configure different runtimes with completely different concrete types. This is an extremely powerful and often used feature in Substrate / the Polkadot-SDK.
+4. Finally, it allows us to configure different runtimes with completely different concrete types. This is an extremely powerful and often-used feature in the Polkadot SDK.
 
 	For example, we can create two runtime configurations, one for production and one for testing, and configure them completely differently:
 
@@ -187,7 +187,7 @@ You don't *program* the runtime, you **configure** it.
 
 This pattern allows pallets to be completely independent and reusable. A pallet doesn't need to know which other pallets exist in the runtime, it only needs its `Config` trait implemented. This means you can mix and match different pallets in different runtimes (production, test, development) without modifying the pallet code itself.
 
-This is the difference between building a single purpose blockchain and building a blockchain SDK, allowing for reusable, modular components, and ultimately bootstrapping a powerful ecosystem of blockchain developers.
+This is the difference between building a single-purpose blockchain and a blockchain SDK, allowing for reusable, modular components, and ultimately bootstrapping a powerful ecosystem of blockchain developers.
 
 ## Make Your System Configurable
 
