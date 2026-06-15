@@ -14,12 +14,12 @@ pub trait Config: crate::system::Config {
 pub struct Pallet<T: Config> {
 	/// A simple storage map from content to the owner of that content.
 	/// Accounts can make multiple different claims, but each claim can only have one owner.
-	/* TODO: Add a field `claims` which is a `BTreeMap` fom `T::Content` to `T::AccountId`. */
+	claims: BTreeMap<T::Content, T::AccountId>,
 }
 
 impl<T: Config> Pallet<T> {
 	/// Create a new instance of the Proof of Existence Module.
 	pub fn new() -> Self {
-		/* TODO: Return a new instance of the `Pallet` struct. */
+		Self { claims: BTreeMap::new() }
 	}
 }
