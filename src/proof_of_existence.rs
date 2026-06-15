@@ -18,7 +18,6 @@ pub struct Pallet<T: Config> {
 	claims: BTreeMap<T::Content, T::AccountId>,
 }
 
-/* TODO: Add the `#[macros::call]` attribute here too. Make the changes needed to this pallet. */
 impl<T: Config> Pallet<T> {
 	/// Create a new instance of the Proof of Existence Module.
 	pub fn new() -> Self {
@@ -29,7 +28,10 @@ impl<T: Config> Pallet<T> {
 	pub fn get_claim(&self, claim: &T::Content) -> Option<&T::AccountId> {
 		self.claims.get(claim)
 	}
+}
 
+#[macros::call]
+impl<T: Config> Pallet<T> {
 	/// Create a new claim on behalf of the `caller`.
 	/// This function will return an error if someone already has claimed that content.
 	pub fn create_claim(&mut self, caller: T::AccountId, claim: T::Content) -> DispatchResult {
@@ -49,37 +51,6 @@ impl<T: Config> Pallet<T> {
 			return Err("this content is owned by someone else");
 		}
 		self.claims.remove(&claim);
-		Ok(())
-	}
-}
-
-// A public enum which describes the calls we want to expose to the dispatcher.
-// We should expect that the caller of each call will be provided by the dispatcher,
-// and not included as a parameter of the call.
-pub enum Call<T: Config> {
-	CreateClaim { claim: T::Content },
-	RevokeClaim { claim: T::Content },
-}
-
-/// Implementation of the dispatch logic, mapping from `Call` to the appropriate underlying
-/// function we want to execute.
-impl<T: Config> crate::support::Dispatch for Pallet<T> {
-	type Caller = T::AccountId;
-	type Call = Call<T>;
-
-	fn dispatch(
-		&mut self,
-		caller: Self::Caller,
-		call: Self::Call,
-	) -> crate::support::DispatchResult {
-		match call {
-			Call::CreateClaim { claim } => {
-				self.create_claim(caller, claim)?;
-			},
-			Call::RevokeClaim { claim } => {
-				self.revoke_claim(caller, claim)?;
-			},
-		}
 		Ok(())
 	}
 }
