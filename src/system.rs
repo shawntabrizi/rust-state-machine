@@ -2,64 +2,68 @@ use core::ops::AddAssign;
 use num::traits::{One, Zero};
 use std::collections::BTreeMap;
 
-/*
-	TODO: Combine all generic types and their trait bounds into a single `pub trait Config`.
-	When you are done, your `Pallet` can simply be defined with `Pallet<T: Config>`.
-*/
+/// The configuration trait for the System Pallet.
+/// This controls the common types used throughout our state machine.
+pub trait Config {
+	/// A type which can identify an account in our state machine.
+	/// On a real blockchain, you would want this to be a cryptographic public key.
+	type AccountId: Ord + Clone;
+	/// A type which can be used to represent the current block number.
+	/// Usually a basic unsigned integer.
+	type BlockNumber: Zero + One + AddAssign + Copy;
+	/// A type which can be used to keep track of the number of transactions from each account.
+	/// Usually a basic unsigned integer.
+	type Nonce: One + AddAssign + Default;
+}
 
 /// This is the System Pallet.
 /// It handles low level state needed for your blockchain.
 #[derive(Debug)]
-pub struct Pallet<AccountId, BlockNumber, Nonce> {
+pub struct Pallet<T: Config> {
 	/// The current block number.
-	block_number: BlockNumber,
+	block_number: T::BlockNumber,
 	/// A map from an account to their nonce.
-	nonce: BTreeMap<AccountId, Nonce>,
+	nonce: BTreeMap<T::AccountId, T::Nonce>,
 }
 
-/*
-	TODO: Update all of these functions to use your new configuration trait.
-*/
-
-impl<AccountId, BlockNumber, Nonce> Pallet<AccountId, BlockNumber, Nonce>
-where
-	AccountId: Ord + Clone,
-	BlockNumber: Zero + One + AddAssign + Copy,
-	Nonce: One + AddAssign + Default,
-{
+/// The System Pallet is a low level system which is not really meant to be exposed to the outside
+/// world. Instead, these functions are used by your low level blockchain systems.
+impl<T: Config> Pallet<T> {
 	/// Create a new instance of the System Pallet.
 	pub fn new() -> Self {
-		Self { block_number: BlockNumber::zero(), nonce: BTreeMap::new() }
+		Self { block_number: T::BlockNumber::zero(), nonce: BTreeMap::new() }
 	}
 
 	/// Get the current block number.
-	pub fn block_number(&self) -> BlockNumber {
+	pub fn block_number(&self) -> T::BlockNumber {
 		self.block_number
 	}
 
 	// This function can be used to increment the block number.
 	// Increases the block number by one.
 	pub fn inc_block_number(&mut self) {
-		self.block_number += BlockNumber::one();
+		self.block_number += T::BlockNumber::one();
 	}
 
 	// Increment the nonce of an account. This helps us keep track of how many transactions each
 	// account has made.
-	pub fn inc_nonce(&mut self, who: &AccountId) {
-		*self.nonce.entry(who.clone()).or_default() += Nonce::one();
+	pub fn inc_nonce(&mut self, who: &T::AccountId) {
+		*self.nonce.entry(who.clone()).or_default() += T::Nonce::one();
 	}
 }
 
 #[cfg(test)]
 mod test {
-	/*
-		TODO: Create a `struct TestConfig`, and implement `super::Config` on it with concrete types.
-		Use this struct to instantiate your `Pallet`.
-	*/
+	struct TestConfig;
+	impl super::Config for TestConfig {
+		type AccountId = String;
+		type BlockNumber = u32;
+		type Nonce = u32;
+	}
 
 	#[test]
 	fn init_system() {
-		let mut system = super::Pallet::<String, u32, u32>::new();
+		let mut system = super::Pallet::<TestConfig>::new();
 		system.inc_block_number();
 		system.inc_nonce(&"alice".to_string());
 
