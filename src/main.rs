@@ -16,5 +16,22 @@ impl Runtime {
 }
 
 fn main() {
-	println!("Hello, world!");
+	/* TODO: Create a mutable variable `runtime`, which is a new instance of `Runtime`. */
+	/* TODO: Set the balance of `alice` to 100, allowing us to execute other transactions. */
+
+	// start emulating a block
+	/* TODO: Increment the block number in system. */
+	/* TODO: Assert the block number is what we expect. */
+
+	// first transaction
+	/* TODO: Increment the nonce of `alice`. */
+	/* TODO: Execute a transfer from `alice` to `bob` for 30 tokens.
+		- The transfer _could_ return an error. We should use `map_err` to print
+		  the error if there is one.
+		- We should capture the result of the transfer in an unused variable like `_res`.
+	*/
+
+	// second transaction
+	/* TODO: Increment the nonce of `alice` again. */
+	/* TODO: Execute another balance transfer, this time from `alice` to `charlie` for 20. */
 }
