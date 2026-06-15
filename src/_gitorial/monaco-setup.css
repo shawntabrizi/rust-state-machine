@@ -265,7 +265,7 @@ body.gitorial-has-editor .content {
   .gitorial-step-text,
   .gitorial-step-editor {
     height: auto;
-    overflow: visible;
+    overflow: hidden;
   }
 
   .gitorial-monaco {
