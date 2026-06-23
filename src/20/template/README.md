@@ -112,7 +112,7 @@ Let's try to understand this syntax real quick.
 	- `T::BlockNumber`
 	- `T::Nonce`
 
-While this may seem like a purely stylistic change, it enforces a powerful constraint: for any given type implementing `Config` (like our `Runtime`), there can only be one corresponding `AccountId`, `BlockNumber`, and `Nonce`. This guarantees type consistency across all pallets.
+While this may seems like a purely stylistic change, it enforces a powerful constraint: for any given type implementing `Config` (like our `Runtime`), there can only be one corresponding `AccountId`, `BlockNumber`, and `Nonce`. This guarantees type consistency across all pallets.
 
 In this context, we call the trait `Config` because it is used to configure all the types for our Pallet.
 
