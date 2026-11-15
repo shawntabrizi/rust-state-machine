@@ -21,7 +21,7 @@ For example:
 - We know that the `Runtime` will have logic to re-dispatch runtime level calls to the pallet level.
 - and so on...
 
-The more we abstract our Pallet and Runtime into consistent and and extensible pieces, the more we can automate, and ultimately this can provide a better developer experience.
+The more we abstract our Pallet and Runtime into consistent and extensible pieces, the more we can automate, and ultimately this can provide a better developer experience.
 
 ## Navigating the Macros
 
